@@ -1,1 +1,1 @@
-meu pai n toma banho pelado
+SEMPRE DAR PULL ANTES DE ADD E PUSH

@@ -9,11 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-<<<<<<< HEAD
             "file": "anotacao matheus.md",
-=======
-            "file": "notacao tobinhas.md",
->>>>>>> aa38a5622c8efa65a72f0c1b0701c78ebd40feaf
             "mode": "source"
           }
         }
@@ -72,11 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-<<<<<<< HEAD
                 "file": "anotacao matheus.md",
-=======
-                "file": "notacao tobinhas.md",
->>>>>>> aa38a5622c8efa65a72f0c1b0701c78ebd40feaf
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -96,7 +88,8 @@
   },
   "active": "7d1411390de646e3",
   "lastOpenFiles": [
-    "Untitled.md",
-    "DUVIDAS.md"
+    "anotacao matheus.md",
+    "notacao tobinhas.md",
+    "Untitled.md"
   ]
 }
