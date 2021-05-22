@@ -7,8 +7,11 @@
         "id": "7d1411390de646e3",
         "type": "leaf",
         "state": {
-          "type": "empty",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "DUVIDAS.md",
+            "mode": "source"
+          }
         }
       }
     ],
@@ -65,6 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "DUVIDAS.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -83,5 +87,7 @@
     "collapsed": true
   },
   "active": "7d1411390de646e3",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "Untitled.md"
+  ]
 }
