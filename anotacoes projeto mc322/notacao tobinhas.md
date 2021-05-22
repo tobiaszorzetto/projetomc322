@@ -1,1 +1,0 @@
-meu pai toma banho pelado
