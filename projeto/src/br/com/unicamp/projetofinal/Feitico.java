@@ -1,5 +1,5 @@
 package br.com.unicamp.projetofinal;
 
-public abstract class Carta {
+public class Feitico extends Carta{
 
 }
