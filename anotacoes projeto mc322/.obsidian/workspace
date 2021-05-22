@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "DUVIDAS.md",
+            "file": "notacao tobinhas.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "DUVIDAS.md",
+                "file": "notacao tobinhas.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,6 +88,7 @@
   },
   "active": "7d1411390de646e3",
   "lastOpenFiles": [
-    "Untitled.md"
+    "Untitled.md",
+    "DUVIDAS.md"
   ]
 }
