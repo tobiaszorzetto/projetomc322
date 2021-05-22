@@ -9,7 +9,11 @@
         "state": {
           "type": "markdown",
           "state": {
+<<<<<<< HEAD
             "file": "TESTE DA IGNORANCIA NO GIT.md",
+=======
+            "file": "anotacao matheus.md",
+>>>>>>> 7f0067d2c0315ced892838ac05f42c4fce18160d
             "mode": "source"
           }
         }
@@ -68,7 +72,11 @@
             "state": {
               "type": "backlink",
               "state": {
+<<<<<<< HEAD
                 "file": "TESTE DA IGNORANCIA NO GIT.md",
+=======
+                "file": "anotacao matheus.md",
+>>>>>>> 7f0067d2c0315ced892838ac05f42c4fce18160d
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,11 +96,20 @@
   },
   "active": "7d1411390de646e3",
   "lastOpenFiles": [
+<<<<<<< HEAD
     "TESTE DA IGNORANCIA NO GIT.md",
     "eitaaaaa que o flamengo vai ganhar esse titulo!.md",
     "DUVIDAS.md",
+=======
+>>>>>>> 7f0067d2c0315ced892838ac05f42c4fce18160d
     "anotacao matheus.md",
+    "eitaaaaa que o flamengo vai ganhar esse titulo!.md",
+    "TESTE DA IGNORANCIA NO GIT.md",
     "Untitled.md",
+<<<<<<< HEAD
+=======
+    "DUVIDAS.md",
+>>>>>>> 7f0067d2c0315ced892838ac05f42c4fce18160d
     "notacao tobinhas.md"
   ]
 }
