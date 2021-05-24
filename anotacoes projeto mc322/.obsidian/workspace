@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "DUVIDAS.md",
+            "file": "AVISOS.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "DUVIDAS.md",
+                "file": "AVISOS.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,6 +88,7 @@
   },
   "active": "63ec45c4822d5000",
   "lastOpenFiles": [
+    "Untitled.md",
     "DUVIDAS.md",
     "anotacao matheus.md"
   ]
