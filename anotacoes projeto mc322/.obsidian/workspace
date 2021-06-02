@@ -1,56 +1,29 @@
 {
   "main": {
-<<<<<<< HEAD
-    "id": "1c7e3fb53950fecf",
+    "id": "301d12755fa0b8ad",
     "type": "split",
     "children": [
       {
-        "id": "0e5ffbc1b32bccf9",
-=======
-    "id": "42b28460a30adfc8",
-    "type": "split",
-    "children": [
-      {
-        "id": "63ec45c4822d5000",
->>>>>>> 887adbabede2ea6845518f91593233ed91d914c6
+        "id": "1c4a9a9cae247dd3",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-<<<<<<< HEAD
-            "file": "DUVIDAS.md",
-=======
-            "file": "AVISOS.md",
->>>>>>> 887adbabede2ea6845518f91593233ed91d914c6
-            "mode": "source"
-          }
+          "type": "empty",
+          "state": {}
         }
       }
     ],
     "direction": "vertical"
   },
   "left": {
-<<<<<<< HEAD
-    "id": "16c20aa236afe531",
+    "id": "411b44d54b7d51d3",
     "type": "split",
     "children": [
       {
-        "id": "1479f54ed0bd98ff",
+        "id": "051a26d0e1ed653b",
         "type": "tabs",
         "children": [
           {
-            "id": "5997444d22f7425f",
-=======
-    "id": "a680def7eaa2e02a",
-    "type": "split",
-    "children": [
-      {
-        "id": "ac4a99894bba3298",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "a4c7f7a3d7d51044",
->>>>>>> 887adbabede2ea6845518f91593233ed91d914c6
+            "id": "360341c18d5a3ed8",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -58,11 +31,7 @@
             }
           },
           {
-<<<<<<< HEAD
-            "id": "d07090685089ab35",
-=======
-            "id": "8dc270b4d8fc6344",
->>>>>>> 887adbabede2ea6845518f91593233ed91d914c6
+            "id": "abf85b97e8fbebcc",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -83,36 +52,19 @@
     "width": 300
   },
   "right": {
-<<<<<<< HEAD
-    "id": "449afd096ccd9c31",
+    "id": "3a5485ec8c3ec7b2",
     "type": "split",
     "children": [
       {
-        "id": "099cb6bf99ec8ea9",
+        "id": "2b40f52c7187baab",
         "type": "tabs",
         "children": [
           {
-            "id": "c39068ed19cc6cca",
-=======
-    "id": "2d9581c0156b805f",
-    "type": "split",
-    "children": [
-      {
-        "id": "32625d1e05816cbf",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "70e5f5efa719a8bc",
->>>>>>> 887adbabede2ea6845518f91593233ed91d914c6
+            "id": "2108446bc6c85461",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-<<<<<<< HEAD
-                "file": "DUVIDAS.md",
-=======
-                "file": "AVISOS.md",
->>>>>>> 887adbabede2ea6845518f91593233ed91d914c6
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -130,16 +82,10 @@
     "width": 300,
     "collapsed": true
   },
-<<<<<<< HEAD
-  "active": "0e5ffbc1b32bccf9",
+  "active": "1c4a9a9cae247dd3",
   "lastOpenFiles": [
+    "AVISOS.md",
+    "anotacao matheus.md",
     "DUVIDAS.md"
-=======
-  "active": "63ec45c4822d5000",
-  "lastOpenFiles": [
-    "Untitled.md",
-    "DUVIDAS.md",
-    "anotacao matheus.md"
->>>>>>> 887adbabede2ea6845518f91593233ed91d914c6
   ]
 }
