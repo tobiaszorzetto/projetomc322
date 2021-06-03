@@ -11,4 +11,21 @@ public abstract class Campeao extends Carta{
 	}
 	
 	public abstract void verificarCondicao();
+
+	public void aumentarVida(int quantidade){
+		vida += quantidade;
+	}
+
+	public void diminuirVida(int quantidade){
+		vida -= quantidade;
+	}
+
+	public void aumentarAtaque(int quantidade){
+		ataque += quantidade;
+	}
+
+	public void diminuirAtaque(int quantidade){
+		ataque -= quantidade;
+	}
+
 }

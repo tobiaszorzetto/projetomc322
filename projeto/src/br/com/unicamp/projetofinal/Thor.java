@@ -11,8 +11,8 @@ public class Thor extends Campeao{
 		feiticos_usados = this.getMesa.getFeiticos_usados();
 		for (Feitico feitico : feiticos_usados)	{
 			if (feitico.getTipo().equals("eletrico")) {
-				this.aumentar_vida(2);
-				this.aumentar_ataque(2);
+				this.aumentarVida(2);
+				this.aumentarAtaque(2);
 			}
 		}
 	}
