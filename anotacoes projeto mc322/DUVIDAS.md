@@ -1,0 +1,1 @@
+1- Critérios das cartas

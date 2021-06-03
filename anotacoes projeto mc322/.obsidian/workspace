@@ -1,0 +1,91 @@
+{
+  "main": {
+    "id": "301d12755fa0b8ad",
+    "type": "split",
+    "children": [
+      {
+        "id": "1c4a9a9cae247dd3",
+        "type": "leaf",
+        "state": {
+          "type": "empty",
+          "state": {}
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "411b44d54b7d51d3",
+    "type": "split",
+    "children": [
+      {
+        "id": "051a26d0e1ed653b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "360341c18d5a3ed8",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "abf85b97e8fbebcc",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "3a5485ec8c3ec7b2",
+    "type": "split",
+    "children": [
+      {
+        "id": "2b40f52c7187baab",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2108446bc6c85461",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "1c4a9a9cae247dd3",
+  "lastOpenFiles": [
+    "AVISOS.md",
+    "anotacao matheus.md",
+    "DUVIDAS.md"
+  ]
+}
