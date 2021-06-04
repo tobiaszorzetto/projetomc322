@@ -2,8 +2,8 @@ package br.com.unicamp.projetofinal;
 
 public class Gnomo extends Seguidor{
 
-	public Gnomo(String nome, int custo_mana, int ataque, int vida, Mesa mesa) {
-		super(nome, custo_mana, ataque, vida, mesa);
+	public Gnomo(Mesa mesa, int jogador) {
+		super("gnomo", 4, 2, 4, mesa, jogador);
 	}
 
 	@Override

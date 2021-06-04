@@ -12,4 +12,18 @@ public abstract class Carta {
 		this.mesa = mesa;
 		this.jogador = numero_jogador;
 	}
+	
+	//Getters e Setters
+	
+	protected Mesa getMesa() {
+		return this.mesa;
+	}
+	
+	public int getJogador() {
+		return this.jogador;
+	}
+	
+	public int getMana() {
+		return this.custo_mana;
+	}
 }

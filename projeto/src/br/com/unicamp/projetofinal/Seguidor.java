@@ -9,6 +9,14 @@ public abstract class Seguidor extends Carta{
 		this.ataque = ataque;
 		this.vida = vida;
 	}
+	// Getters e Setters
+	public int getAtaque() {
+		return this.ataque;
+	}
+	
+	public int getVida() {
+		return this.vida;
+	}
 	
 	public abstract void verificarCondicao();
 
@@ -23,6 +31,7 @@ public abstract class Seguidor extends Carta{
 	public void aumentarAtaque(int quantidade){
 		ataque += quantidade;
 	}
+	//
 
 	public void diminuirAtaque(int quantidade){
 		ataque -= quantidade;
