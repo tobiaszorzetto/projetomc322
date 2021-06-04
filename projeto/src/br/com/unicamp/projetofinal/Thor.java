@@ -2,8 +2,8 @@ package br.com.unicamp.projetofinal;
 
 public class Thor extends Campeao{
 
-	public Thor (Mesa mesa) {
-		super("Thor", 4, 7, 10, mesa);
+	public Thor (Mesa mesa, int jogador) {
+		super("Thor", 4, 7, 10, mesa, jogador);
 	}
 
 	@Override

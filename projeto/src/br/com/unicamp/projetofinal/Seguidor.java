@@ -4,8 +4,8 @@ public abstract class Seguidor extends Carta{
 	private int ataque;
 	private int vida;
 	
-	public Seguidor (String nome, int custo_mana, int ataque, int vida, Mesa mesa) {
-		super(nome, custo_mana, mesa);
+	public Seguidor (String nome, int custo_mana, int ataque, int vida, Mesa mesa, int jogador) {
+		super(nome, custo_mana, mesa, jogador);
 		this.ataque = ataque;
 		this.vida = vida;
 	}
