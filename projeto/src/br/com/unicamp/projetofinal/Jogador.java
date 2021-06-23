@@ -59,17 +59,22 @@ public class Jogador {
 		Scanner keyboard = new Scanner(System.in);
 		boolean running = true;
 		while (running) {
+			if (this.mao.getSize()>0){
+				System.out.println(this.nome + " Que carta deseja jogar: ");
+				String command = keyboard.nextLine();
 
-			System.out.print("Que carta deseja jogar: ");
-			String command = keyboard.nextLine();
-
-			if (command.compareTo("nenhuma") == 0) {
-				running = false;
+				if (command.compareTo("nenhuma") == 0) {
+					running = false;
+				}
+				else{
+					int numero_carta = Integer.parseInt(command) - 1;
+					this.jogarCarta(numero_carta);
+				}
 			}
 			else{
-				int numero_carta = Integer.parseInt(command) - 1;
-				this.jogarCarta(numero_carta);
-				}
+				System.out.println(this.nome + " voce ja n tem mais cartas disponiveis");
+				running = false;
+			}
 
 		}
 	}
