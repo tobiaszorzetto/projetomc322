@@ -1,12 +1,14 @@
 package br.com.unicamp.projetofinal;
 
 public class Jogador {
+	private Mesa mesa;
 	private String nome;
 	private int vida;
 	private Marcador marcador;
 	private int mana;
 	
-	public Jogador(String nome) {
+	public Jogador(String nome, Mesa mesa) {
+		this.mesa = mesa;
 		this.nome = nome;
 		this.vida = 20;
 		this.mana = 1; // ainda n sabemos quanto
@@ -29,7 +31,10 @@ public class Jogador {
 	}
 
 	private void jogarCarta(int numero_carta){
+		Carta carta = this.mao.getCarta(numero_carta);
 
+		carta.atuarNaMesa(this);
+		this.mao.removerCarta(carta);
 	}
 
 	private void sortearDoDeck(){

@@ -20,13 +20,13 @@ public class Curandeira extends Seguidor{
 	        System.out.println("Passe o index do jogador que vc quer curar");
 	        int index = scan.nextInt();
 	        scan.close();
-	        if (this.getJogador() == 0) {
-	        	if(this.getMesa().getCartasJogo0().size()>index)//p checar se n ta fora do index 
-	        	this.getMesa().getCartasJogo0().get(index).aumentarVida(3);
+	        if (this.getJogador() == 1) {
+	        	if(this.getMesa().getCartasMesa1().size()>index)//p checar se n ta fora do index
+	        	this.getMesa().getCartasMesa1().get(index).aumentarVida(3);
 	        }
-	        else if (this.getJogador() == 1) {
-	        	if(this.getMesa().getCartasJogo1().size()>index)
-	        	this.getMesa().getCartasJogo1().get(index).aumentarVida(3);
+	        else if (this.getJogador() == 2) {
+	        	if(this.getMesa().getCartasMesa2().size()>index)
+	        	this.getMesa().getCartasMesa2().get(index).aumentarVida(3);
 	        }
 					
 		}

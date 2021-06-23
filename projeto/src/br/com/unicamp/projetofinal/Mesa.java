@@ -20,10 +20,10 @@ public class Mesa {
 	}
 
 	private void verificarCondicoes(){
-		for (Seguidor carta: cartas_mesa_1.getDeck()){
+		for (Seguidor carta: cartas_mesa1){
 			carta.verificarCondicao();
 		}
-		for (Seguidor carta: cartas_mesa_2.getDeck()){
+		for (Seguidor carta: cartas_mesa2){
 			carta.verificarCondicao();
 		}
 	}
@@ -48,7 +48,17 @@ public class Mesa {
 		} else{
 			cartas_mesa_2.adicionarCarta(carta);
 		}
+		this.verificarCondicoes();
 	}
 	
-	// Getters e Setters 
+	// Getters e Setters
+	public  ArrayList<Seguidor> getCartasMesa(Jogador jogador){
+		if (jogador.equals(jogador1)){
+			return cartas_mesa1;
+		} else{
+			return cartas_mesa2;
+		}
+	}
+
+}
 
