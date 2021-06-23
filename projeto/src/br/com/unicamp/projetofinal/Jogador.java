@@ -45,7 +45,7 @@ public class Jogador {
 		this.mao.removerCarta(carta);
 	}
 
-	private void sortearDoDeck(){
+	public void sortearDoDeck(){
 		//sortear um numero do deck
 		Random sorteio = new Random();
 		int carta_sorteada = sorteio.nextInt(deck.getSize());
@@ -63,7 +63,7 @@ public class Jogador {
 				System.out.println(this.nome + " Que carta deseja jogar: ");
 				String command = keyboard.nextLine();
 
-				if (command.compareTo("nenhuma") == 0) {
+				if (command.compareTo("0") == 0) {
 					running = false;
 				}
 				else{

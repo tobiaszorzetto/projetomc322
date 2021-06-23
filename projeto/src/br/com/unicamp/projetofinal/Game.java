@@ -15,6 +15,8 @@ public class Game {
         Jogador jogador2 = new Jogador(mesa);
         jogador2.escolherDeck();
 
+        mesa.destribuirCartasIniciais();
+
         boolean roda = true;
         while(roda){
             mesa.passarRodada();

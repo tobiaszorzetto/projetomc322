@@ -36,6 +36,13 @@ public class Mesa {
 		}
 	}
 
+	public void destribuirCartasIniciais(){
+		for(int i = 0; i<3; i++){
+			jogador1.sortearDoDeck();
+			jogador2.sortearDoDeck();
+		}
+	}
+
 	public void passarRodada(){
 		this.rodada++;
 
