@@ -4,13 +4,13 @@ public abstract class Carta {
 	private String nome;
 	private int custo_mana;
 	private Mesa mesa;
-	private int jogador;
+	private Jogador jogador;
 	
-	public Carta (String nome, int custo_mana, Mesa mesa, int numero_jogador) {
+	public Carta (String nome, int custo_mana, Mesa mesa, Jogador jogador) {
 		this.nome = nome;
 		this.custo_mana = custo_mana;
 		this.mesa = mesa;
-		this.jogador = numero_jogador;
+		this.jogador = jogador;
 	}
 	
 	//Getters e Setters
@@ -19,11 +19,17 @@ public abstract class Carta {
 		return this.mesa;
 	}
 	
-	public int getJogador() {
+	public Jogador getJogador() {
 		return this.jogador;
 	}
 	
 	public int getMana() {
 		return this.custo_mana;
+	}
+
+	public abstract void atuarNaMesa(Jogador jogador);
+
+	public String getNome(){
+		return this.nome;
 	}
 }

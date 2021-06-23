@@ -10,8 +10,8 @@ public class Mesa {
 	private Jogador atacante;
 	private Jogador defensor;
 
-	private Deck cartas_mesa_1 = new Deck(); //cartas do jogador 1 jogadas na mesa
-	private Deck cartas_mesa_2 = new Deck(); //cartas do jogador 2 jogadas na mesa
+	private ArrayList<Seguidor> cartas_mesa1 = new ArrayList<Seguidor>(); //cartas do jogador 1 jogadas na mesa
+	private ArrayList<Seguidor> cartas_mesa2 = new ArrayList<Seguidor>(); //cartas do jogador 2 jogadas na mesa
 	
 	public Mesa() {
 	}
@@ -57,14 +57,13 @@ public class Mesa {
 		this.defensor.jogarTurno();
 		this.printCartasNaMesa();
 		this.atacante.atacar();
-
 	}
 
-	public void colocarCartaNaMesa(Jogador jogador, Carta carta){
-		if (jogador == jogador1){
-			cartas_mesa_1.adicionarCarta(carta);
+	public void colocarCartaMesa(Jogador jogador, Seguidor carta){
+		if (jogador.equals(jogador1)){
+			cartas_mesa1.add(carta);
 		} else{
-			cartas_mesa_2.adicionarCarta(carta);
+			cartas_mesa2.add(carta);
 		}
 		this.verificarCondicoes();
 	}
@@ -78,5 +77,36 @@ public class Mesa {
 		}
 	}
 
+	public Jogador getAdversario(Jogador aliado){
+		if (aliado.equals(jogador1)){
+			return jogador2;
+		} else{
+			return jogador1;
+		}
+	}
+
+
+	public void printCartasNaMesa(){
+		for (int i = 0; i< 40; i++){
+			if (this.cartas_mesa1.size()< i+1 && this.cartas_mesa2.size()<i+1){
+				break;
+			}
+			else if (this.cartas_mesa1.size()>= i+1 && this.cartas_mesa2.size()>= i+1){
+				System.out.println(
+						"("+ this.cartas_mesa1.get(i).getAtaque() + "/" + this.cartas_mesa1.get(i).getVidaAtual()+ ") "+
+						this.cartas_mesa1.get(i).getNome() + "    |    " + this.cartas_mesa2.get(i).getNome() +
+						" ("+ this.cartas_mesa2.get(i).getAtaque() + "/" + this.cartas_mesa2.get(i).getVidaAtual()+ ") ");
+			}
+			else if(this.cartas_mesa1.size()< i+1 && this.cartas_mesa2.size()>= i+1){
+				System.out.println("-----------    |    " + this.cartas_mesa2.get(i).getNome() +
+						" ("+ this.cartas_mesa2.get(i).getAtaque() + "/" + this.cartas_mesa2.get(i).getVidaAtual()+ ")");
+			}
+			else if(this.cartas_mesa1.size()>= i+1 && this.cartas_mesa2.size()< i+1){
+				System.out.println(
+						" ("+ this.cartas_mesa1.get(i).getAtaque() + "/" + this.cartas_mesa1.get(i).getVidaAtual()+ ") "+
+						this.cartas_mesa1.get(i).getNome() + "    |    -------------" );
+			}
+		}
+	}
 }
 

@@ -2,7 +2,7 @@ package br.com.unicamp.projetofinal;
 
 public class Thor extends Campeao{
 
-	public Thor (Mesa mesa, int jogador) {
+	public Thor (Mesa mesa, Jogador jogador) {
 		super("Thor", 4, 7, 10, mesa, jogador);
 	}
 
