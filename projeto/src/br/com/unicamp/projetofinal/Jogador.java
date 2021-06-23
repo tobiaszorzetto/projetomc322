@@ -44,7 +44,6 @@ public class Jogador {
 		mao.adicionarCarta(deck.getCarta(carta_sorteada));
 	}
 
-
 	public void jogarTurno(){
 
 		this.sortearDoDeck();
