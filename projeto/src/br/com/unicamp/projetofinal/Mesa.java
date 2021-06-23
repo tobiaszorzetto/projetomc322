@@ -43,9 +43,12 @@ public class Mesa {
 		this.atacante = this.defensor;//o atacante eh agora quem antes estava defendendo
 		this.defensor = aux;
 
+		this.printCartasNaMesa();
 		this.atacante.jogarTurno();
 		//caso nao verifique alguma condicao, verificar aqui (menos eficiente porem mais funcional)
+		this.printCartasNaMesa();
 		this.defensor.jogarTurno();
+		this.printCartasNaMesa();
 		this.atacante.atacar();
 
 	}
