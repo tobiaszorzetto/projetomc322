@@ -4,8 +4,8 @@ import java.security.KeyStore;
 import java.util.ArrayList;
 
 public class Mesa {
-	private Jogador jogador1;
-	private Jogador jogador2;
+	private Jogador jogador1 = null;
+	private Jogador jogador2 = null;
 	private int rodada = 0;
 	private Jogador atacante;
 	private Jogador defensor;
@@ -13,10 +13,18 @@ public class Mesa {
 	private Deck cartas_mesa_1 = new Deck(); //cartas do jogador 1 jogadas na mesa
 	private Deck cartas_mesa_2 = new Deck(); //cartas do jogador 2 jogadas na mesa
 	
-	public Mesa(Jogador jogador1, Jogador jogador2) {
-		this.jogador1 = jogador1;
-		this.jogador2 = jogador2;
-		this.atacante = jogador1;
+	public Mesa() {
+	}
+
+	public void setJogador(Jogador jogador){
+		if(this.jogador1 == null){
+			this.jogador1 = jogador;
+			this.defensor = jogador;
+		}
+		else{
+			this.jogador2 = jogador;
+			this.atacante = jogador;
+		}
 	}
 
 	private void verificarCondicoes(){
@@ -28,7 +36,7 @@ public class Mesa {
 		}
 	}
 
-	private void passarRodada(){
+	public void passarRodada(){
 		this.rodada++;
 
 		Jogador aux = this.atacante;

@@ -7,15 +7,23 @@ public class Jogador {
 	private Marcador marcador;
 	private int mana;
 	
-	public Jogador(String nome, Mesa mesa) {
+	public Jogador(Mesa mesa) {
+		this.setNome();
 		this.mesa = mesa;
-		this.nome = nome;
-		this.vida = 20;
+		mesa.setJogador(this);
+		this.vida = 30;
 		this.mana = 1; // ainda n sabemos quanto
 	}
 	
 	//getters e setters
-	
+
+
+	private void setNome() {
+		Scanner scan = new Scanner(System.in);
+		this.nome = scan.nextLine();
+		//CLOSE NAO FUNCIONA?????
+	}
+
 	public void set_marcador(Marcador marcador) {
 		this.marcador = marcador;
 	}
@@ -59,11 +67,10 @@ public class Jogador {
 				running = false;
 			}
 			else{
-				int numero_carta = Integer.parseInt(command);
+				int numero_carta = Integer.parseInt(command) - 1;
 				this.jogarCarta(numero_carta);
 				}
 
 		}
 	}
 }
-

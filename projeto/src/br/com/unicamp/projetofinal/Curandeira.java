@@ -7,7 +7,7 @@ public class Curandeira extends Seguidor{
 	
 	private boolean primeira_rodada;
 	
-	public Curandeira(Mesa mesa, int jogador) {
+	public Curandeira(Mesa mesa, Jogador jogador) {
 		super("curandeira", 4,2,4, mesa, jogador);
 		// TODO Auto-generated constructor stub
 	}
@@ -20,14 +20,10 @@ public class Curandeira extends Seguidor{
 	        System.out.println("Passe o index do jogador que vc quer curar");
 	        int index = scan.nextInt();
 	        scan.close();
-	        if (this.getJogador() == 1) {
-	        	if(this.getMesa().getCartasMesa1().size()>index)//p checar se n ta fora do index
-	        	this.getMesa().getCartasMesa1().get(index).aumentarVida(3);
-	        }
-	        else if (this.getJogador() == 2) {
-	        	if(this.getMesa().getCartasMesa2().size()>index)
-	        	this.getMesa().getCartasMesa2().get(index).aumentarVida(3);
-	        }
+	        if(this.getMesa().getCartasMesa(this.getJogador()).size()>index)//p checar se n ta fora do index
+	        	this.getMesa().getCartasMesa(this.getJogador()).get(index).aumentarVida(3);
+
+
 					
 		}
 	}
