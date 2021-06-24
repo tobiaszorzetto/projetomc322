@@ -1,5 +1,6 @@
 package br.com.unicamp.projetofinal;
 
+import java.io.IOException;
 import java.security.KeyStore;
 import java.util.ArrayList;
 
@@ -9,6 +10,7 @@ public class Mesa {
 	private int rodada = 0;
 	private Jogador atacante;
 	private Jogador defensor;
+	private int manaJogo =100;
 
 	private ArrayList<Seguidor> cartas_mesa1 = new ArrayList<Seguidor>(); //cartas do jogador 1 jogadas na mesa
 	private ArrayList<Seguidor> cartas_mesa2 = new ArrayList<Seguidor>(); //cartas do jogador 2 jogadas na mesa
@@ -27,7 +29,7 @@ public class Mesa {
 		}
 	}
 
-	private void verificarCondicoes(){
+	public void verificarCondicoes(){
 		for (Seguidor carta: cartas_mesa1){
 			carta.verificarCondicao();
 		}
@@ -45,24 +47,29 @@ public class Mesa {
 
 	public void passarRodada(){
 		this.rodada++;
+		this.manaJogo++;
+		jogador1.setMana(manaJogo);
+		jogador2.setMana(manaJogo);
+
 
 		Jogador aux = this.atacante;
 		this.atacante = this.defensor;//o atacante eh agora quem antes estava defendendo
 		this.defensor = aux;
 
 		this.atacante.jogarTurno();
+		//this.printCartasNaMesa();
 		//caso nao verifique alguma condicao, verificar aqui (menos eficiente porem mais funcional)
 		this.defensor.jogarTurno();
+		//this.printCartasNaMesa();
 		this.atacante.atacar();
+		//this.printCartasNaMesa();
 	}
 
 	public void colocarCartaMesa(Jogador jogador, Seguidor carta){
 		if (jogador.equals(jogador1)){
 			cartas_mesa1.add(carta);
-			printCartasNaMesa();
 		} else{
 			cartas_mesa2.add(carta);
-			printCartasNaMesa();
 		}
 		this.verificarCondicoes();
 	}
@@ -114,6 +121,7 @@ public class Mesa {
 		}
 
 		System.out.println("========================================");
+
 	}
 }
 

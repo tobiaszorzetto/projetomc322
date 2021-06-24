@@ -3,10 +3,12 @@ package br.com.unicamp.projetofinal;
 import java.util.*;
 
 public abstract class Seguidor extends Carta{
+	private int vezes_que_atacou = 0;
 	private int ataque;
 	private int vida_atual;
 	private int vida_original;
 	private boolean vai_atacar;
+	private Traco traco = Traco.NENHUM;
 	
 	public Seguidor (String nome, int custo_mana, int ataque, int vida, Mesa mesa, Jogador jogador) {
 		super(nome, custo_mana, mesa, jogador);
@@ -18,7 +20,19 @@ public abstract class Seguidor extends Carta{
 	public int getAtaque() {
 		return this.ataque;
 	}
-	
+
+	public int getVezesQueAtacou(){
+		return vezes_que_atacou;
+	}
+
+	public void setVidaOriginal(){
+		this.vida_atual = this.vida_original;
+	}
+
+	public void setTraco(Traco traco){
+		this.traco = traco;
+	}
+
 	public int getVidaOriginal() { return this.vida_original; }
 
 	public int getVidaAtual() { return this.vida_atual; }
@@ -39,6 +53,7 @@ public abstract class Seguidor extends Carta{
 	public void matarSeguidor(){
 		this.getMesa().getCartasMesa(this.getJogador()).remove(this);
 		this.getJogador().getDeck().adicionarCarta(this);
+		this.getMesa().verificarCondicoes();
 	}
 
 	public void aumentarAtaque(int quantidade){
@@ -51,11 +66,12 @@ public abstract class Seguidor extends Carta{
 	}
 
 	public void atuarNaMesa(Jogador jogador){
-
 		this.getMesa().colocarCartaMesa(jogador, this);
+		this.getMesa().verificarCondicoes();
 	}
 
 	public void atacar(){
+		this.vezes_que_atacou++;
 		int endereco = this.getMesa().getCartasMesa(this.getJogador()).indexOf(this);
 
 		Jogador adversario = this.getMesa().getAdversario(this.getJogador());

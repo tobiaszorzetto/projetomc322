@@ -38,6 +38,10 @@ public class Jogador {
 		return vida;
 	}
 
+	public void setMana(int mana){
+		this.mana = mana;
+	}
+
 
 	private void setNome() {
 		Scanner scan = new Scanner(System.in);
@@ -63,10 +67,17 @@ public class Jogador {
 	}
 
 	private void jogarCarta(int numero_carta){
+
 		Carta carta = this.mao.getCarta(numero_carta);
 
-		carta.atuarNaMesa(this);
-		this.mao.removerCarta(carta);
+		if (this.mana>=carta.getMana()){
+			carta.atuarNaMesa(this);
+			this.mao.removerCarta(carta);
+			this.mana-=carta.getMana();
+		}
+		else{
+			System.out.println("Sem mana suficiente!");
+		}
 	}
 
 	public void sortearDoDeck(){
@@ -107,14 +118,14 @@ public class Jogador {
 				System.out.println(this.nome + " voce ja n tem mais cartas disponiveis");
 				running = false;
 			}
-
+			this.mesa.verificarCondicoes();
+			this.mesa.printCartasNaMesa();
 		}
 
 	}
 
 	public void atacar(){
 		ArrayList<Seguidor> cartas_na_mesa = this.mesa.getCartasMesa(this);
-		ArrayList<Seguidor> atacantes = new ArrayList<Seguidor>();
 
 		Scanner keyboard = new Scanner(System.in);
 		boolean running = true;
@@ -128,21 +139,22 @@ public class Jogador {
 			}
 			else if(Integer.parseInt(command) <= cartas_na_mesa.size()){
 				int numero_carta = Integer.parseInt(command) - 1;
-				atacantes.add(cartas_na_mesa.get(numero_carta));
+				cartas_na_mesa.get(numero_carta).atacar();
 			}
 			else{
 				System.out.println("nao existe carta com esse indice");
 			}
-		}
-		for (Seguidor carta: atacantes){
-			carta.atacar();
+			this.mesa.verificarCondicoes();
 			this.mesa.printCartasNaMesa();
 		}
+
 	}
 
 	public void escolherDeck(){
 		System.out.println("Escolha das seguintes no máximo 40 cartas para montar Deck: ");
-		System.out.println("1: Thor 2: Gnomo 3: Curandeira");
+		System.out.println("1: Thor            2: Gnomo           3: Curandeira      4: Garen\n" +
+				           "5: Tiana           6: Vanguarda       7: Duelista        8: Poro\n"  +
+				           "9: Poro Defensor  10: Cura");
 
 		Scanner keyboard = new Scanner(System.in);
 		boolean running = true;
@@ -166,6 +178,27 @@ public class Jogador {
 						break;
 					case 3:
 						this.deck.adicionarCarta(new Curandeira(this.mesa, this));
+						break;
+					case 4:
+						this.deck.adicionarCarta(new Garen(this.mesa, this));
+						break;
+					case 5:
+						this.deck.adicionarCarta(new Tiana(this.mesa, this));
+						break;
+					case 6:
+						this.deck.adicionarCarta(new Vanguarda(this.mesa, this));
+						break;
+					case 7:
+						this.deck.adicionarCarta(new Duelista(this.mesa, this));
+						break;
+					case 8:
+						this.deck.adicionarCarta(new Poro(this.mesa, this));
+						break;
+					case 9:
+						this.deck.adicionarCarta(new PoroDefensor(this.mesa, this));
+						break;
+					case 10:
+						this.deck.adicionarCarta(new Cura(this.mesa, this));
 						break;
 					default:
 						System.out.println("Não existe carta com esse numero");
