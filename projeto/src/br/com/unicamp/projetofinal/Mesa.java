@@ -11,6 +11,7 @@ public class Mesa {
 	private Jogador atacante;
 	private Jogador defensor;
 	private int manaJogo =100;
+	private int parte_da_rodada;
 
 	private ArrayList<Seguidor> cartas_mesa1 = new ArrayList<Seguidor>(); //cartas do jogador 1 jogadas na mesa
 	private ArrayList<Seguidor> cartas_mesa2 = new ArrayList<Seguidor>(); //cartas do jogador 2 jogadas na mesa
@@ -56,12 +57,18 @@ public class Mesa {
 		this.atacante = this.defensor;//o atacante eh agora quem antes estava defendendo
 		this.defensor = aux;
 
+		this.parte_da_rodada = 0;
 		this.atacante.jogarTurno();
 		//this.printCartasNaMesa();
 		//caso nao verifique alguma condicao, verificar aqui (menos eficiente porem mais funcional)
+		this.parte_da_rodada = 1;
 		this.defensor.jogarTurno();
 		//this.printCartasNaMesa();
+		this.parte_da_rodada = 2;
 		this.atacante.atacar();
+
+		this.parte_da_rodada = 3;
+		this.verificarCondicoes();
 		//this.printCartasNaMesa();
 	}
 
@@ -91,12 +98,15 @@ public class Mesa {
 		}
 	}
 
+	public int getParteDaRodada(){
+		return parte_da_rodada;
+	}
 
 	public void printCartasNaMesa(){
 
 		System.out.println("========================================");
 
-		System.out.println(this.jogador1.getNome() + " ("+ this.jogador1.getVida()+ ") "+ "............." + " ("+ this.jogador1.getVida()+ ") "+ this.jogador2.getNome());
+		System.out.println(this.jogador1.getNome() + " ("+ this.jogador1.getVida()+ ") "+ "............." + " ("+ this.jogador2.getVida()+ ") "+ this.jogador2.getNome());
 		System.out.println();
 
 		for (int i = 0; i< 40; i++){

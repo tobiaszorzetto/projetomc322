@@ -61,9 +61,9 @@ public class Jogador {
 	
 	public void diminuirVida(int pontos) {
 		this.vida -=  pontos;
-		if (vida <= 0){
-			//ENCERRAR O JOGO (JOGADOR PERDEU)
-		}
+		//if (vida <= 0){
+		//	//ENCERRAR O JOGO (JOGADOR PERDEU)
+		//}
 	}
 
 	private void jogarCarta(int numero_carta){
@@ -78,13 +78,18 @@ public class Jogador {
 		else{
 			System.out.println("Sem mana suficiente!");
 		}
+		this.mesa.verificarCondicoes();
+	}
+
+	public void colocarCartaNaMao(Carta carta){
+		this.mao.adicionarCarta(carta);
 	}
 
 	public void sortearDoDeck(){
 		//sortear um numero do deck
 		Random sorteio = new Random();
 		int carta_sorteada = sorteio.nextInt(this.deck.getSize());
-		this.mao.adicionarCarta(this.deck.getCarta(carta_sorteada));
+		this.colocarCartaNaMao(this.deck.getCarta(carta_sorteada));
 		this.deck.removerCarta(this.deck.getCarta(carta_sorteada));
 	}
 
@@ -150,7 +155,7 @@ public class Jogador {
 
 	}
 
-	public void escolherDeck(){
+	public void escolherDeck(GerenciadorEfeitos ge){
 		System.out.println("Escolha das seguintes no máximo 40 cartas para montar Deck: ");
 		System.out.println("1: Thor            2: Gnomo           3: Curandeira      4: Garen\n" +
 				           "5: Tiana           6: Vanguarda       7: Duelista        8: Poro\n"  +
@@ -171,34 +176,34 @@ public class Jogador {
 				int numero_carta = Integer.parseInt(command);
 				switch (numero_carta){
 					case 1:
-						this.deck.adicionarCarta(new Thor(this.mesa, this));
+						this.deck.adicionarCarta(new Thor(this.mesa, this, ge));
 						break;
 					case 2:
-						this.deck.adicionarCarta(new Gnomo(this.mesa, this));
+						this.deck.adicionarCarta(new Gnomo(this.mesa, this, ge));
 						break;
 					case 3:
-						this.deck.adicionarCarta(new Curandeira(this.mesa, this));
+						this.deck.adicionarCarta(new Curandeira(this.mesa, this, ge));
 						break;
 					case 4:
-						this.deck.adicionarCarta(new Garen(this.mesa, this));
+						this.deck.adicionarCarta(new Garen(this.mesa, this, ge));
 						break;
 					case 5:
-						this.deck.adicionarCarta(new Tiana(this.mesa, this));
+						this.deck.adicionarCarta(new Tiana(this.mesa, this, ge));
 						break;
 					case 6:
-						this.deck.adicionarCarta(new Vanguarda(this.mesa, this));
+						this.deck.adicionarCarta(new Vanguarda(this.mesa, this, ge));
 						break;
 					case 7:
-						this.deck.adicionarCarta(new Duelista(this.mesa, this));
+						this.deck.adicionarCarta(new Duelista(this.mesa, this, ge));
 						break;
 					case 8:
-						this.deck.adicionarCarta(new Poro(this.mesa, this));
+						this.deck.adicionarCarta(new Poro(this.mesa, this, ge));
 						break;
 					case 9:
-						this.deck.adicionarCarta(new PoroDefensor(this.mesa, this));
+						this.deck.adicionarCarta(new PoroDefensor(this.mesa, this, ge));
 						break;
 					case 10:
-						this.deck.adicionarCarta(new Cura(this.mesa, this));
+						this.deck.adicionarCarta(new Cura(this.mesa, this, ge));
 						break;
 					default:
 						System.out.println("Não existe carta com esse numero");

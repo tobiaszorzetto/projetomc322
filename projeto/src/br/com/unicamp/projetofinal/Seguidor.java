@@ -8,10 +8,11 @@ public abstract class Seguidor extends Carta{
 	private int vida_atual;
 	private int vida_original;
 	private boolean vai_atacar;
+	private boolean matou_alguem = false;
 	private Traco traco = Traco.NENHUM;
 	
-	public Seguidor (String nome, int custo_mana, int ataque, int vida, Mesa mesa, Jogador jogador) {
-		super(nome, custo_mana, mesa, jogador);
+	public Seguidor (String nome, int custo_mana, int ataque, int vida, Mesa mesa, Jogador jogador, GerenciadorEfeitos ge) {
+		super(nome, custo_mana, mesa, jogador, ge);
 		this.ataque = ataque;
 		this.vida_original = vida;
 		this.vida_atual = vida;
@@ -36,6 +37,14 @@ public abstract class Seguidor extends Carta{
 	public int getVidaOriginal() { return this.vida_original; }
 
 	public int getVidaAtual() { return this.vida_atual; }
+
+	public boolean getMatouAlguem(){
+		return matou_alguem;
+	}
+
+	public void setMatouAlguem(boolean a){
+		this.matou_alguem = a;
+	}
 	
 	public abstract void verificarCondicao();
 
@@ -43,16 +52,20 @@ public abstract class Seguidor extends Carta{
 		vida_atual += quantidade;
 	}
 
-	public void diminuirVida(int quantidade){
+
+
+	public boolean diminuirVida(int quantidade){
 		vida_atual -= quantidade;
 		if (vida_atual <= 0){
 			matarSeguidor();
+			return true;
 		}
+		return false;
 	}
 
 	public void matarSeguidor(){
 		this.getMesa().getCartasMesa(this.getJogador()).remove(this);
-		this.getJogador().getDeck().adicionarCarta(this);
+		//pensar num jeito aqui
 		this.getMesa().verificarCondicoes();
 	}
 
@@ -70,18 +83,27 @@ public abstract class Seguidor extends Carta{
 		this.getMesa().verificarCondicoes();
 	}
 
+	public void atacarNexus(Jogador adversario){
+		adversario.diminuirVida(ataque);
+	}
+
+	public Jogador getAdversario(){
+		return this.getMesa().getAdversario(this.getJogador());
+	}
+
 	public void atacar(){
 		this.vezes_que_atacou++;
 		int endereco = this.getMesa().getCartasMesa(this.getJogador()).indexOf(this);
 
-		Jogador adversario = this.getMesa().getAdversario(this.getJogador());
+		Jogador adversario = this.getAdversario();
 
 		ArrayList<Seguidor> cartas_adversario = this.getMesa().getCartasMesa(adversario);
 
 		if (cartas_adversario.size() - 1 < endereco ){//se a ultima posicao das cartas do adversario for menor que o index da carta atacante, atacar o jogador
-			adversario.diminuirVida(ataque);
+			this.atacarNexus(adversario);
 		} else{//atacar a carta na posicao do adversario
-			cartas_adversario.get(endereco).diminuirVida(ataque);
+			matou_alguem = cartas_adversario.get(endereco).diminuirVida(ataque);
+
 		}
 	}
 }
