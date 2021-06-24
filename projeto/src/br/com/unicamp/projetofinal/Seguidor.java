@@ -38,6 +38,7 @@ public abstract class Seguidor extends Carta{
 
 	public void matarSeguidor(){
 		this.getMesa().getCartasMesa(this.getJogador()).remove(this);
+		this.getJogador().getDeck().adicionarCarta(this);
 	}
 
 	public void aumentarAtaque(int quantidade){

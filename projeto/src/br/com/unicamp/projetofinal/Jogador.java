@@ -26,6 +26,18 @@ public class Jogador {
 	
 	//getters e setters
 
+	public Deck getDeck(){
+		return this.deck;
+	}
+
+	public String getNome(){
+		return this.nome;
+	}
+
+	public int getVida(){
+		return vida;
+	}
+
 
 	private void setNome() {
 		Scanner scan = new Scanner(System.in);
@@ -60,8 +72,9 @@ public class Jogador {
 	public void sortearDoDeck(){
 		//sortear um numero do deck
 		Random sorteio = new Random();
-		int carta_sorteada = sorteio.nextInt(deck.getSize());
-		mao.adicionarCarta(deck.getCarta(carta_sorteada));
+		int carta_sorteada = sorteio.nextInt(this.deck.getSize());
+		this.mao.adicionarCarta(this.deck.getCarta(carta_sorteada));
+		this.deck.removerCarta(this.deck.getCarta(carta_sorteada));
 	}
 
 	public void jogarTurno(){
@@ -84,10 +97,11 @@ public class Jogador {
 				if (command.compareTo("0") == 0) {
 					running = false;
 				}
-				else{
+				else if (Integer.parseInt(command)<= mao.getSize()){
 					int numero_carta = Integer.parseInt(command) - 1;
 					this.jogarCarta(numero_carta);
 				}
+
 			}
 			else{
 				System.out.println(this.nome + " voce ja n tem mais cartas disponiveis");
@@ -99,7 +113,7 @@ public class Jogador {
 	}
 
 	public void atacar(){
-
+		ArrayList<Seguidor> cartas_na_mesa = this.mesa.getCartasMesa(this);
 		ArrayList<Seguidor> atacantes = new ArrayList<Seguidor>();
 
 		Scanner keyboard = new Scanner(System.in);
@@ -112,13 +126,17 @@ public class Jogador {
 			if (command.compareTo("0") == 0) {
 				running = false;
 			}
-			else{
+			else if(Integer.parseInt(command) <= cartas_na_mesa.size()){
 				int numero_carta = Integer.parseInt(command) - 1;
-				atacantes.add(mesa.getCartasMesa(this).get(numero_carta));
+				atacantes.add(cartas_na_mesa.get(numero_carta));
+			}
+			else{
+				System.out.println("nao existe carta com esse indice");
 			}
 		}
 		for (Seguidor carta: atacantes){
 			carta.atacar();
+			this.mesa.printCartasNaMesa();
 		}
 	}
 
@@ -158,7 +176,5 @@ public class Jogador {
 		}
 
 	}
-
-
 
 }

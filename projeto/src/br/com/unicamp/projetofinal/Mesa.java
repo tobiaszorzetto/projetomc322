@@ -86,6 +86,12 @@ public class Mesa {
 
 
 	public void printCartasNaMesa(){
+
+		System.out.println("========================================");
+
+		System.out.println(this.jogador1.getNome() + " ("+ this.jogador1.getVida()+ ") "+ "............." + " ("+ this.jogador1.getVida()+ ") "+ this.jogador2.getNome());
+		System.out.println();
+
 		for (int i = 0; i< 40; i++){
 			if (this.cartas_mesa1.size()< i+1 && this.cartas_mesa2.size()<i+1){
 				break;
@@ -106,6 +112,10 @@ public class Mesa {
 						this.cartas_mesa1.get(i).getNome() + "    |    -------------" );
 			}
 		}
+
+		System.out.println("========================================");
 	}
 }
+
+
 
