@@ -44,7 +44,6 @@ public class GerenciadorEfeitos {
     public void colocarCartaNaMao(Seguidor carta, Carta carta_vai_pra_mao){
         Jogador jogador= carta.getJogador();
         jogador.colocarCartaNaMao(carta_vai_pra_mao);
-
     }
 
 }
