@@ -3,6 +3,8 @@ package br.com.unicamp.projetofinal;
 import java.lang.*;
 import java.util.*;
 
+import java.util.*;
+
 public class Jogador {
 	private Mesa mesa;
 	private String nome;
@@ -60,11 +62,6 @@ public class Jogador {
 		Random sorteio = new Random();
 		int carta_sorteada = sorteio.nextInt(deck.getSize());
 		mao.adicionarCarta(deck.getCarta(carta_sorteada));
-		System.out.println("Cartas na mao: ");
-		for (Carta carta : mao.getDeck()){
-			System.out.printf("%s ", carta.getNome());
-		}
-		System.out.println();
 	}
 
 	public void jogarTurno(){
@@ -75,7 +72,13 @@ public class Jogador {
 		boolean running = true;
 		while (running) {
 			if (this.mao.getSize()>0){
-				System.out.println(this.nome + " Que carta deseja jogar: ");
+				System.out.println(this.nome + ", quais dessas cartas deseja jogar?");
+				int i = 0;
+				for (Carta carta : mao.getDeck()){
+					i++;
+					System.out.printf("%d - %s ", i, carta.getNome());
+				}
+				System.out.println();
 				String command = keyboard.nextLine();
 
 				if (command.compareTo("0") == 0) {
