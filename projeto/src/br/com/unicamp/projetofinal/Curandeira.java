@@ -15,20 +15,14 @@ public class Curandeira extends Seguidor{
 
 	@Override
 	public void verificarCondicao() {
-		if (this.primeira_rodada) {
-			this.primeira_rodada = false;
 
-			Scanner scan = new Scanner(System.in);
-	        System.out.println("Passe o index do jogador que vc quer curar");
-	        int index = scan.nextInt();
-	        scan.close();
-
-			ArrayList<Seguidor> cartas_na_mesa = this.getMesa().getCartasMesa(this.getJogador());
-	        if(cartas_na_mesa.size()>index)//p checar se n ta fora do index
-	        	this.ge.curar(cartas_na_mesa.get(index));
-
-		}
 	}
-		
+
+	@Override
+	public void atuarNaMesa(Jogador jogador) {
+		this.ge.escolherCartaCurar(this);
+		this.getMesa().colocarCartaMesa(jogador, this);
+		this.getMesa().verificarCondicoes();
+	}
 }
 

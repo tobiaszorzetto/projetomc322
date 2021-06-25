@@ -9,6 +9,7 @@ public abstract class Seguidor extends Carta{
 	private int vida_original;
 	private boolean vai_atacar;
 	private boolean matou_alguem = false;
+	private boolean pode_atacar;
 	private Traco traco = Traco.NENHUM;
 	
 	public Seguidor (String nome, int custo_mana, int ataque, int vida, Mesa mesa, Jogador jogador, GerenciadorEfeitos ge) {
@@ -18,6 +19,14 @@ public abstract class Seguidor extends Carta{
 		this.vida_atual = vida;
 	}
 	// Getters e Setters
+	public boolean getPodeAtacar(){
+		return pode_atacar;
+	}
+
+	public void setPodeAtacar(boolean a){
+		this.pode_atacar = a;
+	}
+
 	public int getAtaque() {
 		return this.ataque;
 	}

@@ -95,8 +95,9 @@ public class Jogador {
 
 	public void jogarTurno(){
 
-		this.sortearDoDeck();//pega uma carta aleatoria de seu deck
+		this.mesa.printCartasNaMesa(this.mana);
 
+		this.sortearDoDeck();//pega uma carta aleatoria de seu deck
 		Scanner keyboard = new Scanner(System.in);
 		boolean running = true;
 		while (running) {
@@ -105,7 +106,7 @@ public class Jogador {
 				int i = 0;
 				for (Carta carta : mao.getDeck()){
 					i++;
-					System.out.printf("%d - %s ", i, carta.getNome());
+					System.out.printf("| %d - %s (%d) |", i, carta.getNome(), carta.getMana());
 				}
 				System.out.println();
 				String command = keyboard.nextLine();
@@ -124,13 +125,16 @@ public class Jogador {
 				running = false;
 			}
 			this.mesa.verificarCondicoes();
-			this.mesa.printCartasNaMesa();
+			this.mesa.printCartasNaMesa(this.mana);
 		}
-
 	}
 
 	public void atacar(){
 		ArrayList<Seguidor> cartas_na_mesa = this.mesa.getCartasMesa(this);
+		ArrayList<Seguidor> falta_atacar = new ArrayList<Seguidor>();
+		for (Seguidor item : cartas_na_mesa) falta_atacar.add(item);
+
+		this.mesa.printCartasNaMesa(falta_atacar);
 
 		Scanner keyboard = new Scanner(System.in);
 		boolean running = true;
@@ -144,13 +148,16 @@ public class Jogador {
 			}
 			else if(Integer.parseInt(command) <= cartas_na_mesa.size()){
 				int numero_carta = Integer.parseInt(command) - 1;
-				cartas_na_mesa.get(numero_carta).atacar();
+				Seguidor carta = cartas_na_mesa.get(numero_carta);
+				carta.atacar();
+				falta_atacar.remove(carta);
+
 			}
 			else{
 				System.out.println("nao existe carta com esse indice");
 			}
 			this.mesa.verificarCondicoes();
-			this.mesa.printCartasNaMesa();
+			this.mesa.printCartasNaMesa(falta_atacar);
 		}
 
 	}
