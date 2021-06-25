@@ -13,9 +13,6 @@ public class Deck {
 	
 	//getters e setters
 	
-	
-	//
-	
 	public void adicionarCarta(Carta carta) {
 		this.deck.add(carta);
 	}
@@ -23,7 +20,18 @@ public class Deck {
 	public void removerCarta(Carta carta) {
 		this.deck.remove(carta);
 	}
-	
+
+	public int getSize(){
+		return deck.size();
+	}
+
+	public Carta getCarta(int indice_carta){
+		return deck.get(indice_carta);
+	}
+
+	public ArrayList<Carta> getDeck(){
+		return this.deck;
+	}
 	
 	
 	
