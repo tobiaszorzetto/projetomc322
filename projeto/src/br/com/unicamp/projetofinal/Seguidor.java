@@ -7,8 +7,9 @@ public abstract class Seguidor extends Carta{
 	private int ataque;
 	private int vida_atual;
 	private int vida_original;
-	private boolean vai_atacar;
+	private boolean vai_atacar = false;
 	private boolean matou_alguem = false;
+	private int inimigor_mortos = 0;
 	private boolean pode_atacar;
 	private Traco traco = Traco.NENHUM;
 	
@@ -25,6 +26,14 @@ public abstract class Seguidor extends Carta{
 
 	public void setPodeAtacar(boolean a){
 		this.pode_atacar = a;
+	}
+
+	public void setVaiAtacar(boolean variavel){
+		this.vai_atacar = variavel;
+	}
+
+	public boolean getVaiAtacar(){
+		return this.vai_atacar;
 	}
 
 	public int getAtaque() {
@@ -73,7 +82,10 @@ public abstract class Seguidor extends Carta{
 	}
 
 	public void matarSeguidor(){
-		this.getMesa().getCartasMesa(this.getJogador()).remove(this);
+		int posicao = this.getMesa().getCartasMesa(this.getJogador()).indexOf(this);
+		this.getMesa().getCartasMesa(this.getJogador()).remove(this);//remove da lista
+		this.getMesa().getCartasMesa(this.getJogador()).add(posicao, null);//adiciona null no lugar
+
 		//pensar num jeito aqui
 		this.getMesa().verificarCondicoes();
 	}
@@ -87,8 +99,8 @@ public abstract class Seguidor extends Carta{
 		ataque -= quantidade;
 	}
 
-	public void atuarNaMesa(Jogador jogador){
-		this.getMesa().colocarCartaMesa(jogador, this);
+	public void atuarNaMesa(Jogador jogador, int posicao_alocacao){
+		this.getMesa().colocarCartaMesa(jogador, this, posicao_alocacao);
 		this.getMesa().verificarCondicoes();
 	}
 
@@ -98,6 +110,17 @@ public abstract class Seguidor extends Carta{
 
 	public Jogador getAdversario(){
 		return this.getMesa().getAdversario(this.getJogador());
+	}
+
+	public Traco getTraco(){
+		return this.traco;
+	}
+
+	public void verificarFuria(){
+		if (this.traco == Traco.FURIA){ //se o seguidor tiver traco de furia
+			ataque += ataque;
+			vida_atual += vida_atual;
+		}
 	}
 
 	public void atacar(){
@@ -111,8 +134,12 @@ public abstract class Seguidor extends Carta{
 		if (cartas_adversario.size() - 1 < endereco ){//se a ultima posicao das cartas do adversario for menor que o index da carta atacante, atacar o jogador
 			this.atacarNexus(adversario);
 		} else{//atacar a carta na posicao do adversario
-			matou_alguem = cartas_adversario.get(endereco).diminuirVida(ataque);
-
+			this.diminuirVida(cartas_adversario.get(endereco).getAtaque());//diminui a vida desse seguidor
+			boolean adversario_morreu = cartas_adversario.get(endereco).diminuirVida(ataque);//diminui a vida do adversario e verifica se ele morreu
+			if (adversario_morreu){
+				inimigor_mortos += 1;
+				verificarFuria(); //chama-se apenas quando sabemos que matou o inimigo
+			}
 		}
 	}
 }

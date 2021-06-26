@@ -29,7 +29,7 @@ public abstract class Carta {
 		return this.custo_mana;
 	}
 
-	public abstract void atuarNaMesa(Jogador jogador);
+	public abstract void atuarNaMesa(Jogador jogador, int posicao_alocacao);
 
 	public String getNome(){
 		return this.nome;

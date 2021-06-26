@@ -19,7 +19,7 @@ public class Jogador {
 		this.mesa = mesa;
 		mesa.setJogador(this);
 		this.vida = 30;
-		this.mana = 1; // ainda n sabemos quanto
+		this.mana = 100; // ainda n sabemos quanto
 		this.deck = new Deck();
 		this.mao = new Deck();
 	}
@@ -61,17 +61,27 @@ public class Jogador {
 	
 	public void diminuirVida(int pontos) {
 		this.vida -=  pontos;
-		//if (vida <= 0){
-		//	//ENCERRAR O JOGO (JOGADOR PERDEU)
-		//}
+		if (vida <= 0){
+
+		}
 	}
 
-	private void jogarCarta(int numero_carta){
+	private void jogarCarta(int numero_carta, int posicao_alocacao){
 
 		Carta carta = this.mao.getCarta(numero_carta);
 
+		if (posicao_alocacao > 6){
+			System.out.println("O mapa tem tamanho maximo de 6 cartas");
+			return;
+		}
+
+		if (mesa.getCartasMesa(this).get(posicao_alocacao-1) != null){//se ja tiver carta nessa posicao
+			System.out.println("Essa posicao ja esta ocupada pelo " + mesa.getCartasMesa(this).get(posicao_alocacao-1).getNome());
+			return;
+		}
+
 		if (this.mana>=carta.getMana()){
-			carta.atuarNaMesa(this);
+			carta.atuarNaMesa(this, posicao_alocacao);
 			this.mao.removerCarta(carta);
 			this.mana-=carta.getMana();
 		}
@@ -150,11 +160,14 @@ public class Jogador {
 				int numero_carta = Integer.parseInt(command) - 1;
 				Seguidor carta = cartas_na_mesa.get(numero_carta);
 				carta.atacar();
+				if (carta.getTraco() == Traco.ATAQUEDUPLO){
+					carta.atacar();
+				}
 				falta_atacar.remove(carta);
 
 			}
 			else{
-				System.out.println("nao existe carta com esse indice");
+				System.out.println("Nao existe carta com esse indice");
 			}
 			this.mesa.verificarCondicoes();
 			this.mesa.printCartasNaMesa(falta_atacar);

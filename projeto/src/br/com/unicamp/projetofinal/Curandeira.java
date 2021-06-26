@@ -19,9 +19,9 @@ public class Curandeira extends Seguidor{
 	}
 
 	@Override
-	public void atuarNaMesa(Jogador jogador) {
+	public void atuarNaMesa(Jogador jogador, int posicao_alocacao) {
 		this.ge.escolherCartaCurar(this);
-		this.getMesa().colocarCartaMesa(jogador, this);
+		this.getMesa().colocarCartaMesa(jogador, this, posicao_alocacao);
 		this.getMesa().verificarCondicoes();
 	}
 }

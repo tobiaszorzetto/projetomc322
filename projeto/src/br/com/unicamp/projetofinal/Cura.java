@@ -11,7 +11,7 @@ public class Cura extends Feitico{
     }
 
     @Override
-    public void atuarNaMesa(Jogador jogador) {
+    public void atuarNaMesa(Jogador jogador, int posicao_alocacao) {
         this.ge.escolherCartaCurar(this);
     }
 }

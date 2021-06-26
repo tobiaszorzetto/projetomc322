@@ -32,7 +32,8 @@ public class Mesa {
 
 	public void verificarCondicoes(){
 		for (Seguidor carta: cartas_mesa1){
-			carta.verificarCondicao();
+			if (carta!= null)
+				carta.verificarCondicao();
 		}
 		for (Seguidor carta: cartas_mesa2){
 			carta.verificarCondicao();
@@ -58,25 +59,23 @@ public class Mesa {
 		this.defensor = aux;
 
 		this.parte_da_rodada = 0;
-		this.atacante.jogarTurno();
-		//this.printCartasNaMesa();
-		//caso nao verifique alguma condicao, verificar aqui (menos eficiente porem mais funcional)
+		boolean atacou = this.atacante.atacar();
 		this.parte_da_rodada = 1;
-		this.defensor.jogarTurno();
 		//this.printCartasNaMesa();
-		this.parte_da_rodada = 2;
-		this.atacante.atacar();
-
+		if (atacou){//se o atacante atacou o defensor pode decidir se defender
+			defensor.defender();
+			this.parte_da_rodada = 2;
+		}
 		this.parte_da_rodada = 3;
 		this.verificarCondicoes();
 		//this.printCartasNaMesa();
 	}
 
-	public void colocarCartaMesa(Jogador jogador, Seguidor carta){
+	public void colocarCartaMesa(Jogador jogador, Seguidor carta, int posicao_alocacao){
 		if (jogador.equals(jogador1)){
-			cartas_mesa1.add(carta);
+			cartas_mesa1.add(posicao_alocacao-1, carta);
 		} else{
-			cartas_mesa2.add(carta);
+			cartas_mesa2.add(posicao_alocacao-1,carta);
 		}
 		this.verificarCondicoes();
 	}
@@ -90,6 +89,14 @@ public class Mesa {
 		}
 	}
 
+	public ArrayList<Seguidor> getCartasMesaAdversario(Jogador jogador){
+		if (jogador.equals(jogador2)){
+			return cartas_mesa1;
+		} else{
+			return cartas_mesa2;
+		}
+	}
+
 	public Jogador getAdversario(Jogador aliado){
 		if (aliado.equals(jogador1)){
 			return jogador2;
@@ -97,6 +104,7 @@ public class Mesa {
 			return jogador1;
 		}
 	}
+
 
 	public int getParteDaRodada(){
 		return parte_da_rodada;
