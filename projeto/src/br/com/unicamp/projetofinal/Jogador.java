@@ -103,7 +103,82 @@ public class Jogador {
 		this.deck.removerCarta(this.deck.getCarta(carta_sorteada));
 	}
 
-	public void jogarTurno(){
+	public void printCartasNaMao(){
+		int i = 0;
+		for (Carta carta : mao.getDeck()){
+			i++;
+			System.out.printf("| %d - %s (%d) |", i, carta.getNome(), carta.getMana());
+		}
+		System.out.println();
+	}
+
+	public void evocarCartas(){
+		this.mesa.printCartasNaMesa(this.mana);
+		this.sortearDoDeck();
+		boolean running = true;
+		while (running) {
+			if (this.mao.getSize() > 0) {
+				this.mesa.printCartasNaMesa();
+				this.printCartasNaMao();
+
+				int numero_carta = GerenciadorEfeitos.pedirInput(this.nome + ", escolha que carta quer colocar no jogo");
+				if (numero_carta == 0) {
+					running = false;
+				} else if (numero_carta <= mao.getSize()) {
+					int posicao_alocacao = GerenciadorEfeitos.pedirInput(this.nome + ", escolha a posicao da mesa em que quer colocar a carta");
+					this.jogarCarta(numero_carta - 1, posicao_alocacao);
+				}
+			} else {
+				System.out.println(this.nome + " voce ja n tem mais cartas disponiveis");
+				running = false;
+			}
+		}
+	}
+
+	public boolean decidirQueCartasAtacar(){
+		int cont = 0;
+		ArrayList<Seguidor> cartas_na_mesa = this.mesa.getCartasMesa(this);
+
+		while (true){
+			this.mesa.printCartasNaMesa();
+
+			int numero_carta = GerenciadorEfeitos.pedirInput(this.nome + ", escolha que cartas quer usar para atacar");
+			if (numero_carta == 0) {
+				break;
+			} else if (numero_carta <= 6) {
+				cont++;
+				Seguidor carta = cartas_na_mesa.get(numero_carta - 1);
+				carta.setVaiAtacar(true);
+			}
+			else {
+				System.out.println(this.nome + " voce ja n tem mais cartas disponiveis para atacar");
+				break;
+			}
+		}
+		return cont != 0;//se atacar retorna true
+	}
+
+	public void receberAtaques(){
+		for (Seguidor seguidor : mesa.getCartasMesaAdversario(this)){
+			if(seguidor.getVaiAtacar()){
+				seguidor.atacar();
+				seguidor.setVaiAtacar(false);
+			}
+		}
+	}
+
+
+	public boolean atacar() {
+		this.evocarCartas();
+		return decidirQueCartasAtacar();
+	}
+
+	public void defender(){
+		this.evocarCartas();
+		this.receberAtaques();
+	}
+
+	/*public void jogarTurno(){
 
 		this.mesa.printCartasNaMesa(this.mana);
 
@@ -137,9 +212,9 @@ public class Jogador {
 			this.mesa.verificarCondicoes();
 			this.mesa.printCartasNaMesa(this.mana);
 		}
-	}
+	}*/
 
-	public void atacar(){
+	/*public void atacar(){
 		ArrayList<Seguidor> cartas_na_mesa = this.mesa.getCartasMesa(this);
 		ArrayList<Seguidor> falta_atacar = new ArrayList<Seguidor>();
 		for (Seguidor item : cartas_na_mesa) falta_atacar.add(item);
@@ -173,7 +248,7 @@ public class Jogador {
 			this.mesa.printCartasNaMesa(falta_atacar);
 		}
 
-	}
+	}*/
 
 	public void escolherDeck(GerenciadorEfeitos ge){
 		System.out.println("Escolha das seguintes no máximo 40 cartas para montar Deck: ");

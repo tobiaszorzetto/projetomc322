@@ -65,7 +65,7 @@ public class GerenciadorEfeitos {
         jogador.colocarCartaNaMao(carta_vai_pra_mao);
     }
 
-    public int pedirInput(String mensagem){
+    public static int pedirInput(String mensagem){
         Scanner scan = new Scanner(System.in);
         System.out.println(mensagem);
         return scan.nextInt();

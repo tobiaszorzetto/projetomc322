@@ -15,8 +15,12 @@ public class Mesa {
 
 	private ArrayList<Seguidor> cartas_mesa1 = new ArrayList<Seguidor>(); //cartas do jogador 1 jogadas na mesa
 	private ArrayList<Seguidor> cartas_mesa2 = new ArrayList<Seguidor>(); //cartas do jogador 2 jogadas na mesa
-	
+
 	public Mesa() {
+		for(int i = 0; i<6; i++){
+			cartas_mesa1.add(null);
+			cartas_mesa2.add(null);
+		}
 	}
 
 	public void setJogador(Jogador jogador){
@@ -36,7 +40,8 @@ public class Mesa {
 				carta.verificarCondicao();
 		}
 		for (Seguidor carta: cartas_mesa2){
-			carta.verificarCondicao();
+			if (carta!= null)
+				carta.verificarCondicao();
 		}
 	}
 
@@ -47,11 +52,18 @@ public class Mesa {
 		}
 	}
 
+	public void aumentarMana(){
+		if(this.manaJogo < 10){
+			this.manaJogo++;
+			jogador1.setMana(manaJogo);
+			jogador2.setMana(manaJogo);
+		}
+
+	}
+
 	public void passarRodada(){
 		this.rodada++;
-		this.manaJogo++;
-		jogador1.setMana(manaJogo);
-		jogador2.setMana(manaJogo);
+		this.aumentarMana();
 
 
 		Jogador aux = this.atacante;
@@ -137,13 +149,13 @@ public class Mesa {
 		System.out.println(this.jogador1.getNome() + " ("+ this.jogador1.getVida()+ ") "+ "............." + " ("+ this.jogador2.getVida()+ ") "+ this.jogador2.getNome());
 		System.out.println();
 
-		for (int i = 0; i< 40; i++){
-			if (this.cartas_mesa1.size()< i+1 && this.cartas_mesa2.size()<i+1){
-				break;
+		for (int i = 0; i< 6; i++){
+			Seguidor carta1 = this.cartas_mesa1.get(i);
+			Seguidor carta2 = this.cartas_mesa2.get(i);
+			if(carta1 == null && carta2==null){
+				System.out.println("-------------    |    -------------");
 			}
-			else if (this.cartas_mesa1.size()>= i+1 && this.cartas_mesa2.size()>= i+1){
-				Seguidor carta1 = this.cartas_mesa1.get(i);
-				Seguidor carta2 = this.cartas_mesa2.get(i);
+			else if (carta1 != null && carta2!=null){
 				if (cartas_a_colorir.contains(carta1)){
 					this.printLinha2Cartas(carta1, carta2, amarelo, branco, branco);
 				}
@@ -152,15 +164,14 @@ public class Mesa {
 				}
 				else this.printLinha2Cartas(carta1, carta2, branco, branco, branco);
 			}
-			else if(this.cartas_mesa1.size()< i+1 && this.cartas_mesa2.size()>= i+1){
-				Seguidor carta2 = this.cartas_mesa2.get(i);
+			else if(carta1 == null){
+
 				if (cartas_a_colorir.contains(carta2)){
 					this.printLinhaCartaDireita(carta2, amarelo, branco);
 				}
 				else this.printLinhaCartaDireita(carta2, branco, branco);
 			}
-			else if(this.cartas_mesa1.size()>= i+1 && this.cartas_mesa2.size()< i+1){
-				Seguidor carta1 = this.cartas_mesa1.get(i);
+			else {
 				if (cartas_a_colorir.contains(carta1)){
 					this.printLinhaCartaEsquerda(carta1, amarelo, branco);
 				}
@@ -172,7 +183,11 @@ public class Mesa {
 	}
 
 	public void printCartasNaMesa(){
-		printCartasNaMesa(new ArrayList<Seguidor>());
+		ArrayList<Seguidor> lista = new ArrayList<Seguidor>();
+		for (Seguidor carta: this.getCartasMesa(this.atacante)){
+			if(carta !=null && carta.getPodeAtacar()) lista.add(carta);
+		}
+		printCartasNaMesa(lista);
 	}
 
 	public void printCartasNaMesa(int mana){
