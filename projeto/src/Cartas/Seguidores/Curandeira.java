@@ -12,7 +12,6 @@ public class Curandeira extends Seguidor {
 	
 	public Curandeira(Mesa mesa, Jogador jogador) {
 		super("curandeira", 4,2,4, mesa, jogador);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
