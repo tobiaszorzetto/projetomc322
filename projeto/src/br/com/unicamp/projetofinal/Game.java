@@ -5,7 +5,6 @@ public class Game {
     public void start(){
 
         Mesa mesa = new Mesa();
-        GerenciadorEfeitos ge = new GerenciadorEfeitos();
 
         System.out.println(ConsoleColors.BLUE + "Digite o Nome do Jogador 1");
         Jogador jogador1 = new Jogador(mesa);
