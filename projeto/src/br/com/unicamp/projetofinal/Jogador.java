@@ -148,6 +148,7 @@ public class Jogador {
 			} else if (numero_carta <= 6) {
 				cont++;
 				Seguidor carta = cartas_na_mesa.get(numero_carta - 1);
+				//VERIFICAR NULIDADE
 				carta.setVaiAtacar(true);
 			}
 			else {
