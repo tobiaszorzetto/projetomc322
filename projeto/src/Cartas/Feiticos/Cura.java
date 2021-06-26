@@ -1,9 +1,11 @@
-package br.com.unicamp.projetofinal;
+package Cartas.Feiticos;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import Cartas.Feitico;
+import br.com.unicamp.projetofinal.GerenciadorEfeitos;
+import br.com.unicamp.projetofinal.Jogador;
+import br.com.unicamp.projetofinal.Mesa;
 
-public class Cura extends Feitico{
+public class Cura extends Feitico {
 
 
     public Cura(Mesa mesa, Jogador jogador) {

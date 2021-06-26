@@ -1,4 +1,4 @@
-package br.com.unicamp.projetofinal;
+package Enums;
 
 public enum TipoDeck {
     PERSONALIZADO, PADRAO;

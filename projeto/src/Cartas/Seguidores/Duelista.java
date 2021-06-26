@@ -1,6 +1,11 @@
-package br.com.unicamp.projetofinal;
+package Cartas.Seguidores;
 
-public class Duelista extends Seguidor{
+import br.com.unicamp.projetofinal.GerenciadorEfeitos;
+import br.com.unicamp.projetofinal.Jogador;
+import br.com.unicamp.projetofinal.Mesa;
+import Cartas.Seguidor;
+
+public class Duelista extends Seguidor {
 
 
     public Duelista(Mesa mesa, Jogador jogador) {

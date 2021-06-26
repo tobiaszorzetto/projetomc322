@@ -1,8 +1,10 @@
 package br.com.unicamp.projetofinal;
 
-import java.lang.*;
-import java.util.*;
+import Cartas.Seguidor;
+import Enums.Marcador;
+import Enums.TipoDeck;
 
+import java.lang.*;
 import java.util.*;
 
 public class Jogador {

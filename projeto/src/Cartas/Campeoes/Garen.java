@@ -1,8 +1,10 @@
-package br.com.unicamp.projetofinal;
+package Cartas.Campeoes;
 
-import java.util.ArrayList;
+import Cartas.Campeao;
+import Enums.Traco;
+import br.com.unicamp.projetofinal.*;
 
-public class Garen extends Campeao{
+public class Garen extends Campeao {
 
     public Garen(Mesa mesa, Jogador jogador){
         super("Garen",5,5,5, mesa, jogador);

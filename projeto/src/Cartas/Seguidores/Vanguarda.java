@@ -1,8 +1,13 @@
-package br.com.unicamp.projetofinal;
+package Cartas.Seguidores;
+
+import br.com.unicamp.projetofinal.GerenciadorEfeitos;
+import br.com.unicamp.projetofinal.Jogador;
+import br.com.unicamp.projetofinal.Mesa;
+import Cartas.Seguidor;
 
 import java.util.ArrayList;
 
-public class Vanguarda extends Seguidor{
+public class Vanguarda extends Seguidor {
 
     private boolean acabou_de_ser_colocada = true;
 

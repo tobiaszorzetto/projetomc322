@@ -1,7 +1,7 @@
 package br.com.unicamp.projetofinal;
 
-import java.io.IOException;
-import java.security.KeyStore;
+import Cartas.Seguidor;
+
 import java.util.ArrayList;
 
 public class Mesa {

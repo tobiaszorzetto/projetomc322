@@ -1,6 +1,9 @@
 package br.com.unicamp.projetofinal;
 
-import java.util.Scanner;
+import Cartas.Campeoes.Garen;
+import Cartas.Feiticos.Cura;
+import Cartas.Seguidores.*;
+import Enums.TipoDeck;
 
 public class DeckFactory {
 

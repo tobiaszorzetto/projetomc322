@@ -1,8 +1,13 @@
-package br.com.unicamp.projetofinal;
+package Cartas;
+
+import br.com.unicamp.projetofinal.Carta;
+import br.com.unicamp.projetofinal.Jogador;
+import br.com.unicamp.projetofinal.Mesa;
+import Enums.Traco;
 
 import java.util.*;
 
-public abstract class Seguidor extends Carta{
+public abstract class Seguidor extends Carta {
 	private int vezes_que_atacou = 0;
 	private int ataque;
 	private int vida_atual;

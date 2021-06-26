@@ -1,6 +1,10 @@
-package br.com.unicamp.projetofinal;
+package Cartas.Seguidores;
 
-public class Thor extends Campeao{
+import Cartas.Campeao;
+import br.com.unicamp.projetofinal.Jogador;
+import br.com.unicamp.projetofinal.Mesa;
+
+public class Thor extends Campeao {
 
 	public Thor (Mesa mesa, Jogador jogador) {
 		super("Thor", 4, 7, 10, mesa, jogador);

@@ -1,5 +1,7 @@
 package br.com.unicamp.projetofinal;
 
+import Cartas.Seguidor;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
