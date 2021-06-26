@@ -162,7 +162,7 @@ public class Jogador {
 		return cont != 0;//se atacar retorna true
 	}
 
-	public boolean decidirQueCartasDefender(){
+	public void decidirQueCartasDefender(){
 		int cont = 0;
 		ArrayList<Seguidor> cartas_na_mesa = this.mesa.getCartasMesa(this);
 
@@ -183,7 +183,6 @@ public class Jogador {
 				break;
 			}
 		}
-		return cont != 0;//se atacar retorna true
 	}
 
 	public void receberAtaques(){

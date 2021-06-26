@@ -101,6 +101,13 @@ public class Mesa {
 		}
 	}
 
+	public boolean temCartasMesa(Jogador jogador){
+		for(Seguidor carta: getCartasMesa(jogador)){
+			if(carta!=null) return true;
+		}
+		return false;
+	}
+
 	public ArrayList<Seguidor> getCartasMesaAdversario(Jogador jogador){
 		if (jogador.equals(jogador2)){
 			return cartas_mesa1;

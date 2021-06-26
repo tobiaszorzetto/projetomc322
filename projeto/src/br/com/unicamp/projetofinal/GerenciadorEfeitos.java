@@ -50,13 +50,14 @@ public class GerenciadorEfeitos {
     public static void cartaAleatoriaAtacarNexus(Seguidor carta, ArrayList<Seguidor> cartas_na_mesa){
         Random sorteio = new Random();
 
-        int tamanho = cartas_na_mesa.size();
+        Mesa mesa = carta.getMesa();
+        Jogador jogador = carta.getJogador();
 
-        if (tamanho>1){
+        if (mesa.temCartasMesa(jogador)){
             while(true) {
-                int carta_sorteada = sorteio.nextInt(cartas_na_mesa.size());
-                if (cartas_na_mesa.get(carta_sorteada) != carta) {// vai dar algo errado?
-                    cartas_na_mesa.get(carta_sorteada).atacarNexus(carta.getAdversario());
+                Seguidor carta_sorteada = cartas_na_mesa.get(sorteio.nextInt(6));
+                if (carta_sorteada!=null && carta_sorteada != carta) {// vai dar algo errado?
+                    carta_sorteada.atacarNexus(carta.getAdversario());
                     break;
                 }
             }
