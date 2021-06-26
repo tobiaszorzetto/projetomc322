@@ -10,12 +10,11 @@ public class Game {
         System.out.println(ConsoleColors.BLUE + "Digite o Nome do Jogador 1");
         Jogador jogador1 = new Jogador(mesa);
 
-        jogador1.escolherDeck(ge);
 
 
         System.out.println("Digite o Nome do Jogador 2");
         Jogador jogador2 = new Jogador(mesa);
-        jogador2.escolherDeck(ge);
+
 
         mesa.destribuirCartasIniciais();
 

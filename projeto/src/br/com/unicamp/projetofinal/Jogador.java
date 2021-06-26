@@ -20,7 +20,7 @@ public class Jogador {
 		mesa.setJogador(this);
 		this.vida = 30;
 		this.mana = 100; // ainda n sabemos quanto
-		this.deck = new Deck();
+		this.deck = escolherDeck(mesa, this);
 		this.mao = new Deck();
 	}
 	
@@ -251,64 +251,16 @@ public class Jogador {
 
 	}*/
 
-	public void escolherDeck(GerenciadorEfeitos ge){
-		System.out.println("Escolha das seguintes no máximo 40 cartas para montar Deck: ");
-		System.out.println("1: Thor            2: Gnomo           3: Curandeira      4: Garen\n" +
-				           "5: Tiana           6: Vanguarda       7: Duelista        8: Poro\n"  +
-				           "9: Poro Defensor  10: Cura");
-
-		Scanner keyboard = new Scanner(System.in);
-		boolean running = true;
-		while (running && deck.getSize() < 40) {
-			String command = keyboard.nextLine();
-
-			if (command.compareTo("0") == 0) {
-				running = false;
-				for(Carta carta : deck.getDeck()){
-					System.out.println(carta.getNome());
-				}
-			}
-			else{
-				int numero_carta = Integer.parseInt(command);
-				switch (numero_carta){
-					case 1:
-						this.deck.adicionarCarta(new Thor(this.mesa, this, ge));
-						break;
-					case 2:
-						this.deck.adicionarCarta(new Gnomo(this.mesa, this, ge));
-						break;
-					case 3:
-						this.deck.adicionarCarta(new Curandeira(this.mesa, this, ge));
-						break;
-					case 4:
-						this.deck.adicionarCarta(new Garen(this.mesa, this, ge));
-						break;
-					case 5:
-						this.deck.adicionarCarta(new Tiana(this.mesa, this, ge));
-						break;
-					case 6:
-						this.deck.adicionarCarta(new Vanguarda(this.mesa, this, ge));
-						break;
-					case 7:
-						this.deck.adicionarCarta(new Duelista(this.mesa, this, ge));
-						break;
-					case 8:
-						this.deck.adicionarCarta(new Poro(this.mesa, this, ge));
-						break;
-					case 9:
-						this.deck.adicionarCarta(new PoroDefensor(this.mesa, this, ge));
-						break;
-					case 10:
-						this.deck.adicionarCarta(new Cura(this.mesa, this, ge));
-						break;
-					default:
-						System.out.println("Não existe carta com esse numero");
-						break;
-				}
-				System.out.println("Numero de cartas escolhidas: "+ deck.getSize());
-			}
+	private Deck escolherDeck(Mesa mesa, Jogador jogador) {
+		TipoDeck tipo;
+		int num = GerenciadorEfeitos.pedirInput("Digite 1 para deck padrao ou 2 para personalizado");
+		if (num == 1){
+			tipo = TipoDeck.PADRAO;
 		}
-
+		else{
+			tipo = TipoDeck.PERSONALIZADO;
+		}
+		return DeckFactory.fazerDeck(tipo, mesa, jogador);
 	}
 
 }

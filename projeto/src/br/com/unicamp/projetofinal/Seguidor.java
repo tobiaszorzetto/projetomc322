@@ -13,8 +13,8 @@ public abstract class Seguidor extends Carta{
 	private boolean pode_atacar;
 	private Traco traco = Traco.NENHUM;
 	
-	public Seguidor (String nome, int custo_mana, int ataque, int vida, Mesa mesa, Jogador jogador, GerenciadorEfeitos ge) {
-		super(nome, custo_mana, mesa, jogador, ge);
+	public Seguidor (String nome, int custo_mana, int ataque, int vida, Mesa mesa, Jogador jogador) {
+		super(nome, custo_mana, mesa, jogador);
 		this.ataque = ataque;
 		this.vida_original = vida;
 		this.vida_atual = vida;

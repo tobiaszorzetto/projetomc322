@@ -6,8 +6,8 @@ public class Vanguarda extends Seguidor{
 
     private boolean acabou_de_ser_colocada = true;
 
-    public Vanguarda(Mesa mesa, Jogador jogador, GerenciadorEfeitos ge) {
-        super("Vanguarda", 4, 3, 3, mesa, jogador, ge);
+    public Vanguarda(Mesa mesa, Jogador jogador) {
+        super("Vanguarda", 4, 3, 3, mesa, jogador);
     }
 
     @Override
@@ -18,7 +18,7 @@ public class Vanguarda extends Seguidor{
             ArrayList<Seguidor> cartas_na_mesa = this.getMesa().getCartasMesa(this.getJogador());
 
             for (Seguidor carta: cartas_na_mesa){
-                this.ge.aumentarAtaqueVida(carta, 1,1);
+                GerenciadorEfeitos.aumentarAtaqueVida(carta, 1,1);
             }
 
         }

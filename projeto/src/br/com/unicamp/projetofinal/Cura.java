@@ -6,13 +6,13 @@ import java.util.Scanner;
 public class Cura extends Feitico{
 
 
-    public Cura(Mesa mesa, Jogador jogador, GerenciadorEfeitos ge) {
-        super("Cura", 3, mesa, jogador, ge);
+    public Cura(Mesa mesa, Jogador jogador) {
+        super("Cura", 3, mesa, jogador);
     }
 
     @Override
     public void atuarNaMesa(Jogador jogador, int posicao_alocacao) {
-        this.ge.escolherCartaCurar(this);
+        GerenciadorEfeitos.escolherCartaCurar(this);
     }
 }
 

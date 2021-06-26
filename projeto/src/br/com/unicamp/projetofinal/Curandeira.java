@@ -8,8 +8,8 @@ public class Curandeira extends Seguidor{
 	
 	private boolean primeira_rodada;
 	
-	public Curandeira(Mesa mesa, Jogador jogador, GerenciadorEfeitos ge) {
-		super("curandeira", 4,2,4, mesa, jogador, ge);
+	public Curandeira(Mesa mesa, Jogador jogador) {
+		super("curandeira", 4,2,4, mesa, jogador);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -20,7 +20,7 @@ public class Curandeira extends Seguidor{
 
 	@Override
 	public void atuarNaMesa(Jogador jogador, int posicao_alocacao) {
-		this.ge.escolherCartaCurar(this);
+		GerenciadorEfeitos.escolherCartaCurar(this);
 		this.getMesa().colocarCartaMesa(jogador, this, posicao_alocacao);
 		this.getMesa().verificarCondicoes();
 	}

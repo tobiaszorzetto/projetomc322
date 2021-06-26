@@ -10,34 +10,34 @@ public class GerenciadorEfeitos {
 
     }
 
-    public void aumentarVida(Seguidor carta, int vida){
+    public static void aumentarVida(Seguidor carta, int vida){
         carta.aumentarVida(vida);
     }
 
-    public void aumentarAtaque(Seguidor carta, int ataque){
+    public static void aumentarAtaque(Seguidor carta, int ataque){
         carta.aumentarAtaque(ataque);
     }
 
-    public void aumentarAtaqueVida(Seguidor carta, int ataque, int vida){
-        this.aumentarAtaque(carta, ataque);
-        this.aumentarVida(carta, vida);
+    public static void aumentarAtaqueVida(Seguidor carta, int ataque, int vida){
+        GerenciadorEfeitos.aumentarAtaque(carta, ataque);
+        GerenciadorEfeitos.aumentarVida(carta, vida);
     }
 
-    public void curar(Seguidor carta){
+    public static void curar(Seguidor carta){
         carta.setVidaOriginal();
     }
 
-    public void curar(Seguidor carta, int quant){
-        this.aumentarVida(carta, quant);
+    public static void curar(Seguidor carta, int quant){
+        GerenciadorEfeitos.aumentarVida(carta, quant);
     }
 
-    public void escolherCartaCurar(Carta carta){
+    public static void escolherCartaCurar(Carta carta){
         int numero_carta;
         ArrayList<Seguidor> cartas_na_mesa = carta.getMesa().getCartasMesa(carta.getJogador());
         while(true){
-            numero_carta = this.pedirInput(carta.getJogador().getNome() + ", quais dessas cartas deseja curar?") - 1;
+            numero_carta = GerenciadorEfeitos.pedirInput(carta.getJogador().getNome() + ", quais dessas cartas deseja curar?") - 1;
             if (numero_carta<= cartas_na_mesa.size() && numero_carta>=0){
-                this.curar(cartas_na_mesa.get(numero_carta));
+                GerenciadorEfeitos.curar(cartas_na_mesa.get(numero_carta));
                 break;
             } else {
                 System.out.println("indice nao existente");
@@ -45,7 +45,7 @@ public class GerenciadorEfeitos {
         }
     }
 
-    public void cartaAleatoriaAtacarNexus(Seguidor carta, ArrayList<Seguidor> cartas_na_mesa){
+    public static void cartaAleatoriaAtacarNexus(Seguidor carta, ArrayList<Seguidor> cartas_na_mesa){
         Random sorteio = new Random();
 
         int tamanho = cartas_na_mesa.size();
@@ -60,7 +60,7 @@ public class GerenciadorEfeitos {
             }
         }
     }
-    public void colocarCartaNaMao(Seguidor carta, Carta carta_vai_pra_mao){
+    public static void colocarCartaNaMao(Seguidor carta, Carta carta_vai_pra_mao){
         Jogador jogador= carta.getJogador();
         jogador.colocarCartaNaMao(carta_vai_pra_mao);
     }

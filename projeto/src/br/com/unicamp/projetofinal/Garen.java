@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class Garen extends Campeao{
 
-    public Garen(Mesa mesa, Jogador jogador, GerenciadorEfeitos ge){
-        super("Garen",5,5,5, mesa, jogador, ge);
+    public Garen(Mesa mesa, Jogador jogador){
+        super("Garen",5,5,5, mesa, jogador);
     }
     @Override
     public void checarLevelUp() {
         if(getVezesQueAtacou() == 2 && getNaoUpou()){
-            this.ge.aumentarAtaqueVida(this, 1, 1);
+            GerenciadorEfeitos.aumentarAtaqueVida(this, 1, 1);
             this.setTraco(Traco.ELUSIVO);
             this.upou();
 
