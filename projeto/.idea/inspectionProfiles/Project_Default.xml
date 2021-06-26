@@ -1,0 +1,15 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="DefaultFileTemplate" enabled="true" level="ERROR" enabled_by_default="true">
+      <option name="CHECK_FILE_HEADER" value="true" />
+      <option name="CHECK_TRY_CATCH_SECTION" value="true" />
+      <option name="CHECK_METHOD_BODY" value="true" />
+    </inspection_tool>
+    <inspection_tool class="InconsistentLineSeparators" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="LongLine" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="ProblematicWhitespace" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="RedundantSuppression" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="TodoComment" enabled="false" level="ERROR" enabled_by_default="false" />
+  </profile>
+</component>

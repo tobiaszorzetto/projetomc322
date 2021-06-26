@@ -1,5 +1,6 @@
 package br.com.unicamp.projetofinal;
 
+import java.io.IOException;
 import java.security.KeyStore;
 import java.util.ArrayList;
 
@@ -9,6 +10,8 @@ public class Mesa {
 	private int rodada = 0;
 	private Jogador atacante;
 	private Jogador defensor;
+	private int manaJogo =100;
+	private int parte_da_rodada;
 
 	private ArrayList<Seguidor> cartas_mesa1 = new ArrayList<Seguidor>(); //cartas do jogador 1 jogadas na mesa
 	private ArrayList<Seguidor> cartas_mesa2 = new ArrayList<Seguidor>(); //cartas do jogador 2 jogadas na mesa
@@ -27,7 +30,7 @@ public class Mesa {
 		}
 	}
 
-	private void verificarCondicoes(){
+	public void verificarCondicoes(){
 		for (Seguidor carta: cartas_mesa1){
 			carta.verificarCondicao();
 		}
@@ -45,24 +48,35 @@ public class Mesa {
 
 	public void passarRodada(){
 		this.rodada++;
+		this.manaJogo++;
+		jogador1.setMana(manaJogo);
+		jogador2.setMana(manaJogo);
+
 
 		Jogador aux = this.atacante;
 		this.atacante = this.defensor;//o atacante eh agora quem antes estava defendendo
 		this.defensor = aux;
 
+		this.parte_da_rodada = 0;
 		this.atacante.jogarTurno();
+		//this.printCartasNaMesa();
 		//caso nao verifique alguma condicao, verificar aqui (menos eficiente porem mais funcional)
+		this.parte_da_rodada = 1;
 		this.defensor.jogarTurno();
+		//this.printCartasNaMesa();
+		this.parte_da_rodada = 2;
 		this.atacante.atacar();
+
+		this.parte_da_rodada = 3;
+		this.verificarCondicoes();
+		//this.printCartasNaMesa();
 	}
 
 	public void colocarCartaMesa(Jogador jogador, Seguidor carta){
 		if (jogador.equals(jogador1)){
 			cartas_mesa1.add(carta);
-			printCartasNaMesa();
 		} else{
 			cartas_mesa2.add(carta);
-			printCartasNaMesa();
 		}
 		this.verificarCondicoes();
 	}
@@ -84,28 +98,81 @@ public class Mesa {
 		}
 	}
 
+	public int getParteDaRodada(){
+		return parte_da_rodada;
+	}
 
-	public void printCartasNaMesa(){
+	public void printLinhaCartaEsquerda(Seguidor carta1, String cor, String branco){
+		System.out.println( cor +
+				" ("+ carta1.getAtaque() + "/" + carta1.getVidaAtual()+ ") "+
+						carta1.getNome() + branco + "    |    -------------" );
+	}
+
+	public void printLinhaCartaDireita(Seguidor carta2, String cor, String branco){
+		System.out.println("-----------    |    " + cor + carta2.getNome() +
+				" ("+ carta2.getAtaque() + "/" + carta2.getVidaAtual()+ ")" + branco);
+	}
+
+	public void printLinha2Cartas(Seguidor carta1, Seguidor carta2, String cor1, String cor2, String branco){
+		System.out.println( cor1 +
+		"("+ carta1.getAtaque() + "/" + carta1.getVidaAtual()+ ") "+ carta1.getNome() + cor2 +
+				"    |    " + carta2.getNome() + " ("+ carta2.getAtaque() + "/" + carta2.getVidaAtual()+ ") "+ branco);
+	}
+
+	public void printCartasNaMesa(ArrayList<Seguidor> cartas_a_colorir){
+		String amarelo = ConsoleColors.YELLOW;
+		String branco = ConsoleColors.BLUE;
+
+		System.out.print(branco);
+		System.out.println("========================================");
+
+		System.out.println(this.jogador1.getNome() + " ("+ this.jogador1.getVida()+ ") "+ "............." + " ("+ this.jogador2.getVida()+ ") "+ this.jogador2.getNome());
+		System.out.println();
+
 		for (int i = 0; i< 40; i++){
 			if (this.cartas_mesa1.size()< i+1 && this.cartas_mesa2.size()<i+1){
 				break;
 			}
 			else if (this.cartas_mesa1.size()>= i+1 && this.cartas_mesa2.size()>= i+1){
-				System.out.println(
-						"("+ this.cartas_mesa1.get(i).getAtaque() + "/" + this.cartas_mesa1.get(i).getVidaAtual()+ ") "+
-						this.cartas_mesa1.get(i).getNome() + "    |    " + this.cartas_mesa2.get(i).getNome() +
-						" ("+ this.cartas_mesa2.get(i).getAtaque() + "/" + this.cartas_mesa2.get(i).getVidaAtual()+ ") ");
+				Seguidor carta1 = this.cartas_mesa1.get(i);
+				Seguidor carta2 = this.cartas_mesa2.get(i);
+				if (cartas_a_colorir.contains(carta1)){
+					this.printLinha2Cartas(carta1, carta2, amarelo, branco, branco);
+				}
+				else if (cartas_a_colorir.contains(carta2)){
+					this.printLinha2Cartas(carta1, carta2, branco, amarelo, branco);
+				}
+				else this.printLinha2Cartas(carta1, carta2, branco, branco, branco);
 			}
 			else if(this.cartas_mesa1.size()< i+1 && this.cartas_mesa2.size()>= i+1){
-				System.out.println("-----------    |    " + this.cartas_mesa2.get(i).getNome() +
-						" ("+ this.cartas_mesa2.get(i).getAtaque() + "/" + this.cartas_mesa2.get(i).getVidaAtual()+ ")");
+				Seguidor carta2 = this.cartas_mesa2.get(i);
+				if (cartas_a_colorir.contains(carta2)){
+					this.printLinhaCartaDireita(carta2, amarelo, branco);
+				}
+				else this.printLinhaCartaDireita(carta2, branco, branco);
 			}
 			else if(this.cartas_mesa1.size()>= i+1 && this.cartas_mesa2.size()< i+1){
-				System.out.println(
-						" ("+ this.cartas_mesa1.get(i).getAtaque() + "/" + this.cartas_mesa1.get(i).getVidaAtual()+ ") "+
-						this.cartas_mesa1.get(i).getNome() + "    |    -------------" );
+				Seguidor carta1 = this.cartas_mesa1.get(i);
+				if (cartas_a_colorir.contains(carta1)){
+					this.printLinhaCartaEsquerda(carta1, amarelo, branco);
+				}
+				else this.printLinhaCartaEsquerda(carta1, branco, branco);
 			}
 		}
+
+		System.out.println("========================================");
+	}
+
+	public void printCartasNaMesa(){
+		printCartasNaMesa(new ArrayList<Seguidor>());
+	}
+
+	public void printCartasNaMesa(int mana){
+		System.out.println("========================================");
+		System.out.println("MANA: " + mana);
+		printCartasNaMesa(new ArrayList<Seguidor>());
 	}
 }
+
+
 

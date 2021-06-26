@@ -7,8 +7,11 @@
         "id": "1c4a9a9cae247dd3",
         "type": "leaf",
         "state": {
-          "type": "empty",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "projeto mc322/TO DO LIST.md",
+            "mode": "source"
+          }
         }
       }
     ],
@@ -65,6 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "projeto mc322/TO DO LIST.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -84,8 +88,9 @@
   },
   "active": "1c4a9a9cae247dd3",
   "lastOpenFiles": [
+    "projeto mc322/Untitled.md",
+    "DUVIDAS.md",
     "AVISOS.md",
-    "anotacao matheus.md",
-    "DUVIDAS.md"
+    "anotacao matheus.md"
   ]
 }

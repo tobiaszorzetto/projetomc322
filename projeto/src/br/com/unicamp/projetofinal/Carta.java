@@ -5,12 +5,14 @@ public abstract class Carta {
 	private int custo_mana;
 	private Mesa mesa;
 	private Jogador jogador;
+	protected GerenciadorEfeitos ge;
 	
-	public Carta (String nome, int custo_mana, Mesa mesa, Jogador jogador) {
+	public Carta (String nome, int custo_mana, Mesa mesa, Jogador jogador, GerenciadorEfeitos ge) {
 		this.nome = nome;
 		this.custo_mana = custo_mana;
 		this.mesa = mesa;
 		this.jogador = jogador;
+		this.ge = ge;
 	}
 	
 	//Getters e Setters
