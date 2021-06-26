@@ -63,6 +63,10 @@ public abstract class Seguidor extends Carta {
 		return this.traco == Traco.ELUSIVO;
 	}
 
+	public boolean isDepujante() {
+		return this.traco == Traco.DEPUJANTE;
+	}
+
 	public boolean getVaiAtacar(){
 		return this.vai_atacar;
 	}
@@ -119,7 +123,6 @@ public abstract class Seguidor extends Carta {
 		this.getMesa().getCartasMesa(this.getJogador()).add(posicao, null);//adiciona null no lugar
 
 		//pensar num jeito aqui
-		this.getMesa().verificarCondicoes();
 	}
 
 	public void aumentarAtaque(int quantidade){
@@ -133,11 +136,13 @@ public abstract class Seguidor extends Carta {
 
 	public void atuarNaMesa(Jogador jogador, int posicao_alocacao){
 		this.getMesa().colocarCartaMesa(jogador, this, posicao_alocacao);
-		this.getMesa().verificarCondicoes();
 	}
 
 	public void atacarNexus(Jogador adversario){
 		adversario.diminuirVida(ataque);
+	}
+	public void atacarNexus(Jogador adversario, int quant){
+		adversario.diminuirVida(quant);
 	}
 
 	public Jogador getAdversario(){
@@ -159,6 +164,13 @@ public abstract class Seguidor extends Carta {
 		return this.isElusivo() && !this.isElusivo();
 	}
 
+	public void verificarDepuhante(Seguidor carta_adversario){
+		if(this.isDepujante()){
+			this.atacarNexus(carta_adversario.getJogador(), - carta_adversario.getVidaAtual());
+		}
+	}
+
+
 	public boolean deveAtacarNexus(Seguidor carta_adversario) {
 		if (carta_adversario == null || !carta_adversario.isVaiDefender()) {
 			return true;
@@ -172,6 +184,7 @@ public abstract class Seguidor extends Carta {
 		if (adversario_morreu){
 			inimigor_mortos += 1;
 			verificarFuria(); //chama-se apenas quando sabemos que matou o inimigo
+			verificarDepuhante(carta_adversario);
 		}
 	}
 

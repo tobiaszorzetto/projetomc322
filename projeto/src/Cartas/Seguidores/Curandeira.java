@@ -25,5 +25,6 @@ public class Curandeira extends Seguidor {
 		this.getMesa().colocarCartaMesa(jogador, this, posicao_alocacao);
 		this.getMesa().verificarCondicoes();
 	}
+	
 }
 

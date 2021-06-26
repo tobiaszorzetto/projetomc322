@@ -37,8 +37,8 @@ public class DeckFactory {
 
         System.out.println("Escolha das seguintes no máximo 40 cartas para montar Deck: ");
         System.out.println("1: Thor            2: Gnomo           3: Curandeira      4: Garen\n" +
-                "5: Tiana           6: Vanguarda       7: Duelista        8: Poro\n"  +
-                "9: Poro Defensor  10: Cura");
+                           "5: Tiana           6: Vanguarda       7: Duelista        8: Poro\n"  +
+                           "9: Poro Defensor  10: Cura           11: Corsaria Atiradora");
 
 
         boolean running = true;
@@ -84,6 +84,9 @@ public class DeckFactory {
                         break;
                     case 10:
                         deck.adicionarCarta(new Cura(mesa, jogador));
+                        break;
+                    case 11:
+                        deck.adicionarCarta(new CorsariaAtiradora(mesa, jogador));
                         break;
                     default:
                         System.out.println("Não existe carta com esse numero");

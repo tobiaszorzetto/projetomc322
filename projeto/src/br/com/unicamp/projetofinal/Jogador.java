@@ -91,7 +91,6 @@ public class Jogador {
 		else{
 			System.out.println("Sem mana suficiente!");
 		}
-		this.mesa.verificarCondicoes();
 	}
 
 	public void colocarCartaNaMao(Carta carta){

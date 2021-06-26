@@ -73,10 +73,12 @@ public class Mesa {
 		this.parte_da_rodada = 0;
 		boolean atacou = this.atacante.atacar();
 		this.parte_da_rodada = 1;
+		this.verificarCondicoes();
 		//this.printCartasNaMesa();
 		if (atacou){//se o atacante atacou o defensor pode decidir se defender
 			defensor.defender();
 			this.parte_da_rodada = 2;
+			this.verificarCondicoes();
 		}
 		this.parte_da_rodada = 3;
 		this.verificarCondicoes();

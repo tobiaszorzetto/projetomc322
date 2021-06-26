@@ -17,15 +17,18 @@ public class Vanguarda extends Seguidor {
 
     @Override
     public void verificarCondicao() {
-        if (acabou_de_ser_colocada){
-            acabou_de_ser_colocada = false;
 
-            ArrayList<Seguidor> cartas_na_mesa = this.getMesa().getCartasMesa(this.getJogador());
+    }
 
-            for (Seguidor carta: cartas_na_mesa){
+    public void atuarNaMesa(Jogador jogador, int posicao_alocacao) {
+        ArrayList<Seguidor> cartas_na_mesa = this.getMesa().getCartasMesa(this.getJogador());
+
+        for (Seguidor carta: cartas_na_mesa){
+            if(carta!=null)
                 GerenciadorEfeitos.aumentarAtaqueVida(carta, 1,1);
-            }
-
         }
+
+        this.getMesa().colocarCartaMesa(jogador, this, posicao_alocacao);
+        this.getMesa().verificarCondicoes();
     }
 }
