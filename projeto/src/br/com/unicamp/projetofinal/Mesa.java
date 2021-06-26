@@ -185,7 +185,7 @@ public class Mesa {
 	public void printCartasNaMesa(){
 		ArrayList<Seguidor> lista = new ArrayList<Seguidor>();
 		for (Seguidor carta: this.getCartasMesa(this.atacante)){
-			if(carta !=null && carta.getPodeAtacar()) lista.add(carta);
+			if(carta !=null && carta.getVaiAtacar()) lista.add(carta);
 		}
 		printCartasNaMesa(lista);
 	}
