@@ -7,8 +7,11 @@
         "id": "8fbe9051f23e9c12",
         "type": "leaf",
         "state": {
-          "type": "empty",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "antigas funcoes de ataque.md",
+            "mode": "preview"
+          }
         }
       }
     ],
@@ -65,6 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "antigas funcoes de ataque.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -83,5 +87,8 @@
     "collapsed": true
   },
   "active": "8fbe9051f23e9c12",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "Untitled.md",
+    "TO DO LIST.md"
+  ]
 }
