@@ -3,6 +3,7 @@ package br.com.unicamp.projetofinal;
 import Cartas.Seguidor;
 import Enums.Marcador;
 import Enums.TipoDeck;
+import Enums.Traco;
 
 import java.lang.*;
 import java.util.*;
@@ -82,7 +83,7 @@ public class Jogador {
 			return;
 		}
 
-		if (this.mana>=carta.getMana()){
+		else if (this.mana>=carta.getMana()){
 			carta.atuarNaMesa(this, posicao_alocacao);
 			this.mao.removerCarta(carta);
 			this.mana-=carta.getMana();
@@ -161,15 +162,47 @@ public class Jogador {
 		return cont != 0;//se atacar retorna true
 	}
 
+	public boolean decidirQueCartasDefender(){
+		int cont = 0;
+		ArrayList<Seguidor> cartas_na_mesa = this.mesa.getCartasMesa(this);
+
+		while (true){
+			this.mesa.printCartasNaMesa();
+
+			int numero_carta = GerenciadorEfeitos.pedirInput(this.nome + ", escolha que cartas quer usar para defender");
+			if (numero_carta == 0) {
+				break;
+			} else if (numero_carta <= 6) {
+				cont++;
+				Seguidor carta = cartas_na_mesa.get(numero_carta - 1);
+				//VERIFICAR NULIDADE
+				carta.setVaiDefender(true);
+			}
+			else {
+				System.out.println(this.nome + " voce ja n tem mais cartas disponiveis para defender");
+				break;
+			}
+		}
+		return cont != 0;//se atacar retorna true
+	}
+
 	public void receberAtaques(){
 		for (Seguidor seguidor : mesa.getCartasMesaAdversario(this)){
-			if(seguidor.getVaiAtacar()){
+			if(seguidor!= null && seguidor.getVaiAtacar()){
 				seguidor.atacar();
 				seguidor.setVaiAtacar(false);
+				if(seguidor.getTraco() == Traco.ATAQUEDUPLO && seguidor.getGetVezesQueVaiAtacar() == 2 && !seguidor.isMorreu()){
+					seguidor.atacar();
+				}
 			}
 		}
 	}
 
+	public void desarmarDefesa(){
+		for(Seguidor carta : this.mesa.getCartasMesa(this)){
+			if (carta!=null) carta.setVaiDefender(false);
+		}
+	}
 
 	public boolean atacar() {
 		this.evocarCartas();
@@ -178,7 +211,9 @@ public class Jogador {
 
 	public void defender(){
 		this.evocarCartas();
+		this.decidirQueCartasDefender();
 		this.receberAtaques();
+		this.desarmarDefesa();
 	}
 
 
