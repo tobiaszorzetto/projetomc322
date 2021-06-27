@@ -1,9 +1,10 @@
 package br.com.unicamp.projetofinal;
 
-import Cartas.Campeoes.Garen;
-import Cartas.Feiticos.Cura;
-import Cartas.Seguidores.*;
-import Enums.TipoDeck;
+import br.com.unicamp.projetofinal.Cartas.Campeoes.Garen;
+import br.com.unicamp.projetofinal.Cartas.Campeoes.Lux;
+import br.com.unicamp.projetofinal.Cartas.Feiticos.Cura;
+import br.com.unicamp.projetofinal.Cartas.Seguidores.*;
+import br.com.unicamp.projetofinal.Enums.TipoDeck;
 
 public class DeckFactory {
 
@@ -36,9 +37,10 @@ public class DeckFactory {
     public static Deck fazerDeckPersonalizado(Deck deck, Mesa mesa, Jogador jogador){
 
         System.out.println("Escolha das seguintes no máximo 40 cartas para montar Deck: ");
-        System.out.println("1: Thor            2: Gnomo           3: Curandeira      4: Garen\n" +
-                           "5: Tiana           6: Vanguarda       7: Duelista        8: Poro\n"  +
-                           "9: Poro Defensor  10: Cura           11: Corsaria Atiradora");
+        System.out.println(" 1: Thor               2: Gnomo           3: Curandeira           4: Garen\n" +
+                           " 5: Tiana              6: Vanguarda       7: Duelista             8: Poro\n"  +
+                           " 9: Poro Defensor      10: Cura           11: Corsaria Atiradora 12: Poro Poderoso\n" +
+                           "13: lux");
 
 
         boolean running = true;
@@ -87,6 +89,12 @@ public class DeckFactory {
                         break;
                     case 11:
                         deck.adicionarCarta(new CorsariaAtiradora(mesa, jogador));
+                        break;
+                    case 12:
+                        deck.adicionarCarta(new PoroPoderoso(mesa, jogador));
+                        break;
+                    case 13:
+                        deck.adicionarCarta(new Lux(mesa, jogador));
                         break;
                     default:
                         System.out.println("Não existe carta com esse numero");

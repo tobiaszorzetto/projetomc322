@@ -1,6 +1,6 @@
 package br.com.unicamp.projetofinal;
 
-import Cartas.Seguidor;
+import br.com.unicamp.projetofinal.Cartas.Seguidor;
 
 import java.util.ArrayList;
 
@@ -201,8 +201,9 @@ public class Mesa {
 
 	public void printCartasNaMesa(int mana){
 		System.out.println("========================================");
-		System.out.println("MANA: " + mana);
+		System.out.println("MANA: " + mana + "           MANA DE FEITICO: " + this.atacante.getManaDeFeitico());
 		printCartasNaMesa(new ArrayList<Seguidor>());
+
 	}
 }
 

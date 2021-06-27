@@ -1,6 +1,6 @@
-package Cartas.Feiticos;
+package br.com.unicamp.projetofinal.Cartas.Feiticos;
 
-import Cartas.Feitico;
+import br.com.unicamp.projetofinal.Cartas.Feitico;
 import br.com.unicamp.projetofinal.GerenciadorEfeitos;
 import br.com.unicamp.projetofinal.Jogador;
 import br.com.unicamp.projetofinal.Mesa;
@@ -13,8 +13,9 @@ public class Cura extends Feitico {
     }
 
     @Override
-    public void atuarNaMesa(Jogador jogador, int posicao_alocacao) {
+    protected void realizarEfeito() {
         GerenciadorEfeitos.escolherCartaCurar(this);
     }
+
 }
 

@@ -1,4 +1,4 @@
-package Cartas;
+package br.com.unicamp.projetofinal.Cartas;
 
 import br.com.unicamp.projetofinal.Jogador;
 import br.com.unicamp.projetofinal.Mesa;

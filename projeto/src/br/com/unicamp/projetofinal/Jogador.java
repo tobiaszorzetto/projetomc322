@@ -1,9 +1,9 @@
 package br.com.unicamp.projetofinal;
 
-import Cartas.Seguidor;
-import Enums.Marcador;
-import Enums.TipoDeck;
-import Enums.Traco;
+import br.com.unicamp.projetofinal.Cartas.Seguidor;
+import br.com.unicamp.projetofinal.Enums.Marcador;
+import br.com.unicamp.projetofinal.Enums.TipoDeck;
+import br.com.unicamp.projetofinal.Enums.Traco;
 
 import java.lang.*;
 import java.util.*;
@@ -16,6 +16,8 @@ public class Jogador {
 	private int mana;
 	private Deck deck;
 	private Deck mao;
+	private int mana_de_feitico = 0;
+	private int mana_gasta_feitico;
 	
 	public Jogador(Mesa mesa) {
 		this.setNome();
@@ -28,6 +30,34 @@ public class Jogador {
 	}
 	
 	//getters e setters
+
+	public void setManaDeFeitico(int quant){
+		if(quant>=3)
+			this.mana_de_feitico = 3;
+		else{
+			this.mana_de_feitico = quant;
+		}
+	}
+
+	public int getManaDeFeitico() {
+		return this.mana_de_feitico;
+	}
+
+	public int getMana() {
+		return mana;
+	}
+
+	public Deck getMao() {
+		return mao;
+	}
+
+	public void addManaGastaFeitico(int mana){
+		this.mana_gasta_feitico+=mana;
+	}
+
+	public int getManaGastaFeitico() {
+		return this.mana_gasta_feitico;
+	}
 
 	public Deck getDeck(){
 		return this.deck;
@@ -65,33 +95,10 @@ public class Jogador {
 	public void diminuirVida(int pontos) {
 		this.vida -=  pontos;
 		if (vida <= 0){
-
+			//TODO quando jogado perde
 		}
 	}
 
-	private void jogarCarta(int numero_carta, int posicao_alocacao){
-
-		Carta carta = this.mao.getCarta(numero_carta);
-
-		if (posicao_alocacao > 6){
-			System.out.println("O mapa tem tamanho maximo de 6 cartas");
-			return;
-		}
-
-		if (mesa.getCartasMesa(this).get(posicao_alocacao-1) != null){//se ja tiver carta nessa posicao
-			System.out.println("Essa posicao ja esta ocupada pelo " + mesa.getCartasMesa(this).get(posicao_alocacao-1).getNome());
-			return;
-		}
-
-		else if (this.mana>=carta.getMana()){
-			carta.atuarNaMesa(this, posicao_alocacao);
-			this.mao.removerCarta(carta);
-			this.mana-=carta.getMana();
-		}
-		else{
-			System.out.println("Sem mana suficiente!");
-		}
-	}
 
 	public void colocarCartaNaMao(Carta carta){
 		this.mao.adicionarCarta(carta);
@@ -115,20 +122,20 @@ public class Jogador {
 	}
 
 	public void evocarCartas(){
-		this.mesa.printCartasNaMesa(this.mana);
+
 		this.sortearDoDeck();
 		boolean running = true;
 		while (running) {
 			if (this.mao.getSize() > 0) {
-				this.mesa.printCartasNaMesa();
+				this.mesa.printCartasNaMesa(this.mana);
 				this.printCartasNaMao();
 
 				int numero_carta = GerenciadorEfeitos.pedirInput(this.nome + ", escolha que carta quer colocar no jogo");
 				if (numero_carta == 0) {
 					running = false;
 				} else if (numero_carta <= mao.getSize()) {
-					int posicao_alocacao = GerenciadorEfeitos.pedirInput(this.nome + ", escolha a posicao da mesa em que quer colocar a carta");
-					this.jogarCarta(numero_carta - 1, posicao_alocacao);
+					Carta carta = this.mao.getCarta(numero_carta - 1);
+					carta.jogarCarta();
 				}
 			} else {
 				System.out.println(this.nome + " voce ja n tem mais cartas disponiveis");
@@ -142,7 +149,7 @@ public class Jogador {
 		ArrayList<Seguidor> cartas_na_mesa = this.mesa.getCartasMesa(this);
 
 		while (true){
-			this.mesa.printCartasNaMesa();
+			this.mesa.printCartasNaMesa(this.mana);
 
 			int numero_carta = GerenciadorEfeitos.pedirInput(this.nome + ", escolha que cartas quer usar para atacar");
 			if (numero_carta == 0) {
@@ -166,7 +173,7 @@ public class Jogador {
 		ArrayList<Seguidor> cartas_na_mesa = this.mesa.getCartasMesa(this);
 
 		while (true){
-			this.mesa.printCartasNaMesa();
+			this.mesa.printCartasNaMesa(this.mana);
 
 			int numero_carta = GerenciadorEfeitos.pedirInput(this.nome + ", escolha que cartas quer usar para defender");
 			if (numero_carta == 0) {
@@ -204,7 +211,9 @@ public class Jogador {
 
 	public boolean atacar() {
 		this.evocarCartas();
+		setManaDeFeitico(this.getMana());
 		return decidirQueCartasAtacar();
+
 	}
 
 	public void defender(){
@@ -212,8 +221,8 @@ public class Jogador {
 		this.decidirQueCartasDefender();
 		this.receberAtaques();
 		this.desarmarDefesa();
+		setManaDeFeitico(this.getMana());
 	}
-
 
 	private Deck escolherDeck(Mesa mesa, Jogador jogador) {
 		TipoDeck tipo;
@@ -226,5 +235,7 @@ public class Jogador {
 		}
 		return DeckFactory.fazerDeck(tipo, mesa, jogador);
 	}
+
+
 
 }

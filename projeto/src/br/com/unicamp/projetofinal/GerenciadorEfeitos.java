@@ -1,6 +1,6 @@
 package br.com.unicamp.projetofinal;
 
-import Cartas.Seguidor;
+import br.com.unicamp.projetofinal.Cartas.Seguidor;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -47,7 +47,11 @@ public class GerenciadorEfeitos {
         }
     }
 
-    public static void cartaAleatoriaAtacarNexus(Seguidor carta, ArrayList<Seguidor> cartas_na_mesa){
+    public static void atacarNexus(Jogador jogador, int dano){
+        jogador.diminuirVida(dano);
+    }
+
+    public static void cartaAleatoriaAtacarNexus(Carta carta, ArrayList<Seguidor> cartas_na_mesa){
         Random sorteio = new Random();
 
         Mesa mesa = carta.getMesa();
@@ -74,4 +78,16 @@ public class GerenciadorEfeitos {
         return scan.nextInt();
     }
 
+    public static void escolherCartaAdversariaParaDarDano(Carta carta, int dano) {
+        ArrayList<Seguidor> mesa_adversario = carta.getMesa().getCartasMesaAdversario(carta.getJogador());
+        int numero_carta = GerenciadorEfeitos.pedirInput("Escolha uma carta inimiga para dar 1 de dano");
+        Seguidor carta_adversario = mesa_adversario.get(numero_carta);
+        if(carta_adversario!=null) {
+            boolean morreu = carta_adversario.diminuirVida(dano);
+            if(morreu){
+                carta.verificarDepujante(carta_adversario);
+            }
+        }
+
+    }
 }

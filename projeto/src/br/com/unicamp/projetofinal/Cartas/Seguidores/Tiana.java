@@ -1,9 +1,9 @@
-package Cartas.Seguidores;
+package br.com.unicamp.projetofinal.Cartas.Seguidores;
 
 import br.com.unicamp.projetofinal.GerenciadorEfeitos;
 import br.com.unicamp.projetofinal.Jogador;
 import br.com.unicamp.projetofinal.Mesa;
-import Cartas.Seguidor;
+import br.com.unicamp.projetofinal.Cartas.Seguidor;
 
 import java.util.ArrayList;
 

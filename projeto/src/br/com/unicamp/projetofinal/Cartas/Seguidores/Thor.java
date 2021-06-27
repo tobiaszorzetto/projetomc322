@@ -1,6 +1,6 @@
-package Cartas.Seguidores;
+package br.com.unicamp.projetofinal.Cartas.Seguidores;
 
-import Cartas.Campeao;
+import br.com.unicamp.projetofinal.Cartas.Campeao;
 import br.com.unicamp.projetofinal.Jogador;
 import br.com.unicamp.projetofinal.Mesa;
 

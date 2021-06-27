@@ -1,9 +1,9 @@
-package Cartas.Seguidores;
+package br.com.unicamp.projetofinal.Cartas.Seguidores;
 
 import br.com.unicamp.projetofinal.GerenciadorEfeitos;
 import br.com.unicamp.projetofinal.Jogador;
 import br.com.unicamp.projetofinal.Mesa;
-import Cartas.Seguidor;
+import br.com.unicamp.projetofinal.Cartas.Seguidor;
 
 public class Curandeira extends Seguidor {
 	//cura aumenta a vida de uma carta aliada quando entra em jogo
@@ -25,6 +25,6 @@ public class Curandeira extends Seguidor {
 		this.getMesa().colocarCartaMesa(jogador, this, posicao_alocacao);
 		this.getMesa().verificarCondicoes();
 	}
-	
+
 }
 
