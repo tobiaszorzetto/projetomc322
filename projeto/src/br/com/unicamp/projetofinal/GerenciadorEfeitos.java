@@ -1,5 +1,7 @@
 package br.com.unicamp.projetofinal;
 
+import br.com.unicamp.projetofinal.Cartas.Feiticos.CombateUmAUm;
+import br.com.unicamp.projetofinal.Cartas.Feiticos.ValorRedobrado;
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
 
 import java.util.ArrayList;
@@ -88,6 +90,45 @@ public class GerenciadorEfeitos {
                 carta.verificarDepujante(carta_adversario);
             }
         }
+
+    }
+
+    public static void escolherCartaBaterEmTodos(Carta carta) {
+        int numero_carta = pedirInput("Escolha uma carta para golpear os inimigos") - 1;
+
+        Seguidor carta_escolhida = carta.getMesa().getCartasMesa(carta.getJogador()).get(numero_carta);
+
+        ArrayList<Seguidor> cartas_adversario = carta.getMesa().getCartasMesa(carta.getAdversario());
+
+        for(int i = 0; i<6; i++){
+            if (cartas_adversario.get(i)!=null)
+            cartas_adversario.get(i).diminuirVida(carta_escolhida.getAtaque());
+        }
+    }
+
+    public static void escolherCartaDobrarValores(Carta carta) {
+        ArrayList<Seguidor> cartas_mesa = carta.getMesa().getCartasMesa(carta.getJogador());
+
+        int numero_carta = pedirInput("Escolha uma carta para golpear os inimigos") - 1;
+
+        Seguidor carta_escolhida = cartas_mesa.get(numero_carta);
+
+        if(carta_escolhida!=null){
+            GerenciadorEfeitos.aumentarAtaqueVida(carta_escolhida, carta_escolhida.getVidaOriginal(), carta_escolhida.getAtaque());
+        }
+    }
+
+    public static void escolherCartasCombate(Carta carta) {
+        ArrayList<Seguidor> cartas_mesa = carta.getMesa().getCartasMesa(carta.getJogador());
+        ArrayList<Seguidor> cartas_adversario = carta.getMesa().getCartasMesa(carta.getAdversario());
+
+        int numero_carta = pedirInput("Escolha uma carta sua para combater") - 1;
+        int numero_adversario = pedirInput("Escolha uma carta adversaria para combater") - 1;
+
+        Seguidor carta_escolhida = cartas_mesa.get(numero_carta);
+        Seguidor carta_adversario = cartas_adversario.get(numero_adversario);
+
+        carta_escolhida.realizarCombate(carta_adversario);
 
     }
 }
