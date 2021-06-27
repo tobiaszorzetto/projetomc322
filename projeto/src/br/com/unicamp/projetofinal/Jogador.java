@@ -192,7 +192,8 @@ public class Jogador {
 	}
 
 	public void receberAtaques(){
-		for (Seguidor seguidor : mesa.getCartasMesaAdversario(this)){
+		for (int i = 0; i < 6; i++){
+			Seguidor seguidor  = this.mesa.getCartasMesaAdversario(this).get(i);
 			if(seguidor!= null && seguidor.getVaiAtacar()){
 				seguidor.atacar();
 				seguidor.setVaiAtacar(false);
