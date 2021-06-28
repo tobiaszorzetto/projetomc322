@@ -43,14 +43,8 @@ public abstract class Seguidor extends Carta {
 			this.getVezes_que_vai_atacar = PrintFactory.pedirInput("vai atacar 1 ou duas vezes?");
 	}
 
-	public int getGetVezesQueVaiAtacar() {
-		return getVezes_que_vai_atacar;
-	}
-
-	public boolean isElusivo() {
-		return this.traco == Traco.ELUSIVO;
-	}
-
+	// GETTERS SETTERS E BOOLS
+		//Getters
 	public boolean getVaiAtacar(){
 		return this.vai_atacar;
 	}
@@ -63,12 +57,8 @@ public abstract class Seguidor extends Carta {
 		return vezes_que_atacou;
 	}
 
-	public void setVidaOriginal(){
-		this.vida_atual = this.vida_original;
-	}
-
-	public void setTraco(Traco traco){
-		this.traco = traco;
+	public int getGetVezesQueVaiAtacar() {
+		return getVezes_que_vai_atacar;
 	}
 
 	public int getVidaOriginal() { return this.vida_original; }
@@ -79,12 +69,33 @@ public abstract class Seguidor extends Carta {
 		return matou_alguem;
 	}
 
+	public Traco getTraco(){
+		return this.traco;
+	}
+
+		//Setter
+
+
+
+	public void setVidaOriginal(){
+		this.vida_atual = this.vida_original;
+	}
+
+	public void setTraco(Traco traco){
+		this.traco = traco;
+	}
+
 	public void setMatouAlguem(boolean a){
 		this.matou_alguem = a;
 	}
 	
 	public abstract void verificarCondicao();
 
+	public boolean isElusivo() {
+		return this.traco == Traco.ELUSIVO;
+	}
+
+	// VIDA
 	public void aumentarVida(int quantidade){
 		vida_atual += quantidade;
 	}
@@ -109,6 +120,8 @@ public abstract class Seguidor extends Carta {
 		this.getMesa().getCartasMesa(this.getJogador()).add(posicao, null);//adiciona null no lugar
 	}
 
+	// FUNCOES GERAIS
+
 	public void aumentarAtaque(int quantidade){
 		ataque += quantidade;
 	}
@@ -124,9 +137,7 @@ public abstract class Seguidor extends Carta {
 		adversario.diminuirVida(quant);
 	}
 
-	public Traco getTraco(){
-		return this.traco;
-	}
+
 
 	public void verificarFuria(){
 		if (this.traco == Traco.FURIA){ //se o seguidor tiver traco de furia

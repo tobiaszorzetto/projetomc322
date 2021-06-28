@@ -3,7 +3,7 @@ package br.com.unicamp.projetofinal.Cartas;
 import br.com.unicamp.projetofinal.*;
 import br.com.unicamp.projetofinal.Enums.Traco;
 
-public class Feitico extends Carta {
+public abstract class Feitico extends Carta {
 
     private Traco traco = Traco.NENHUM;
 
@@ -11,7 +11,6 @@ public class Feitico extends Carta {
         super(nome, custo_mana, mesa, jogador);
 
     }
-
 
     public void atuarNaMesa(Jogador jogador) {
         this.getJogador().addManaGastaFeitico(this.getMana());
@@ -42,9 +41,7 @@ public class Feitico extends Carta {
         }
     }
 
-    protected void realizarEfeito(){
-
-    }
+    protected abstract void realizarEfeito();
 
     public Traco getTraco() {
         return traco;
