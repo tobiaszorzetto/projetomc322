@@ -26,7 +26,7 @@ public class Computador extends Jogador{
             ArrayList<Seguidor> cartas_mesa = this.getMesa().getCartasMesa(this);
             for(int i= 0 ; i< 6 ; i++){
                 Seguidor carta = carta_mesa.get(i);
-                if (carta!=null && !carta.isVaiDefender()){
+                if (carta!=null && carta.naoVaiDefender()){
                     return i+1;
                 }
             }

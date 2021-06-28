@@ -10,12 +10,10 @@ public abstract class Seguidor extends Carta {
 	private int getVezes_que_vai_atacar;
 	private int ataque;
 	private int vida_atual;
-	private int vida_original;
+	private final int vida_original;
 	private boolean vai_atacar = false;
 	private boolean vai_defender = false;
 	private boolean matou_alguem = false;
-	private int inimigor_mortos = 0;
-	private boolean pode_atacar;
 	private Traco traco = Traco.NENHUM;
 	private boolean morreu = false;
 	
@@ -26,24 +24,17 @@ public abstract class Seguidor extends Carta {
 		this.vida_atual = vida;
 	}
 	// Getters e Setters
-	public boolean getPodeAtacar(){
-		return pode_atacar;
-	}
 
 	public boolean isMorreu() {
 		return morreu;
-	}
-
-	public void setPodeAtacar(boolean a){
-		this.pode_atacar = a;
 	}
 
 	public void setVaiDefender(boolean vai_defender) {
 		this.vai_defender = vai_defender;
 	}
 
-	public boolean isVaiDefender() {
-		return vai_defender;
+	public boolean naoVaiDefender() {
+		return !vai_defender;
 	}
 
 	public void setVaiAtacar(boolean variavel){
@@ -116,17 +107,10 @@ public abstract class Seguidor extends Carta {
 		int posicao = this.getMesa().getCartasMesa(this.getJogador()).indexOf(this);
 		this.getMesa().getCartasMesa(this.getJogador()).remove(this);//remove da lista
 		this.getMesa().getCartasMesa(this.getJogador()).add(posicao, null);//adiciona null no lugar
-
-		//pensar num jeito aqui
 	}
 
 	public void aumentarAtaque(int quantidade){
 		ataque += quantidade;
-	}
-	//
-
-	public void diminuirAtaque(int quantidade){
-		ataque -= quantidade;
 	}
 
 	public void atuarNaMesa(Jogador jogador, int posicao_alocacao){
@@ -156,7 +140,7 @@ public abstract class Seguidor extends Carta {
 	}
 
 	public boolean deveAtacarNexus(Seguidor carta_adversario) {
-		if (carta_adversario == null || !carta_adversario.isVaiDefender()) {
+		if (carta_adversario == null || carta_adversario.naoVaiDefender()) {
 			return true;
 		}
 		return verificarElusivo(carta_adversario);
@@ -166,7 +150,6 @@ public abstract class Seguidor extends Carta {
 		this.diminuirVida(carta_adversario.getAtaque());//diminui a vida desse seguidor
 		boolean adversario_morreu = carta_adversario.diminuirVida(ataque);//diminui a vida do adversario e verifica se ele morreu
 		if (adversario_morreu){
-			inimigor_mortos += 1;
 			verificarFuria(); //chama-se apenas quando sabemos que matou o inimigo
 			verificarDepujante(carta_adversario);
 		}

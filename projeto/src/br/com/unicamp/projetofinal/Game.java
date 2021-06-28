@@ -15,7 +15,8 @@ public class Game {
         Jogador jogador2 = new Jogador(mesa);
 
 
-        mesa.destribuirCartasIniciais();
+        mesa.destribuirCartasIniciais(jogador1);
+        mesa.destribuirCartasIniciais(jogador2);
 
         boolean roda = true;
         while(roda){

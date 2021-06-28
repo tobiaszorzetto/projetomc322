@@ -30,6 +30,17 @@ public class Mesa {
 		this.continuar = false;
 	}
 
+	// GETTERS E SETTERS
+
+	public boolean temCartasMesa(Jogador jogador){
+		for(Seguidor carta: getCartasMesa(jogador)){
+			if(carta!=null) return true;
+		}
+		return false;
+	}
+
+		// Getters
+
 	public Jogador getAtacante(){
 		return this.atacante;
 	}
@@ -40,6 +51,36 @@ public class Mesa {
 		}
 		return jogador2;
 	}
+
+	public ArrayList<Seguidor> getCartasMesaAdversario(Jogador jogador){
+		if (jogador.equals(jogador2)){
+			return cartas_mesa1;
+		} else{
+			return cartas_mesa2;
+		}
+	}
+
+	public Jogador getAdversario(Jogador aliado){
+		if (aliado.equals(jogador1)){
+			return jogador2;
+		} else{
+			return jogador1;
+		}
+	}
+
+	public int getParteDaRodada(){
+		return parte_da_rodada;
+	}
+
+	public  ArrayList<Seguidor> getCartasMesa(Jogador jogador){
+		if (jogador.equals(jogador1)){
+			return cartas_mesa1;
+		} else{
+			return cartas_mesa2;
+		}
+	}
+
+		//Setters
 
 	public void setJogador(Jogador jogador){
 		if(this.jogador1 == null){
@@ -54,6 +95,7 @@ public class Mesa {
 		}
 	}
 
+	// FUNCOES GERAIS
 
 	public void verificarCondicoes(){
 		for (Seguidor carta: cartas_mesa1){
@@ -66,11 +108,13 @@ public class Mesa {
 		}
 	}
 
-	public void destribuirCartasIniciais(){
-		for(int i = 0; i<3; i++){
-			jogador1.sortearDoDeck();
-			jogador2.sortearDoDeck();
+	public void destribuirCartasIniciais(Jogador jogador){
+		for(int i = 0; i<4; i++){
+			jogador.sortearDoDeck();
 		}
+		PrintFactory.printLinha(jogador.getNome() + " | Cartas iniciais:");
+		PrintFactory.printCartasNaMao(jogador);
+		jogador.escolherQuantasInciaisFicar();
 	}
 
 	public void aumentarMana(){
@@ -103,6 +147,17 @@ public class Mesa {
 		}
 	}
 
+	public void colocarCartaMesa(Jogador jogador, Seguidor carta, int posicao_alocacao){
+		if (jogador.equals(jogador1)){
+			cartas_mesa1.add(posicao_alocacao-1, carta);
+		} else{
+			cartas_mesa2.add(posicao_alocacao-1,carta);
+		}
+		this.verificarCondicoes();
+	}
+
+	// PARTES
+
 	public boolean realizarParte0(){
 		this.parte_da_rodada = 0;
 		this.verificarCondicoes();
@@ -124,6 +179,8 @@ public class Mesa {
 		this.defensor.desarmarDefesa();
 	}
 
+	// PRINCIPAL
+
 	public boolean passarRodada(){
 		this.rodada++;
 		this.aumentarMana();
@@ -137,50 +194,11 @@ public class Mesa {
 		return this.continuar;
 	}
 
-	public void colocarCartaMesa(Jogador jogador, Seguidor carta, int posicao_alocacao){
-		if (jogador.equals(jogador1)){
-			cartas_mesa1.add(posicao_alocacao-1, carta);
-		} else{
-			cartas_mesa2.add(posicao_alocacao-1,carta);
-		}
-		this.verificarCondicoes();
-	}
-	
-	// Getters e Setters
-	public  ArrayList<Seguidor> getCartasMesa(Jogador jogador){
-		if (jogador.equals(jogador1)){
-			return cartas_mesa1;
-		} else{
-			return cartas_mesa2;
-		}
-	}
 
-	public boolean temCartasMesa(Jogador jogador){
-		for(Seguidor carta: getCartasMesa(jogador)){
-			if(carta!=null) return true;
-		}
-		return false;
-	}
 
-	public ArrayList<Seguidor> getCartasMesaAdversario(Jogador jogador){
-		if (jogador.equals(jogador2)){
-			return cartas_mesa1;
-		} else{
-			return cartas_mesa2;
-		}
-	}
 
-	public Jogador getAdversario(Jogador aliado){
-		if (aliado.equals(jogador1)){
-			return jogador2;
-		} else{
-			return jogador1;
-		}
-	}
 
-	public int getParteDaRodada(){
-		return parte_da_rodada;
-	}
+
 
 
 

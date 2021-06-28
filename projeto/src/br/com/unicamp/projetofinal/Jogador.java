@@ -2,20 +2,19 @@ package br.com.unicamp.projetofinal;
 
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
 import br.com.unicamp.projetofinal.Enums.Marcador;
-import br.com.unicamp.projetofinal.Enums.TipoDeck;
-import br.com.unicamp.projetofinal.Enums.Traco;
+import br.com.unicamp.projetofinal.Enums.TipoDeck;import br.com.unicamp.projetofinal.Enums.Traco;
 
 import java.lang.*;
 import java.util.*;
 
 public class Jogador {
-	private Mesa mesa;
+	private final Mesa mesa;
 	private String nome;
 	private int vida;
 	private Marcador marcador;
 	private int mana;
-	private Deck deck;
-	private Deck mao;
+	private final Deck deck;
+	private final Deck mao;
 	private int mana_de_feitico = 0;
 	private int mana_gasta_feitico;
 	
@@ -24,7 +23,7 @@ public class Jogador {
 		this.mesa = mesa;
 		mesa.setJogador(this);
 		this.vida = 30;
-		this.mana = 100; // ainda n sabemos quanto
+		this.mana = 0;
 		this.deck = escolherDeck(mesa, this);
 		this.mao = new Deck();
 	}
@@ -64,6 +63,7 @@ public class Jogador {
 
 	public Marcador getMarcador(){ return this.marcador;}
 
+		//Setters
 
 	public void setManaDeFeitico(int quant){
 		this.mana_de_feitico = Math.min(quant, 3);
@@ -84,10 +84,10 @@ public class Jogador {
 	private void setNome() {
 		Scanner scan = new Scanner(System.in);
 		this.nome = scan.nextLine();
-		//CLOSE NAO FUNCIONA?????
 	}
 
-	// muda vida
+
+	// MUDA VIDA
 	
 	public void aumentarVida(int pontos) {
 		this.vida +=  pontos;
@@ -96,10 +96,53 @@ public class Jogador {
 	public void diminuirVida(int pontos) {
 		this.vida -=  pontos;
 		if (vida <= 0){
-			//TODO quando jogado perde
+			this.mesa.acabarJogo();
 		}
 	}
 
+	// DECK
+
+	private Deck escolherDeck(Mesa mesa, Jogador jogador) {
+		TipoDeck tipo;
+		int num = PrintFactory.pedirInput("Digite 1 para deck padrao ou 2 para personalizado");
+		if (num == 1){
+			tipo = TipoDeck.PADRAO;
+		}
+		else{
+			tipo = TipoDeck.PERSONALIZADO;
+		}
+		return DeckFactory.fazerDeck(tipo, mesa, jogador);
+	}
+
+	// CHAMAR ATAQUE OU DEFESA
+
+	public void escolherQuantasInciaisFicar(){
+		Random sorteio = new Random();
+		int quant =  PrintFactory.pedirInput("Quer trocar quantas");
+		for(int i = 0; i< quant; i++){
+			int numero  = sorteio.nextInt(mao.getSize()) ;
+			this.deck.adicionarCarta(mao.getCarta(numero));
+			this.mao.removerCarta(mao.getCarta(numero));
+		}for(int i = 0; i< quant; i++){
+			this.sortearDoDeck();
+		}
+
+	}
+
+	public boolean atacar() {
+		this.evocarCartas();
+		setManaDeFeitico(this.getMana());
+		return decidirQueCartasCombater();
+
+	}
+
+	public void defender(){
+		this.evocarCartas();
+		this.decidirQueCartasCombater();
+		setManaDeFeitico(this.getMana());
+	}
+
+	// FUNCOES GERAIS
 
 	public void colocarCartaNaMao(Carta carta){
 		this.mao.adicionarCarta(carta);
@@ -177,31 +220,5 @@ public class Jogador {
 			if (carta!=null) carta.setVaiDefender(false);
 		}
 	}
-
-	public boolean atacar() {
-		this.evocarCartas();
-		setManaDeFeitico(this.getMana());
-		return decidirQueCartasCombater();
-
-	}
-
-	public void defender(){
-		this.evocarCartas();
-		this.decidirQueCartasCombater();
-		setManaDeFeitico(this.getMana());
-	}
-
-	private Deck escolherDeck(Mesa mesa, Jogador jogador) {
-		TipoDeck tipo;
-		int num = PrintFactory.pedirInput("Digite 1 para deck padrao ou 2 para personalizado");
-		if (num == 1){
-			tipo = TipoDeck.PADRAO;
-		}
-		else{
-			tipo = TipoDeck.PERSONALIZADO;
-		}
-		return DeckFactory.fazerDeck(tipo, mesa, jogador);
-	}
-
 
 }
