@@ -29,15 +29,8 @@ public class Jogador {
 		this.mao = new Deck();
 	}
 	
-	//getters e setters
-
-	public void setManaDeFeitico(int quant){
-		if(quant>=3)
-			this.mana_de_feitico = 3;
-		else{
-			this.mana_de_feitico = quant;
-		}
-	}
+	//GETTERS E SETTERS
+		//Getters
 
 	public int getManaDeFeitico() {
 		return this.mana_de_feitico;
@@ -49,10 +42,6 @@ public class Jogador {
 
 	public Deck getMao() {
 		return mao;
-	}
-
-	public void addManaGastaFeitico(int mana){
-		this.mana_gasta_feitico+=mana;
 	}
 
 	public int getManaGastaFeitico() {
@@ -71,10 +60,26 @@ public class Jogador {
 		return vida;
 	}
 
+	protected Mesa getMesa() { return mesa; }
+
+	public Marcador getMarcador(){ return this.marcador;}
+
+
+	public void setManaDeFeitico(int quant){
+		this.mana_de_feitico = Math.min(quant, 3);
+	}
+
+	public void addManaGastaFeitico(int mana){
+		this.mana_gasta_feitico+=mana;
+	}
+
 	public void setMana(int mana){
 		this.mana = mana;
 	}
 
+	public void setMarcador(Marcador marcador){
+		this.marcador = marcador;
+	}
 
 	private void setNome() {
 		Scanner scan = new Scanner(System.in);
@@ -82,10 +87,6 @@ public class Jogador {
 		//CLOSE NAO FUNCIONA?????
 	}
 
-	public void set_marcador(Marcador marcador) {
-		this.marcador = marcador;
-	}
-	
 	// muda vida
 	
 	public void aumentarVida(int pontos) {
@@ -112,13 +113,9 @@ public class Jogador {
 		this.deck.removerCarta(this.deck.getCarta(carta_sorteada));
 	}
 
-	public void printCartasNaMao(){
-		int i = 0;
-		for (Carta carta : mao.getDeck()){
-			i++;
-			System.out.printf("| %d - %s (%d) |", i, carta.getNome(), carta.getMana());
-		}
-		System.out.println();
+
+	public int escolherCartaColocar(){
+		return PrintFactory.pedirInput(this.nome + ", escolha que carta quer colocar no jogo");
 	}
 
 	public void evocarCartas(){
@@ -127,10 +124,10 @@ public class Jogador {
 		boolean running = true;
 		while (running) {
 			if (this.mao.getSize() > 0) {
-				this.mesa.printCartasNaMesa(this.mana);
-				this.printCartasNaMao();
+				PrintFactory.printCartasNaMesa(this.mesa, this.mana);
+				PrintFactory.printCartasNaMao(this);
 
-				int numero_carta = GerenciadorEfeitos.pedirInput(this.nome + ", escolha que carta quer colocar no jogo");
+				int numero_carta = escolherCartaColocar();
 				if (numero_carta == 0) {
 					running = false;
 				} else if (numero_carta <= mao.getSize()) {
@@ -144,14 +141,21 @@ public class Jogador {
 		}
 	}
 
-	public boolean decidirQueCartasAtacar(){
+	public int escolherCartaCombater(){
+		if (this.marcador == Marcador.ATACANTE) {
+			return PrintFactory.pedirInput(this.nome + ", escolha que cartas quer usar para atacar");
+		}
+		return PrintFactory.pedirInput(this.nome + ", escolha que cartas quer usar para defender");
+	}
+
+	public boolean decidirQueCartasCombater(){
 		int cont = 0;
 		ArrayList<Seguidor> cartas_na_mesa = this.mesa.getCartasMesa(this);
 
 		while (true){
-			this.mesa.printCartasNaMesa(this.mana);
+			PrintFactory.printCartasNaMesa(this.mesa, this.mana);
 
-			int numero_carta = GerenciadorEfeitos.pedirInput(this.nome + ", escolha que cartas quer usar para atacar");
+			int numero_carta = this.escolherCartaCombater();
 			if (numero_carta == 0) {
 				break;
 			} else if (numero_carta <= 6) {
@@ -159,50 +163,14 @@ public class Jogador {
 				Seguidor carta = cartas_na_mesa.get(numero_carta - 1);
 				//VERIFICAR NULIDADE
 				carta.setVaiAtacar(true);
-			}
-			else {
-				System.out.println(this.nome + " voce ja n tem mais cartas disponiveis para atacar");
+			} else {
+				System.out.println(this.nome + " voce ja n tem mais cartas disponiveis para combate");
 				break;
 			}
 		}
 		return cont != 0;//se atacar retorna true
 	}
 
-	public void decidirQueCartasDefender(){
-		int cont = 0;
-		ArrayList<Seguidor> cartas_na_mesa = this.mesa.getCartasMesa(this);
-
-		while (true){
-			this.mesa.printCartasNaMesa(this.mana);
-
-			int numero_carta = GerenciadorEfeitos.pedirInput(this.nome + ", escolha que cartas quer usar para defender");
-			if (numero_carta == 0) {
-				break;
-			} else if (numero_carta <= 6) {
-				cont++;
-				Seguidor carta = cartas_na_mesa.get(numero_carta - 1);
-				//VERIFICAR NULIDADE
-				carta.setVaiDefender(true);
-			}
-			else {
-				System.out.println(this.nome + " voce ja n tem mais cartas disponiveis para defender");
-				break;
-			}
-		}
-	}
-
-	public void receberAtaques(){
-		for (int i = 0; i < 6; i++){
-			Seguidor seguidor  = this.mesa.getCartasMesaAdversario(this).get(i);
-			if(seguidor!= null && seguidor.getVaiAtacar()){
-				seguidor.atacar();
-				seguidor.setVaiAtacar(false);
-				if(seguidor.getTraco() == Traco.ATAQUEDUPLO && seguidor.getGetVezesQueVaiAtacar() == 2 && !seguidor.isMorreu()){
-					seguidor.atacar();
-				}
-			}
-		}
-	}
 
 	public void desarmarDefesa(){
 		for(Seguidor carta : this.mesa.getCartasMesa(this)){
@@ -213,21 +181,19 @@ public class Jogador {
 	public boolean atacar() {
 		this.evocarCartas();
 		setManaDeFeitico(this.getMana());
-		return decidirQueCartasAtacar();
+		return decidirQueCartasCombater();
 
 	}
 
 	public void defender(){
 		this.evocarCartas();
-		this.decidirQueCartasDefender();
-		this.receberAtaques();
-		this.desarmarDefesa();
+		this.decidirQueCartasCombater();
 		setManaDeFeitico(this.getMana());
 	}
 
 	private Deck escolherDeck(Mesa mesa, Jogador jogador) {
 		TipoDeck tipo;
-		int num = GerenciadorEfeitos.pedirInput("Digite 1 para deck padrao ou 2 para personalizado");
+		int num = PrintFactory.pedirInput("Digite 1 para deck padrao ou 2 para personalizado");
 		if (num == 1){
 			tipo = TipoDeck.PADRAO;
 		}
@@ -236,7 +202,6 @@ public class Jogador {
 		}
 		return DeckFactory.fazerDeck(tipo, mesa, jogador);
 	}
-
 
 
 }

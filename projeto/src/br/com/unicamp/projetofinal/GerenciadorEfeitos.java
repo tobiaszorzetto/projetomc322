@@ -39,7 +39,7 @@ public class GerenciadorEfeitos {
         int numero_carta;
         ArrayList<Seguidor> cartas_na_mesa = carta.getMesa().getCartasMesa(carta.getJogador());
         while(true){
-            numero_carta = GerenciadorEfeitos.pedirInput(carta.getJogador().getNome() + ", quais dessas cartas deseja curar?") - 1;
+            numero_carta = PrintFactory.pedirInput(carta.getJogador().getNome() + ", quais dessas cartas deseja curar?") - 1;
             if (numero_carta<= cartas_na_mesa.size() && numero_carta>=0){
                 GerenciadorEfeitos.curar(cartas_na_mesa.get(numero_carta));
                 break;
@@ -74,15 +74,9 @@ public class GerenciadorEfeitos {
         jogador.colocarCartaNaMao(carta_vai_pra_mao);
     }
 
-    public static int pedirInput(String mensagem){
-        Scanner scan = new Scanner(System.in);
-        System.out.println(mensagem);
-        return scan.nextInt();
-    }
-
     public static void escolherCartaAdversariaParaDarDano(Carta carta, int dano) {
         ArrayList<Seguidor> mesa_adversario = carta.getMesa().getCartasMesaAdversario(carta.getJogador());
-        int numero_carta = GerenciadorEfeitos.pedirInput("Escolha uma carta inimiga para dar 1 de dano");
+        int numero_carta = PrintFactory.pedirInput("Escolha uma carta inimiga para dar 1 de dano");
         Seguidor carta_adversario = mesa_adversario.get(numero_carta);
         if(carta_adversario!=null) {
             boolean morreu = carta_adversario.diminuirVida(dano);
@@ -94,7 +88,7 @@ public class GerenciadorEfeitos {
     }
 
     public static void escolherCartaBaterEmTodos(Carta carta) {
-        int numero_carta = pedirInput("Escolha uma carta para golpear os inimigos") - 1;
+        int numero_carta = PrintFactory.pedirInput("Escolha uma carta para golpear os inimigos") - 1;
 
         Seguidor carta_escolhida = carta.getMesa().getCartasMesa(carta.getJogador()).get(numero_carta);
 
@@ -109,7 +103,7 @@ public class GerenciadorEfeitos {
     public static void escolherCartaDobrarValores(Carta carta) {
         ArrayList<Seguidor> cartas_mesa = carta.getMesa().getCartasMesa(carta.getJogador());
 
-        int numero_carta = pedirInput("Escolha uma carta para golpear os inimigos") - 1;
+        int numero_carta = PrintFactory.pedirInput("Escolha uma carta para golpear os inimigos") - 1;
 
         Seguidor carta_escolhida = cartas_mesa.get(numero_carta);
 
@@ -122,8 +116,8 @@ public class GerenciadorEfeitos {
         ArrayList<Seguidor> cartas_mesa = carta.getMesa().getCartasMesa(carta.getJogador());
         ArrayList<Seguidor> cartas_adversario = carta.getMesa().getCartasMesa(carta.getAdversario());
 
-        int numero_carta = pedirInput("Escolha uma carta sua para combater") - 1;
-        int numero_adversario = pedirInput("Escolha uma carta adversaria para combater") - 1;
+        int numero_carta = PrintFactory.pedirInput("Escolha uma carta sua para combater") - 1;
+        int numero_adversario = PrintFactory.pedirInput("Escolha uma carta adversaria para combater") - 1;
 
         Seguidor carta_escolhida = cartas_mesa.get(numero_carta);
         Seguidor carta_adversario = cartas_adversario.get(numero_adversario);

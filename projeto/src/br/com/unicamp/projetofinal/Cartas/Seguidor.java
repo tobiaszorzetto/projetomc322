@@ -49,7 +49,7 @@ public abstract class Seguidor extends Carta {
 	public void setVaiAtacar(boolean variavel){
 		this.vai_atacar = variavel;
 		if (variavel && this.traco == Traco.ATAQUEDUPLO)
-			this.getVezes_que_vai_atacar = GerenciadorEfeitos.pedirInput("vai atacar 1 ou duas vezes?");
+			this.getVezes_que_vai_atacar = PrintFactory.pedirInput("vai atacar 1 ou duas vezes?");
 	}
 
 	public int getGetVezesQueVaiAtacar() {
@@ -194,7 +194,7 @@ public abstract class Seguidor extends Carta {
 		Deck mao = jogador.getMao();
 		Mesa mesa = this.getMesa();
 
-		int posicao_alocacao = GerenciadorEfeitos.pedirInput(jogador.getNome() + ", escolha a posicao da mesa em que quer colocar a carta");
+		int posicao_alocacao = PrintFactory.pedirInput(jogador.getNome() + ", escolha a posicao da mesa em que quer colocar a carta");
 
 		if (posicao_alocacao > 6){
 			System.out.println("O mapa tem tamanho maximo de 6 cartas");

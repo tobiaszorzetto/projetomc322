@@ -19,8 +19,7 @@ public class Game {
 
         boolean roda = true;
         while(roda){
-            mesa.passarRodada();
-
+            roda = mesa.passarRodada();
         }
 
     }

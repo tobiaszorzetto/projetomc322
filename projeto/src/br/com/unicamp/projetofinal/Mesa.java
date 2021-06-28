@@ -1,6 +1,8 @@
 package br.com.unicamp.projetofinal;
 
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
+import br.com.unicamp.projetofinal.Enums.Marcador;
+import br.com.unicamp.projetofinal.Enums.Traco;
 
 import java.util.ArrayList;
 
@@ -12,6 +14,7 @@ public class Mesa {
 	private Jogador defensor;
 	private int manaJogo =100;
 	private int parte_da_rodada;
+	private boolean continuar = true;
 
 	private ArrayList<Seguidor> cartas_mesa1 = new ArrayList<Seguidor>(); //cartas do jogador 1 jogadas na mesa
 	private ArrayList<Seguidor> cartas_mesa2 = new ArrayList<Seguidor>(); //cartas do jogador 2 jogadas na mesa
@@ -23,16 +26,34 @@ public class Mesa {
 		}
 	}
 
+	public void acabarJogo(){
+		this.continuar = false;
+	}
+
+	public Jogador getAtacante(){
+		return this.atacante;
+	}
+
+	public Jogador getJogador(int i){
+		if (i==1){
+			return jogador1;
+		}
+		return jogador2;
+	}
+
 	public void setJogador(Jogador jogador){
 		if(this.jogador1 == null){
 			this.jogador1 = jogador;
 			this.defensor = jogador;
+			this.defensor.setMarcador(Marcador.DEFENSOR);
 		}
 		else{
 			this.jogador2 = jogador;
 			this.atacante = jogador;
+			this.atacante.setMarcador(Marcador.ATACANTE);
 		}
 	}
+
 
 	public void verificarCondicoes(){
 		for (Seguidor carta: cartas_mesa1){
@@ -61,28 +82,59 @@ public class Mesa {
 
 	}
 
-	public void passarRodada(){
-		this.rodada++;
-		this.aumentarMana();
-
-
+	public void trocarMarcacoes(){
+		this.atacante.setMarcador(Marcador.DEFENSOR);
+		this.defensor.setMarcador(Marcador.ATACANTE);
 		Jogador aux = this.atacante;
 		this.atacante = this.defensor;//o atacante eh agora quem antes estava defendendo
 		this.defensor = aux;
+	}
 
-		this.parte_da_rodada = 0;
-		boolean atacou = this.atacante.atacar();
-		this.parte_da_rodada = 1;
-		this.verificarCondicoes();
-		//this.printCartasNaMesa();
-		if (atacou){//se o atacante atacou o defensor pode decidir se defender
-			defensor.defender();
-			this.parte_da_rodada = 2;
-			this.verificarCondicoes();
+	public void realizarCombates(){
+		for (int i = 0; i < 6; i++){
+			Seguidor seguidor  = this.getCartasMesa(this.atacante).get(i);
+			if(seguidor!= null && seguidor.getVaiAtacar()){
+				seguidor.atacar();
+				seguidor.setVaiAtacar(false);
+				if(seguidor.getTraco() == Traco.ATAQUEDUPLO && seguidor.getGetVezesQueVaiAtacar() == 2 && !seguidor.isMorreu()){
+					seguidor.atacar();
+				}
+			}
 		}
+	}
+
+	public boolean realizarParte0(){
+		this.parte_da_rodada = 0;
+		this.verificarCondicoes();
+		return this.atacante.atacar();
+
+	}
+
+	public void realizarParte1(){
+		this.parte_da_rodada = 1;
+		defensor.defender();
+		this.parte_da_rodada = 2;
+		this.verificarCondicoes();
+	}
+
+	public void realizarParte2(){
 		this.parte_da_rodada = 3;
 		this.verificarCondicoes();
-		//this.printCartasNaMesa();
+		this.realizarCombates();
+		this.defensor.desarmarDefesa();
+	}
+
+	public boolean passarRodada(){
+		this.rodada++;
+		this.aumentarMana();
+		this.trocarMarcacoes();
+
+		boolean atacou = this.realizarParte0();
+		if (atacou){
+			this.realizarParte1();
+			this.realizarParte2();
+		}
+		return this.continuar;
 	}
 
 	public void colocarCartaMesa(Jogador jogador, Seguidor carta, int posicao_alocacao){
@@ -126,85 +178,12 @@ public class Mesa {
 		}
 	}
 
-
 	public int getParteDaRodada(){
 		return parte_da_rodada;
 	}
 
-	public void printLinhaCartaEsquerda(Seguidor carta1, String cor, String branco){
-		System.out.println( cor +
-				" ("+ carta1.getAtaque() + "/" + carta1.getVidaAtual()+ ") "+
-						carta1.getNome() + branco + "    |    -------------" );
-	}
 
-	public void printLinhaCartaDireita(Seguidor carta2, String cor, String branco){
-		System.out.println("-----------    |    " + cor + carta2.getNome() +
-				" ("+ carta2.getAtaque() + "/" + carta2.getVidaAtual()+ ")" + branco);
-	}
 
-	public void printLinha2Cartas(Seguidor carta1, Seguidor carta2, String cor1, String cor2, String branco){
-		System.out.println( cor1 +
-		"("+ carta1.getAtaque() + "/" + carta1.getVidaAtual()+ ") "+ carta1.getNome() + cor2 +
-				"    |    " + carta2.getNome() + " ("+ carta2.getAtaque() + "/" + carta2.getVidaAtual()+ ") "+ branco);
-	}
-
-	public void printCartasNaMesa(ArrayList<Seguidor> cartas_a_colorir){
-		String amarelo = ConsoleColors.YELLOW;
-		String branco = ConsoleColors.BLUE;
-
-		System.out.print(branco);
-		System.out.println("========================================");
-
-		System.out.println(this.jogador1.getNome() + " ("+ this.jogador1.getVida()+ ") "+ "............." + " ("+ this.jogador2.getVida()+ ") "+ this.jogador2.getNome());
-		System.out.println();
-
-		for (int i = 0; i< 6; i++){
-			Seguidor carta1 = this.cartas_mesa1.get(i);
-			Seguidor carta2 = this.cartas_mesa2.get(i);
-			if(carta1 == null && carta2==null){
-				System.out.println("-------------    |    -------------");
-			}
-			else if (carta1 != null && carta2!=null){
-				if (cartas_a_colorir.contains(carta1)){
-					this.printLinha2Cartas(carta1, carta2, amarelo, branco, branco);
-				}
-				else if (cartas_a_colorir.contains(carta2)){
-					this.printLinha2Cartas(carta1, carta2, branco, amarelo, branco);
-				}
-				else this.printLinha2Cartas(carta1, carta2, branco, branco, branco);
-			}
-			else if(carta1 == null){
-
-				if (cartas_a_colorir.contains(carta2)){
-					this.printLinhaCartaDireita(carta2, amarelo, branco);
-				}
-				else this.printLinhaCartaDireita(carta2, branco, branco);
-			}
-			else {
-				if (cartas_a_colorir.contains(carta1)){
-					this.printLinhaCartaEsquerda(carta1, amarelo, branco);
-				}
-				else this.printLinhaCartaEsquerda(carta1, branco, branco);
-			}
-		}
-
-		System.out.println("========================================");
-	}
-
-	public void printCartasNaMesa(){
-		ArrayList<Seguidor> lista = new ArrayList<Seguidor>();
-		for (Seguidor carta: this.getCartasMesa(this.atacante)){
-			if(carta !=null && carta.getVaiAtacar()) lista.add(carta);
-		}
-		printCartasNaMesa(lista);
-	}
-
-	public void printCartasNaMesa(int mana){
-		System.out.println("========================================");
-		System.out.println("MANA: " + mana + "           MANA DE FEITICO: " + this.atacante.getManaDeFeitico());
-		printCartasNaMesa(new ArrayList<Seguidor>());
-
-	}
 }
 
 

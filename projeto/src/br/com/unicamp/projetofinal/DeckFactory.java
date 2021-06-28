@@ -46,7 +46,7 @@ public class DeckFactory {
         boolean running = true;
         while (running && deck.getSize() < 40) {
 
-            int numero_carta = GerenciadorEfeitos.pedirInput("Escolha uma carta");
+            int numero_carta = PrintFactory.pedirInput("Escolha uma carta");
 
             if (numero_carta == 0) {
                 running = false;
