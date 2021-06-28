@@ -155,18 +155,17 @@ public class Mesa {
 		}
 		this.verificarCondicoes();
 	}
-
 	// PARTES
 
 	public boolean realizarParte0(){
 		this.parte_da_rodada = 0;
 		this.verificarCondicoes();
 		return this.atacante.atacar();
-
 	}
 
 	public void realizarParte1(){
 		this.parte_da_rodada = 1;
+		this.verificarCondicoes();
 		defensor.defender();
 		this.parte_da_rodada = 2;
 		this.verificarCondicoes();
@@ -174,9 +173,10 @@ public class Mesa {
 
 	public void realizarParte2(){
 		this.parte_da_rodada = 3;
-		this.verificarCondicoes();
 		this.realizarCombates();
+		this.verificarCondicoes();
 		this.defensor.desarmarDefesa();
+		this.verificarCondicoes();
 	}
 
 	// PRINCIPAL

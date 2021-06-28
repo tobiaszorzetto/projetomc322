@@ -121,8 +121,6 @@ public class GerenciadorEfeitos {
 
         Seguidor carta_escolhida = cartas_mesa.get(numero_carta);
         Seguidor carta_adversario = cartas_adversario.get(numero_adversario);
-
         carta_escolhida.realizarCombate(carta_adversario);
-
     }
 }

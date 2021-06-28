@@ -8,7 +8,7 @@ import br.com.unicamp.projetofinal.Mesa;
 
 public class Lux extends Campeao {
     private boolean ja_upou = false;
-    private int mana_inicial;
+    private final int mana_inicial;
     private int cont_mana = 0;
     public Lux(Mesa mesa, Jogador jogador) {
         super("Lux", 6, 4, 5, mesa, jogador);
