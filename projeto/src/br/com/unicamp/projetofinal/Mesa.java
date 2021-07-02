@@ -194,6 +194,17 @@ public class Mesa {
 		return this.continuar;
 	}
 
+	public int numCartasMesa(Jogador jogador){
+		ArrayList<Seguidor> cartas_mesa = this.getCartasMesa(jogador);
+		int num_cartas = 0;
+		for (Seguidor carta : cartas_mesa) {
+			if (carta != null) {
+				num_cartas += 1;
+			}
+		}
+		return num_cartas;
+	}
+
 
 
 

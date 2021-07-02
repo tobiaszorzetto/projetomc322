@@ -102,7 +102,7 @@ public class Jogador {
 
 	// DECK
 
-	private Deck escolherDeck(Mesa mesa, Jogador jogador) {
+	public Deck escolherDeck(Mesa mesa, Jogador jogador) {
 		TipoDeck tipo;
 		int num = PrintFactory.pedirInput("Digite 1 para deck padrao ou 2 para personalizado");
 		if (num == 1){
