@@ -6,6 +6,7 @@ import br.com.unicamp.projetofinal.Enums.Marcador;
 import java.util.ArrayList;
 
 public class Computador extends Jogador{
+
     public Computador(Mesa mesa) {
         super(mesa);
     }

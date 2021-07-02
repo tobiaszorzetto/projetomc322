@@ -1,12 +1,10 @@
 package br.com.unicamp.projetofinal;
 
-import br.com.unicamp.projetofinal.Cartas.Feiticos.CombateUmAUm;
-import br.com.unicamp.projetofinal.Cartas.Feiticos.ValorRedobrado;
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
+
 
 public class GerenciadorEfeitos {
 
