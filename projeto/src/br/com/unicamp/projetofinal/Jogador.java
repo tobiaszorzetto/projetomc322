@@ -1,17 +1,15 @@
 package br.com.unicamp.projetofinal;
 
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
-import br.com.unicamp.projetofinal.Enums.Marcador;
-import br.com.unicamp.projetofinal.Enums.TipoDeck;import br.com.unicamp.projetofinal.Enums.Traco;
 
 import java.lang.*;
 import java.util.*;
 
 public class Jogador {
 	private final Mesa mesa;
-	private String nome;
+	protected String nome;
 	private int vida;
-	private Marcador marcador;
+	private Carta.Marcador marcador;
 	private int mana;
 	private final Deck deck;
 	private final Deck mao;
@@ -27,7 +25,7 @@ public class Jogador {
 		this.deck = escolherDeck(mesa, this);
 		this.mao = new Deck();
 	}
-	
+
 	//GETTERS E SETTERS
 		//Getters
 
@@ -61,7 +59,7 @@ public class Jogador {
 
 	protected Mesa getMesa() { return mesa; }
 
-	public Marcador getMarcador(){ return this.marcador;}
+	public Carta.Marcador getMarcador(){ return this.marcador;}
 
 		//Setters
 
@@ -77,7 +75,7 @@ public class Jogador {
 		this.mana = mana;
 	}
 
-	public void setMarcador(Marcador marcador){
+	public void setMarcador(Carta.Marcador marcador){
 		this.marcador = marcador;
 	}
 
@@ -103,13 +101,13 @@ public class Jogador {
 	// DECK
 
 	public Deck escolherDeck(Mesa mesa, Jogador jogador) {
-		TipoDeck tipo;
+		Carta.TipoDeck tipo;
 		int num = PrintFactory.pedirInput("Digite 1 para deck padrao ou 2 para personalizado");
 		if (num == 1){
-			tipo = TipoDeck.PADRAO;
+			tipo = Carta.TipoDeck.PADRAO;
 		}
 		else{
-			tipo = TipoDeck.PERSONALIZADO;
+			tipo = Carta.TipoDeck.PERSONALIZADO;
 		}
 		return DeckFactory.fazerDeck(tipo, mesa, jogador);
 	}
@@ -126,7 +124,6 @@ public class Jogador {
 		}for(int i = 0; i< quant; i++){
 			this.sortearDoDeck();
 		}
-
 	}
 
 	public boolean atacar() {
@@ -185,7 +182,7 @@ public class Jogador {
 	}
 
 	public int escolherCartaCombater(){
-		if (this.marcador == Marcador.ATACANTE) {
+		if (this.marcador == Carta.Marcador.ATACANTE) {
 			return PrintFactory.pedirInput(this.nome + ", escolha que cartas quer usar para atacar");
 		}
 		return PrintFactory.pedirInput(this.nome + ", escolha que cartas quer usar para defender");
@@ -197,7 +194,6 @@ public class Jogador {
 
 		while (true){
 			PrintFactory.printCartasNaMesa(this.mesa, this.mana);
-
 			int numero_carta = this.escolherCartaCombater();
 			if (numero_carta == 0) {
 				break;
@@ -213,7 +209,6 @@ public class Jogador {
 		}
 		return cont != 0;//se atacar retorna true
 	}
-
 
 	public void desarmarDefesa(){
 		for(Seguidor carta : this.mesa.getCartasMesa(this)){

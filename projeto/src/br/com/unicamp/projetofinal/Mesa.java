@@ -1,8 +1,6 @@
 package br.com.unicamp.projetofinal;
 
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
-import br.com.unicamp.projetofinal.Enums.Marcador;
-import br.com.unicamp.projetofinal.Enums.Traco;
 
 import java.util.ArrayList;
 
@@ -86,12 +84,12 @@ public class Mesa {
 		if(this.jogador1 == null){
 			this.jogador1 = jogador;
 			this.defensor = jogador;
-			this.defensor.setMarcador(Marcador.DEFENSOR);
+			this.defensor.setMarcador(Carta.Marcador.DEFENSOR);
 		}
 		else{
 			this.jogador2 = jogador;
 			this.atacante = jogador;
-			this.atacante.setMarcador(Marcador.ATACANTE);
+			this.atacante.setMarcador(Carta.Marcador.ATACANTE);
 		}
 	}
 
@@ -123,12 +121,11 @@ public class Mesa {
 			jogador1.setMana(manaJogo);
 			jogador2.setMana(manaJogo);
 		}
-
 	}
 
 	public void trocarMarcacoes(){
-		this.atacante.setMarcador(Marcador.DEFENSOR);
-		this.defensor.setMarcador(Marcador.ATACANTE);
+		this.atacante.setMarcador(Carta.Marcador.DEFENSOR);
+		this.defensor.setMarcador(Carta.Marcador.ATACANTE);
 		Jogador aux = this.atacante;
 		this.atacante = this.defensor;//o atacante eh agora quem antes estava defendendo
 		this.defensor = aux;
@@ -140,7 +137,7 @@ public class Mesa {
 			if(seguidor!= null && seguidor.getVaiAtacar()){
 				seguidor.atacar();
 				seguidor.setVaiAtacar(false);
-				if(seguidor.getTraco() == Traco.ATAQUEDUPLO && seguidor.getGetVezesQueVaiAtacar() == 2 && !seguidor.isMorreu()){
+				if(seguidor.getTraco() == Carta.Traco.ATAQUEDUPLO && seguidor.getGetVezesQueVaiAtacar() == 2 && !seguidor.isMorreu()){
 					seguidor.atacar();
 				}
 			}

@@ -1,7 +1,6 @@
 package br.com.unicamp.projetofinal;
 
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
-import br.com.unicamp.projetofinal.Enums.Traco;
 
 public abstract class Carta {
 	private String nome;
@@ -60,4 +59,15 @@ public abstract class Carta {
 
 	public abstract void jogarCarta();
 
+    public enum Marcador {
+        ATACANTE,DEFENSOR;
+    }
+
+	public enum TipoDeck {
+		PERSONALIZADO, PADRAO;
+	}
+
+	public enum Traco {
+		NENHUM, ELUSIVO, ATAQUEDUPLO, FURIA, SOBREPUJAR, BARREIRA;
+	}
 }
