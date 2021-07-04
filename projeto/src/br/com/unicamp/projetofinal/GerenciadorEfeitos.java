@@ -67,6 +67,7 @@ public class GerenciadorEfeitos {
             }
         }
     }
+
     public static void colocarCartaNaMao(Seguidor carta, Carta carta_vai_pra_mao){
         Jogador jogador= carta.getJogador();
         jogador.colocarCartaNaMao(carta_vai_pra_mao);
@@ -121,4 +122,5 @@ public class GerenciadorEfeitos {
         Seguidor carta_adversario = cartas_adversario.get(numero_adversario);
         carta_escolhida.realizarCombate(carta_adversario);
     }
+
 }
