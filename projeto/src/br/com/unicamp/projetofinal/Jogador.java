@@ -61,7 +61,7 @@ public class Jogador {
 
 	protected Mesa getMesa() { return mesa; }
 
-	public Carta.Marcador getMarcador(){ return this.marcador;}
+	public Marcador getMarcador(){ return this.marcador;}
 
 		//Setters
 
@@ -77,13 +77,17 @@ public class Jogador {
 		this.mana = mana;
 	}
 
-	public void setMarcador(Carta.Marcador marcador){
+	public void setMarcador(Marcador marcador){
 		this.marcador = marcador;
 	}
 
 	private void setNome() {
 		Scanner scan = new Scanner(System.in);
 		this.nome = scan.nextLine();
+	}
+
+	protected void setNome(String nome){
+		this.nome = nome;
 	}
 
 
@@ -183,8 +187,12 @@ public class Jogador {
 		}
 	}
 
+	public int escolherPosicao(){
+		return PrintFactory.pedirInput(this.nome + ", escolha a posicao da mesa em que quer colocar a carta");
+	}
+
 	public int escolherCartaCombater(){
-		if (this.marcador == Carta.Marcador.ATACANTE) {
+		if (this.marcador == Marcador.ATACANTE) {
 			return PrintFactory.pedirInput(this.nome + ", escolha que cartas quer usar para atacar");
 		}
 		return PrintFactory.pedirInput(this.nome + ", escolha que cartas quer usar para defender");

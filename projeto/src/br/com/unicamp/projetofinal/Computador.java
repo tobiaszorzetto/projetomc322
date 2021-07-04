@@ -60,7 +60,6 @@ public class Computador extends Jogador {
         if (num == -1 && conjunto.size() == 0) return 0;
         else if (num == -1) return cartas.getDeck().indexOf(conjunto.getLast()) + 1;
         else return num;
-
     }
 
     private int verSeTemCarta(LinkedList<Seguidor> conjunto, Deck cartas, int num, int mana, LinkedList<Seguidor> max) throws IllegalArgumentException {
@@ -94,6 +93,18 @@ public class Computador extends Jogador {
         }
         return -1;
         }
+    }
+
+    public int calcularNumCartasColocar(){
+        ArrayList<Seguidor> mesa_adversario = this.getMesa().getCartasMesaAdversario(this);
+        ArrayList<Seguidor> mesa_aliada = this.getMesa().getCartasMesa(this);
+        int contador = 0;
+        for(int i = 0; i<6; i++){
+            if (mesa_adversario.get(i)!= null && mesa_aliada.get(i) == null){
+                contador++;
+            }
+        }
+        return contador;
     }
 
     public int escolherPosicao(){

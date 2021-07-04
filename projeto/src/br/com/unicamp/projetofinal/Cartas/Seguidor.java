@@ -187,9 +187,7 @@ public abstract class Seguidor extends Carta {
 		Jogador jogador = this.getJogador();
 		Deck mao = jogador.getMao();
 		Mesa mesa = this.getMesa();
-
-		int posicao_alocacao = PrintFactory.pedirInput(jogador.getNome() + ", escolha a posicao da mesa em que quer colocar a carta");
-
+		int posicao_alocacao = jogador.escolherPosicao();
 		if (posicao_alocacao > 6){
 			System.out.println("O mapa tem tamanho maximo de 6 cartas");
 			return;

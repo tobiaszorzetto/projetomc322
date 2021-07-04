@@ -60,15 +60,5 @@ public abstract class Carta {
 
 	public abstract void jogarCarta();
 
-    public enum Marcador {
-        ATACANTE,DEFENSOR;
-    }
 
-	public enum TipoDeck {
-		PERSONALIZADO, PADRAO;
-	}
-
-	public enum Traco {
-		NENHUM, ELUSIVO, ATAQUEDUPLO, FURIA, SOBREPUJAR, BARREIRA;
-	}
 }

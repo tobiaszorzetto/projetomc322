@@ -127,8 +127,8 @@ public class Mesa {
 	}
 
 	public void trocarMarcacoes(){
-		this.atacante.setMarcador(Carta.Marcador.DEFENSOR);
-		this.defensor.setMarcador(Carta.Marcador.ATACANTE);
+		this.atacante.setMarcador(Marcador.DEFENSOR);
+		this.defensor.setMarcador(Marcador.ATACANTE);
 		Jogador aux = this.atacante;
 		this.atacante = this.defensor;//o atacante eh agora quem antes estava defendendo
 		this.defensor = aux;
@@ -140,7 +140,7 @@ public class Mesa {
 			if(seguidor!= null && seguidor.getVaiAtacar()){
 				seguidor.atacar();
 				seguidor.setVaiAtacar(false);
-				if(seguidor.getTraco() == Carta.Traco.ATAQUEDUPLO && seguidor.getGetVezesQueVaiAtacar() == 2 && !seguidor.isMorreu()){
+				if(seguidor.getTraco() == Traco.ATAQUEDUPLO && seguidor.getGetVezesQueVaiAtacar() == 2 && !seguidor.isMorreu()){
 					seguidor.atacar();
 				}
 			}
