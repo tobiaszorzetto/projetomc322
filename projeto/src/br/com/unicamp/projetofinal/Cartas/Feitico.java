@@ -1,6 +1,7 @@
 package br.com.unicamp.projetofinal.Cartas;
 
 import br.com.unicamp.projetofinal.*;
+import br.com.unicamp.projetofinal.Enums.Traco;
 
 public abstract class Feitico extends Carta {
 

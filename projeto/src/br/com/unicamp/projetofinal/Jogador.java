@@ -1,6 +1,8 @@
 package br.com.unicamp.projetofinal;
 
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
+import br.com.unicamp.projetofinal.Enums.Marcador;
+import br.com.unicamp.projetofinal.Enums.TipoDeck;
 
 import java.lang.*;
 import java.util.*;
@@ -9,7 +11,7 @@ public class Jogador {
 	private final Mesa mesa;
 	protected String nome;
 	private int vida;
-	private Carta.Marcador marcador;
+	private Marcador marcador;
 	private int mana;
 	private final Deck deck;
 	private final Deck mao;
@@ -101,13 +103,13 @@ public class Jogador {
 	// DECK
 
 	public Deck escolherDeck(Mesa mesa, Jogador jogador) {
-		Carta.TipoDeck tipo;
+		TipoDeck tipo;
 		int num = PrintFactory.pedirInput("Digite 1 para deck padrao ou 2 para personalizado");
 		if (num == 1){
-			tipo = Carta.TipoDeck.PADRAO;
+			tipo = TipoDeck.PADRAO;
 		}
 		else{
-			tipo = Carta.TipoDeck.PERSONALIZADO;
+			tipo = TipoDeck.PERSONALIZADO;
 		}
 		return DeckFactory.fazerDeck(tipo, mesa, jogador);
 	}

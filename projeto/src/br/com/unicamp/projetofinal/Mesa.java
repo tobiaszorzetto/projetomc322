@@ -1,6 +1,8 @@
 package br.com.unicamp.projetofinal;
 
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
+import br.com.unicamp.projetofinal.Enums.Marcador;
+import br.com.unicamp.projetofinal.Enums.Traco;
 
 import java.util.ArrayList;
 
@@ -84,12 +86,12 @@ public class Mesa {
 		if(this.jogador1 == null){
 			this.jogador1 = jogador;
 			this.defensor = jogador;
-			this.defensor.setMarcador(Carta.Marcador.DEFENSOR);
+			this.defensor.setMarcador(Marcador.DEFENSOR);
 		}
 		else{
 			this.jogador2 = jogador;
 			this.atacante = jogador;
-			this.atacante.setMarcador(Carta.Marcador.ATACANTE);
+			this.atacante.setMarcador(Marcador.ATACANTE);
 		}
 	}
 
@@ -118,9 +120,10 @@ public class Mesa {
 	public void aumentarMana(){
 		if(this.manaJogo < 10){
 			this.manaJogo++;
-			jogador1.setMana(manaJogo);
-			jogador2.setMana(manaJogo);
+
 		}
+		jogador1.setMana(manaJogo);
+		jogador2.setMana(manaJogo);
 	}
 
 	public void trocarMarcacoes(){

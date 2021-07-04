@@ -4,10 +4,11 @@ import br.com.unicamp.projetofinal.Cartas.Campeoes.Garen;
 import br.com.unicamp.projetofinal.Cartas.Campeoes.Lux;
 import br.com.unicamp.projetofinal.Cartas.Feiticos.Cura;
 import br.com.unicamp.projetofinal.Cartas.Seguidores.*;
+import br.com.unicamp.projetofinal.Enums.TipoDeck;
 
 public class DeckFactory {
 
-    public static Deck fazerDeck(Carta.TipoDeck tipo, Mesa mesa, Jogador jogador){
+    public static Deck fazerDeck(TipoDeck tipo, Mesa mesa, Jogador jogador){
         Deck deck = new Deck();
         switch (tipo){
             case PADRAO:

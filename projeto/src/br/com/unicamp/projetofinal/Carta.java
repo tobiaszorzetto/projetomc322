@@ -1,6 +1,7 @@
 package br.com.unicamp.projetofinal;
 
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
+import br.com.unicamp.projetofinal.Enums.Traco;
 
 public abstract class Carta {
 	private String nome;

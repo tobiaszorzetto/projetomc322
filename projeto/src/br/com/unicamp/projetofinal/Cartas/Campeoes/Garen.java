@@ -2,6 +2,7 @@ package br.com.unicamp.projetofinal.Cartas.Campeoes;
 
 import br.com.unicamp.projetofinal.Cartas.Campeao;
 import br.com.unicamp.projetofinal.*;
+import br.com.unicamp.projetofinal.Enums.Traco;
 
 public class Garen extends Campeao {
 
