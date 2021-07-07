@@ -1,12 +1,16 @@
 package br.com.unicamp.projetofinal.Cartas.Feiticos;
 
+import br.com.unicamp.projetofinal.*;
 import br.com.unicamp.projetofinal.Cartas.Feitico;
-import br.com.unicamp.projetofinal.Jogador;
-import br.com.unicamp.projetofinal.Mesa;
 
 public class Avalanche extends Feitico {
 
-    public Avalanche(Mesa mesa, Jogador){
+    public Avalanche(Mesa mesa, Jogador jogador){
+        super("Avalanche", 4, mesa, jogador);
+    }
 
+    @Override
+    public void realizarEfeito() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
+        GerenciadorEfeitos.AtacarTodasAsCartas(this.getMesa(), 2);
     }
 }

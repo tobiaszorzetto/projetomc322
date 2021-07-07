@@ -234,8 +234,14 @@ public class Mesa {
 		}
 		return false;
 	}
-	
-	
+
+	public ArrayList<Seguidor> getCartas_mesa1(){
+		return this.cartas_mesa1;
+	}
+
+	public ArrayList<Seguidor> getCartas_mesa2(){
+		return this.cartas_mesa2;
+	}
 	
 }
 

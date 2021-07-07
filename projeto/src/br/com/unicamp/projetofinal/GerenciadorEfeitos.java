@@ -146,6 +146,26 @@ public class GerenciadorEfeitos {
         
     }
 
+    public static void AtacarTodasAsCartas(Mesa mesa, int dano) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
+        ArrayList<Seguidor> cartas_mesa1 = mesa.getCartas_mesa1();
+        ArrayList<Seguidor> cartas_mesa2 = mesa.getCartas_mesa2();
+
+        for (Seguidor seguidor : cartas_mesa1){
+            if (seguidor != null){
+                seguidor.diminuirVida(dano);
+            }
+        }
+        for(Seguidor seguidor : cartas_mesa2){
+            if (seguidor != null){
+                seguidor.diminuirVida(dano);
+            }
+        }
+    }
+
+    public static void AtacarTodasAsCartasInimigo(Carta carta){
+
+    }
+
     public static void evocarSeguidor(Seguidor carta) throws PosicaoMesaOcupadaException, ManaInsuficienteException {
         ArrayList<Seguidor> cartas_mesa = carta.getMesa().getCartasMesa(carta.getJogador());
         int posicao_alocao = 0;
@@ -160,7 +180,7 @@ public class GerenciadorEfeitos {
     public static void escolherCoisaParaDarDano(Carta carta_que_chamou, int dano) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         int escolha = 0;
         while( escolha < 1 || escolha >2 )
-            escolha = PrintFactory.pedirInput("1.Dano em uma carta na mesa 2. Dano ao nexus inimigo");
+            escolha = PrintFactory.pedirInput("1:Dano em uma carta na mesa || 2:Dano ao nexus inimigo");
         if (escolha == 1){
             GerenciadorEfeitos.escolherCartaParaDarDano(carta_que_chamou,carta_que_chamou.getAdversario(), dano);
         } else{
