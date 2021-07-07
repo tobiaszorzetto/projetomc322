@@ -109,7 +109,7 @@ public class Jogador {
 		this.setGolpeAoNexus(true);
 	}
 
-	private void setGolpeAoNexus(boolean b) {
+	public void setGolpeAoNexus(boolean b) {
 		this.golpe_ao_nexus = b;
 	}
 

@@ -21,6 +21,7 @@ public class Swain extends Campeao {
     public void verificarCondicao() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         if(this.getJogador().golpeAoNexusAtivo()){
             GerenciadorEfeitos.atacarNexus(this.getAdversario(),3);
+            this.getJogador().setGolpeAoNexus(false);
             this.dano_fora_de_combate+=3;
             checarLevelUp();
         }
