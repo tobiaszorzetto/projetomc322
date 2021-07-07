@@ -17,6 +17,7 @@ public class Jogador {
 	private final Deck mao;
 	private int mana_de_feitico = 0;
 	private int mana_gasta_feitico;
+	private boolean golpe_ao_nexus;
 	
 	public Jogador(Mesa mesa) {
 		this.setNome();
@@ -105,6 +106,11 @@ public class Jogador {
 		if (vida <= 0){
 			this.mesa.acabarJogo();
 		}
+		this.setGolpeAoNexus(true);
+	}
+
+	private void setGolpeAoNexus(boolean b) {
+		this.golpe_ao_nexus = b;
 	}
 
 	// DECK
