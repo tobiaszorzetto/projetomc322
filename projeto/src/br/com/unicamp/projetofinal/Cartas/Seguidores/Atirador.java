@@ -18,7 +18,7 @@ public class Atirador extends Seguidor {
     }
 
     public void atuarNaMesa(Jogador jogador, int posicao_alocacao) throws PosicaoMesaOcupadaException, ManaInsuficienteException{
-        GerenciadorEfeitos.escolherCartaAdversariaParaDarDano(this,1);
+        GerenciadorEfeitos.escolherCartaParaDarDano(this,this.getAdversario(), 1);
         this.getMesa().colocarCartaMesa(jogador, this, posicao_alocacao);
     }
 }

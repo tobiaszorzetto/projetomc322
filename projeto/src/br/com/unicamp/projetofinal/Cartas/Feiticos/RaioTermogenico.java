@@ -13,7 +13,7 @@ public class RaioTermogenico extends Feitico {
     protected void realizarEfeito() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         int mana_jogador = this.getJogador().getMana();
         this.getJogador().setMana(0);
-        GerenciadorEfeitos.escolherCartaAdversariaParaDarDano(this, mana_jogador);
+        GerenciadorEfeitos.escolherCartaParaDarDano(this, this.getAdversario(), mana_jogador);
     }
 
 }
