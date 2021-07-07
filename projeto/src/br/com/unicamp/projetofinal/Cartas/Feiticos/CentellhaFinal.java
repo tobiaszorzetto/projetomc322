@@ -16,6 +16,6 @@ public class CentellhaFinal extends Feitico {
     }
 
     public void realizarEfeito() throws PosicaoMesaOcupadaException, ManaInsuficienteException{
-        GerenciadorEfeitos.escolherCartaAdversariaParaDarDano(this, 4);
+        GerenciadorEfeitos.escolherCartaParaDarDano(this, this.getAdversario(), 4);
     }
 }
