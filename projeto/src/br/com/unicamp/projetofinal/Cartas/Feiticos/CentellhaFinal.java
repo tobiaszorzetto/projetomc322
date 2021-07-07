@@ -4,7 +4,9 @@ import br.com.unicamp.projetofinal.Cartas.Feitico;
 import br.com.unicamp.projetofinal.Enums.Traco;
 import br.com.unicamp.projetofinal.GerenciadorEfeitos;
 import br.com.unicamp.projetofinal.Jogador;
+import br.com.unicamp.projetofinal.ManaInsuficienteException;
 import br.com.unicamp.projetofinal.Mesa;
+import br.com.unicamp.projetofinal.PosicaoMesaOcupadaException;
 
 public class CentellhaFinal extends Feitico {
 
@@ -13,7 +15,7 @@ public class CentellhaFinal extends Feitico {
         this.setTraco(Traco.SOBREPUJAR);
     }
 
-    public void realizarEfeito(){
+    public void realizarEfeito() throws PosicaoMesaOcupadaException, ManaInsuficienteException{
         GerenciadorEfeitos.escolherCartaAdversariaParaDarDano(this, 4);
     }
 }

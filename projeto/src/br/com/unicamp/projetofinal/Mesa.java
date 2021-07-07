@@ -113,7 +113,7 @@ public class Mesa {
 
 	// FUNCOES GERAIS
 
-	public void verificarCondicoes(){
+	public void verificarCondicoes() throws ManaInsuficienteException, PosicaoMesaOcupadaException{
 		for (Seguidor carta: cartas_mesa1){
 			if (carta!= null)
 				carta.verificarCondicao();
@@ -154,7 +154,7 @@ public class Mesa {
 		this.defensor = aux;
 	}
 
-	public void realizarCombates() throws ManaInsuficienteException {
+	public void realizarCombates() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
 		for (int i = 0; i < 6; i++){
 			Seguidor seguidor  = this.getCartasMesa(this.atacante).get(i);
 			if(seguidor!= null && seguidor.getVaiAtacar()){
@@ -167,7 +167,7 @@ public class Mesa {
 		}
 	}
 
-	public void colocarCartaMesa(Jogador jogador, Seguidor carta, int posicao_alocacao){
+	public void colocarCartaMesa(Jogador jogador, Seguidor carta, int posicao_alocacao) throws ManaInsuficienteException, PosicaoMesaOcupadaException{
 		if (jogador.equals(jogador1)){
 			cartas_mesa1.add(posicao_alocacao-1, carta);
 		} else{
@@ -177,13 +177,13 @@ public class Mesa {
 	}
 	// PARTES
 
-	public boolean realizarParte0() throws ManaInsuficienteException {
+	public boolean realizarParte0() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
 		this.parte_da_rodada = 0;
 		this.verificarCondicoes();
 		return this.atacante.atacar();
 	}
 
-	public void realizarParte1() throws ManaInsuficienteException {
+	public void realizarParte1() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
 		this.parte_da_rodada = 1;
 		this.verificarCondicoes();
 		defensor.defender();
@@ -191,7 +191,7 @@ public class Mesa {
 		this.verificarCondicoes();
 	}
 
-	public void realizarParte2() throws ManaInsuficienteException {
+	public void realizarParte2() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
 		this.parte_da_rodada = 3;
 		this.realizarCombates();
 		this.verificarCondicoes();
@@ -201,7 +201,7 @@ public class Mesa {
 
 	// PRINCIPAL
 
-	public boolean passarRodada() throws ManaInsuficienteException {
+	public boolean passarRodada() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
 		this.rodada++;
 		this.aumentarMana();
 		this.trocarMarcacoes();
@@ -234,6 +234,9 @@ public class Mesa {
 		}
 		return false;
 	}
+	
+	
+	
 }
 
 

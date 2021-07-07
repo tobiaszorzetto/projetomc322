@@ -2,7 +2,7 @@ package br.com.unicamp.projetofinal;
 
 public class Game {
 
-    public void start() throws ManaInsuficienteException {
+    public void start() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
 
         Mesa mesa = new Mesa();
 

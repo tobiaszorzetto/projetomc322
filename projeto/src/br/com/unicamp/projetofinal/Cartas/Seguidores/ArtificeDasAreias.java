@@ -5,6 +5,7 @@ import br.com.unicamp.projetofinal.GerenciadorEfeitos;
 import br.com.unicamp.projetofinal.Jogador;
 import br.com.unicamp.projetofinal.ManaInsuficienteException;
 import br.com.unicamp.projetofinal.Mesa;
+import br.com.unicamp.projetofinal.PosicaoMesaOcupadaException;
 
 public class ArtificeDasAreias extends Seguidor {
     public ArtificeDasAreias(Mesa mesa, Jogador jogador) {
@@ -17,7 +18,7 @@ public class ArtificeDasAreias extends Seguidor {
     }
 
     @Override
-    public void realizarCombate(Seguidor carta_adversario) throws ManaInsuficienteException {
+    public void realizarCombate(Seguidor carta_adversario) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         GerenciadorEfeitos.evocarSeguidorAtacante(new SoldadoDeAreia(this.getMesa(),this.getJogador()));
         this.diminuirVida(carta_adversario.getAtaque());//diminui a vida desse seguidor
         boolean adversario_morreu = carta_adversario.diminuirVida(this.getAtaque());//diminui a vida do adversario e verifica se ele morreu

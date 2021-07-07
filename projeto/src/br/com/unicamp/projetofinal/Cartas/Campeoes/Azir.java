@@ -7,6 +7,7 @@ import br.com.unicamp.projetofinal.GerenciadorEfeitos;
 import br.com.unicamp.projetofinal.Jogador;
 import br.com.unicamp.projetofinal.ManaInsuficienteException;
 import br.com.unicamp.projetofinal.Mesa;
+import br.com.unicamp.projetofinal.PosicaoMesaOcupadaException;
 
 public class Azir extends Campeao {
     int unidades_evocadas = 0;
@@ -24,7 +25,7 @@ public class Azir extends Campeao {
     }
 
     @Override
-    public void verificarCondicao() throws ManaInsuficienteException {
+    public void verificarCondicao() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         if (this.getMesa().getParteDaRodada() == 1){
             for(Seguidor carta: this.getMesa().getCartasMesa(this.getJogador())){
                 if (carta.getVaiAtacar()){

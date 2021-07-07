@@ -12,7 +12,7 @@ public abstract class Feitico extends Carta {
 
     }
 
-    public void atuarNaMesa(Jogador jogador) throws ManaInsuficienteException {
+    public void atuarNaMesa(Jogador jogador) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         this.getJogador().addManaGastaFeitico(this.getMana());
         this.realizarEfeito();
     }
@@ -22,7 +22,7 @@ public abstract class Feitico extends Carta {
     }
     //kkkkkkkk vc escreveu conficao
     @Override
-    public void jogarCarta() throws ManaInsuficienteException {
+    public void jogarCarta() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         Jogador jogador = this.getJogador();
         Deck mao = jogador.getMao();
         Mesa mesa = this.getMesa();
@@ -49,7 +49,7 @@ public abstract class Feitico extends Carta {
 
     }
 
-    protected abstract void realizarEfeito() throws ManaInsuficienteException;
+    protected abstract void realizarEfeito() throws ManaInsuficienteException, PosicaoMesaOcupadaException;
 
     public Traco getTraco() {
         return traco;

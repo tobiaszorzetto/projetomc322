@@ -81,7 +81,7 @@ public class GerenciadorEfeitos {
         jogador.colocarCartaNaMao(carta_vai_pra_mao);
     }
 
-    public static void escolherCartaAdversariaParaDarDano(Carta carta, int dano) {
+    public static void escolherCartaAdversariaParaDarDano(Carta carta, int dano) throws PosicaoMesaOcupadaException, ManaInsuficienteException {
         ArrayList<Seguidor> mesa_adversario = carta.getMesa().getCartasMesaAdversario(carta.getJogador());
         int numero_carta = PrintFactory.pedirInput("Escolha uma carta inimiga para dar 1 de dano");
         Seguidor carta_adversario = mesa_adversario.get(numero_carta);
@@ -93,7 +93,7 @@ public class GerenciadorEfeitos {
         }
     }
 
-    public static void escolherCartaBaterEmTodos(Carta carta) {
+    public static void escolherCartaBaterEmTodos(Carta carta) throws PosicaoMesaOcupadaException, ManaInsuficienteException {
         int numero_carta = PrintFactory.pedirInput("Escolha uma carta para golpear os inimigos") - 1;
 
         Seguidor carta_escolhida = carta.getMesa().getCartasMesa(carta.getJogador()).get(numero_carta);
@@ -118,7 +118,7 @@ public class GerenciadorEfeitos {
         }
     }
 
-    public static void escolherCartasCombate(Carta carta) throws ManaInsuficienteException {
+    public static void escolherCartasCombate(Carta carta) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         ArrayList<Seguidor> cartas_mesa = carta.getMesa().getCartasMesa(carta.getJogador());
         ArrayList<Seguidor> cartas_adversario = carta.getMesa().getCartasMesa(carta.getAdversario());
 
@@ -130,13 +130,13 @@ public class GerenciadorEfeitos {
         carta_escolhida.realizarCombate(carta_adversario);
     }
 
-    public static void evocarSeguidorAtacante(Seguidor carta) throws ManaInsuficienteException {
+    public static void evocarSeguidorAtacante(Seguidor carta) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         carta.jogarCarta();
         carta.atacar();
         
     }
 
-    public static void evocarSeguidor(Seguidor carta) throws PosicaoMesaOcupadaException {
+    public static void evocarSeguidor(Seguidor carta) throws PosicaoMesaOcupadaException, ManaInsuficienteException {
         ArrayList<Seguidor> cartas_mesa = carta.getMesa().getCartasMesa(carta.getJogador());
         int posicao_alocao = 0;
         for (Seguidor seguidor : cartas_mesa){

@@ -14,7 +14,7 @@ public class AranhaDomestica extends Seguidor {
     }
 
     @Override
-    public void atuarNaMesa(Jogador jogador, int posicao_alocacao) throws PosicaoMesaOcupadaException {
+    public void atuarNaMesa(Jogador jogador, int posicao_alocacao) throws PosicaoMesaOcupadaException, ManaInsuficienteException {
         if (posicao_alocacao<0){
             throw new ArrayIndexOutOfBoundsException();
         }
