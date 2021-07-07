@@ -162,7 +162,7 @@ public abstract class Seguidor extends Carta {
 		boolean adversario_morreu = carta_adversario.diminuirVida(ataque);//diminui a vida do adversario e verifica se ele morreu
 		if (adversario_morreu){
 			verificarFuria(); //chama-se apenas quando sabemos que matou o inimigo
-			verificarDepujante(carta_adversario);
+			verificarSobrepujar(carta_adversario);
 		}
 	}
 

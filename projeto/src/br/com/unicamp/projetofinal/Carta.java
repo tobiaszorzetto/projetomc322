@@ -19,7 +19,7 @@ public abstract class Carta {
 	
 	//Getters e Setters
 
-	public boolean isDepujante() {
+	public boolean isSobrepujar() {
 		return this.traco == Traco.SOBREPUJAR;
 	}
 
@@ -52,13 +52,13 @@ public abstract class Carta {
 	public Jogador getAdversario(){
 		return this.getMesa().getAdversario(this.getJogador());
 	}
-	public void verificarDepujante(Seguidor carta_adversario){
-		if(this.isDepujante()){
+
+	public void verificarSobrepujar(Seguidor carta_adversario){
+		if(this.isSobrepujar()){
 			GerenciadorEfeitos.atacarNexus(carta_adversario.getJogador(), - carta_adversario.getVidaAtual());
 		}
 	};
 
 	public abstract void jogarCarta() throws ManaInsuficienteException, PosicaoMesaOcupadaException;
-
 
 }

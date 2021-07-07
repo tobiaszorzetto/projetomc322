@@ -26,6 +26,7 @@ public class Azir extends Campeao {
 
     @Override
     public void verificarCondicao() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
+        this.checarLevelUp();
         if (this.getMesa().getParteDaRodada() == 1){
             for(Seguidor carta: this.getMesa().getCartasMesa(this.getJogador())){
                 if (carta.getVaiAtacar()){
