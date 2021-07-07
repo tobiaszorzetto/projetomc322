@@ -73,7 +73,10 @@ public class Jogador {
 		this.mana_gasta_feitico+=mana;
 	}
 
-	public void setMana(int mana){
+	public void setMana(int mana) throws ManaInsuficienteException {
+		if (mana<0){
+			throw new ManaInsuficienteException();
+		}
 		this.mana = mana;
 	}
 
@@ -132,14 +135,14 @@ public class Jogador {
 		}
 	}
 
-	public boolean atacar() {
+	public boolean atacar() throws ManaInsuficienteException {
 		this.evocarCartas();
 		setManaDeFeitico(this.getMana());
 		return decidirQueCartasCombater();
 
 	}
 
-	public void defender(){
+	public void defender() throws ManaInsuficienteException {
 		this.evocarCartas();
 		this.decidirQueCartasCombater();
 		setManaDeFeitico(this.getMana());
@@ -164,8 +167,7 @@ public class Jogador {
 		return PrintFactory.pedirInput(this.nome + ", escolha que carta quer colocar no jogo");
 	}
 
-	public void evocarCartas(){
-
+	public void evocarCartas() throws ManaInsuficienteException {
 		this.sortearDoDeck();
 		boolean running = true;
 		while (running) {

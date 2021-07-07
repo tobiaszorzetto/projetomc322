@@ -16,9 +16,13 @@ public abstract class Feitico extends Carta {
         this.getJogador().addManaGastaFeitico(this.getMana());
         this.realizarEfeito();
     }
+    
+    public void verificarCondicao(){
 
+    }
+    //kkkkkkkk vc escreveu conficao
     @Override
-    public void jogarCarta() {
+    public void jogarCarta() throws ManaInsuficienteException {
         Jogador jogador = this.getJogador();
         Deck mao = jogador.getMao();
         Mesa mesa = this.getMesa();
@@ -31,14 +35,18 @@ public abstract class Feitico extends Carta {
             jogador.setManaDeFeitico(mana_de_feitico - this.getMana());
         }
         else if (mana + mana_de_feitico >=this.getMana()){
-            jogador.setManaDeFeitico(0);
-            this.atuarNaMesa(jogador);
-            mao.removerCarta(this);
-            jogador.setMana(mana + mana_de_feitico - this.getMana());
+            try{
+                jogador.setMana(mana + mana_de_feitico - this.getMana());
+                jogador.setManaDeFeitico(0);
+                this.atuarNaMesa(jogador);
+                mao.removerCarta(this);
+            }
+            catch (ManaInsuficienteException e){
+                System.out.println("Sem mana suficiente!");
+            }
+
         }
-        else{
-            System.out.println("Sem mana suficiente!");
-        }
+
     }
 
     protected abstract void realizarEfeito();

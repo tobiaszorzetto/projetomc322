@@ -43,7 +43,7 @@ public abstract class Carta {
 		return this.custo_mana;
 	}
 
-	public abstract void atuarNaMesa(Jogador jogador, int posicao_alocacao);
+	public abstract void atuarNaMesa(Jogador jogador, int posicao_alocacao) throws PosicaoMesaOcupadaException;
 
 	public String getNome(){
 		return this.nome;
@@ -58,7 +58,7 @@ public abstract class Carta {
 		}
 	};
 
-	public abstract void jogarCarta();
+	public abstract void jogarCarta() throws ManaInsuficienteException;
 
 
 }

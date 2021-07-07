@@ -126,7 +126,13 @@ public abstract class Seguidor extends Carta {
 		ataque += quantidade;
 	}
 
-	public void atuarNaMesa(Jogador jogador, int posicao_alocacao){
+	public void atuarNaMesa(Jogador jogador, int posicao_alocacao) throws PosicaoMesaOcupadaException {
+		if (posicao_alocacao<0){
+			throw new ArrayIndexOutOfBoundsException();
+		}
+		if(this.getMesa().getCartasMesa(jogador).get(posicao_alocacao-1) != null){
+			throw new PosicaoMesaOcupadaException();
+		}
 		this.getMesa().colocarCartaMesa(jogador, this, posicao_alocacao);
 	}
 
@@ -136,8 +142,6 @@ public abstract class Seguidor extends Carta {
 	public void atacarNexus(Jogador adversario, int quant){
 		adversario.diminuirVida(quant);
 	}
-
-
 
 	public void verificarFuria(){
 		if (this.traco == Traco.FURIA){ //se o seguidor tiver traco de furia
@@ -182,26 +186,28 @@ public abstract class Seguidor extends Carta {
 			this.realizarCombate(carta_adversario);
 		}
 	}
-	public void jogarCarta(){
+	public void jogarCarta() throws ManaInsuficienteException{
 
 		Jogador jogador = this.getJogador();
 		Deck mao = jogador.getMao();
 		Mesa mesa = this.getMesa();
 		int posicao_alocacao = jogador.escolherPosicao();
-		if (posicao_alocacao > 6){
-			System.out.println("O mapa tem tamanho maximo de 6 cartas");
-			return;
+		try{
+				jogador.setMana(jogador.getMana() - this.getMana());
+				this.atuarNaMesa(jogador, posicao_alocacao);
+				mao.removerCarta(this);
 		}
-		if (mesa.getCartasMesa(jogador).get(posicao_alocacao-1) != null){//se ja tiver carta nessa posicao
-			System.out.println("Essa posicao ja esta ocupada pelo " + mesa.getCartasMesa(jogador).get(posicao_alocacao-1).getNome());
-		}
-		else if (jogador.getMana()>=this.getMana()){
-			this.atuarNaMesa(jogador, posicao_alocacao);
-			mao.removerCarta(this);
-			jogador.setMana(jogador.getMana() - this.getMana());
-		}
-		else{
+		catch (ManaInsuficienteException e){
 			System.out.println("Sem mana suficiente!");
 		}
+		catch (PosicaoMesaOcupadaException e){
+			jogador.setMana(jogador.getMana() + this.getMana());
+			System.out.println("Essa posicao ja esta ocupada pelo " + mesa.getCartasMesa(jogador).get(posicao_alocacao-1).getNome());
+		}
+		catch (ArrayIndexOutOfBoundsException e){
+			jogador.setMana(jogador.getMana() + this.getMana());
+			System.out.println("O mapa tem tamanho maximo de 6 cartas");
+		}
+
 	}
 }

@@ -1,5 +1,6 @@
 package br.com.unicamp.projetofinal;
 
+import br.com.unicamp.projetofinal.Cartas.Feitico;
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
 import br.com.unicamp.projetofinal.Enums.Marcador;
 import br.com.unicamp.projetofinal.Enums.Traco;
@@ -16,6 +17,8 @@ public class Mesa {
 	private int parte_da_rodada;
 	private boolean continuar = true;
 
+
+	private ArrayList<Feitico> feiticos_ativos = new ArrayList<Feitico>();
 	private ArrayList<Seguidor> cartas_mesa1 = new ArrayList<Seguidor>(); //cartas do jogador 1 jogadas na mesa
 	private ArrayList<Seguidor> cartas_mesa2 = new ArrayList<Seguidor>(); //cartas do jogador 2 jogadas na mesa
 
@@ -31,6 +34,19 @@ public class Mesa {
 	}
 
 	// GETTERS E SETTERS
+
+	public void addFeiticoAtivo(Feitico feitico){
+		this.feiticos_ativos.add(feitico);
+	}
+
+	public void removerFeiticoAtivo(Feitico feitico){
+		this.feiticos_ativos.remove(feitico);
+	}
+
+	public int getRodada(){
+		return this.rodada;
+	}
+
 
 	public boolean temCartasMesa(Jogador jogador){
 		for(Seguidor carta: getCartasMesa(jogador)){
@@ -106,6 +122,10 @@ public class Mesa {
 			if (carta!= null)
 				carta.verificarCondicao();
 		}
+		for (Feitico feitico: this.feiticos_ativos){
+			feitico.verificarCondicao();
+		}
+
 	}
 
 	public void destribuirCartasIniciais(Jogador jogador){
@@ -117,7 +137,7 @@ public class Mesa {
 		jogador.escolherQuantasInciaisFicar();
 	}
 
-	public void aumentarMana(){
+	public void aumentarMana() throws ManaInsuficienteException {
 		if(this.manaJogo < 10){
 			this.manaJogo++;
 
@@ -157,13 +177,13 @@ public class Mesa {
 	}
 	// PARTES
 
-	public boolean realizarParte0(){
+	public boolean realizarParte0() throws ManaInsuficienteException {
 		this.parte_da_rodada = 0;
 		this.verificarCondicoes();
 		return this.atacante.atacar();
 	}
 
-	public void realizarParte1(){
+	public void realizarParte1() throws ManaInsuficienteException {
 		this.parte_da_rodada = 1;
 		this.verificarCondicoes();
 		defensor.defender();
@@ -181,7 +201,7 @@ public class Mesa {
 
 	// PRINCIPAL
 
-	public boolean passarRodada(){
+	public boolean passarRodada() throws ManaInsuficienteException {
 		this.rodada++;
 		this.aumentarMana();
 		this.trocarMarcacoes();

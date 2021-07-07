@@ -36,13 +36,21 @@ public class GerenciadorEfeitos {
     public static void escolherCartaCurar(Carta carta){
         int numero_carta;
         ArrayList<Seguidor> cartas_na_mesa = carta.getMesa().getCartasMesa(carta.getJogador());
-        while(true){
-            numero_carta = PrintFactory.pedirInput(carta.getJogador().getNome() + ", quais dessas cartas deseja curar?") - 1;
-            if (numero_carta<= cartas_na_mesa.size() && numero_carta>=0){
-                GerenciadorEfeitos.curar(cartas_na_mesa.get(numero_carta));
+        boolean setar_alguem = false;
+        for (Seguidor seguidor: cartas_na_mesa){
+            if (seguidor!= null){
+                setar_alguem = true;
                 break;
-            } else {
-                System.out.println("indice nao existente");
+            }
+        }
+        if (setar_alguem){
+            numero_carta = PrintFactory.pedirInput(carta.getJogador().getNome() + ", quais dessas cartas deseja curar?") - 1;
+            try{
+                GerenciadorEfeitos.curar(cartas_na_mesa.get(numero_carta));
+            }
+            catch (IndexOutOfBoundsException e){
+                System.out.println("Escolha um indice valido!");
+                GerenciadorEfeitos.escolherCartaCurar(carta);
             }
         }
     }
@@ -53,7 +61,6 @@ public class GerenciadorEfeitos {
 
     public static void cartaAleatoriaAtacarNexus(Carta carta, ArrayList<Seguidor> cartas_na_mesa){
         Random sorteio = new Random();
-
         Mesa mesa = carta.getMesa();
         Jogador jogador = carta.getJogador();
 
@@ -83,7 +90,6 @@ public class GerenciadorEfeitos {
                 carta.verificarDepujante(carta_adversario);
             }
         }
-
     }
 
     public static void escolherCartaBaterEmTodos(Carta carta) {
