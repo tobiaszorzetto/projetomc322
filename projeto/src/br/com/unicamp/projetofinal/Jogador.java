@@ -241,4 +241,8 @@ public class Jogador {
 			}
 		}
 	}
+
+	public boolean golpeAoNexusAtivo() {
+		return golpe_ao_nexus;
+	}
 }
