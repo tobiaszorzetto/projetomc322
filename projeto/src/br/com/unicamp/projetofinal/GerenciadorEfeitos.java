@@ -62,6 +62,10 @@ public class GerenciadorEfeitos {
         jogador.diminuirVida(dano);
     }
 
+    public static void curarNexus(Jogador jogador, int cura){
+        jogador.aumentarVida(cura);
+    }
+
     public static void cartaAleatoriaAtacarNexus(Carta carta, ArrayList<Seguidor> cartas_na_mesa){
         Random sorteio = new Random();
         Mesa mesa = carta.getMesa();
@@ -162,8 +166,14 @@ public class GerenciadorEfeitos {
         }
     }
 
-    public static void AtacarTodasAsCartasInimigo(Carta carta){
+    public static void AtacarTodasAsCartasInimigo(Carta carta) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
+        ArrayList<Seguidor> cartas_mesa_inimigo = carta.getMesa().getCartasMesaAdversario(carta.getJogador());
 
+        for (Seguidor seguidor : cartas_mesa_inimigo){
+            if (seguidor != null){
+                seguidor.diminuirVida(1);
+            }
+        }
     }
 
     public static void evocarSeguidor(Seguidor carta) throws PosicaoMesaOcupadaException, ManaInsuficienteException {
