@@ -74,9 +74,6 @@ public abstract class Seguidor extends Carta {
 	}
 
 		//Setter
-
-
-
 	public void setVidaOriginal(){
 		this.vida_atual = this.vida_original;
 	}

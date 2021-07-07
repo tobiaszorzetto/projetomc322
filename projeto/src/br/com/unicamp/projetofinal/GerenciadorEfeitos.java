@@ -223,4 +223,15 @@ public class GerenciadorEfeitos {
         }
         return false;
     }
+
+    public static void curarAliadoOuNexus(Carta carta_que_chamou, int quant){
+        int escolha = 0;
+        while( escolha < 1 || escolha >2 )
+            escolha = PrintFactory.pedirInput("1: Curar aliado || 2: Curar nexus em " + quant);
+        if (escolha == 1){
+            GerenciadorEfeitos.escolherCartaCurar(carta_que_chamou);
+        } else{
+            GerenciadorEfeitos.curarNexus(carta_que_chamou.getJogador(), 3);
+        }
+    }
 }

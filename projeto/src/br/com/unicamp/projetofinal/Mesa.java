@@ -196,7 +196,6 @@ public class Mesa {
 		this.realizarCombates();
 		this.verificarCondicoes();
 		this.defensor.desarmarDefesa();
-		this.verificarCondicoes();
 	}
 
 	// PRINCIPAL
