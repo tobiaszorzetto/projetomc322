@@ -6,6 +6,7 @@ import br.com.unicamp.projetofinal.Enums.Traco;
 import java.util.*;
 
 public abstract class Seguidor extends Carta {
+	private final int ataque_original;
 	private int vezes_que_atacou = 0;
 	private int getVezes_que_vai_atacar;
 	private int ataque;
@@ -19,6 +20,7 @@ public abstract class Seguidor extends Carta {
 	
 	public Seguidor (String nome, int custo_mana, int ataque, int vida, Mesa mesa, Jogador jogador) {
 		super(nome, custo_mana, mesa, jogador);
+		this.ataque_original = ataque;
 		this.ataque = ataque;
 		this.vida_original = vida;
 		this.vida_atual = vida;
@@ -74,6 +76,11 @@ public abstract class Seguidor extends Carta {
 	}
 
 		//Setter
+	
+	public void setAtaqueOriginal(){
+		this.ataque = this.ataque_original;
+	}
+	
 	public void setVidaOriginal(){
 		this.vida_atual = this.vida_original;
 	}
