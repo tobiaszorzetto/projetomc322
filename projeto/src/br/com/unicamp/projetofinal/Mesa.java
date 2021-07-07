@@ -224,6 +224,16 @@ public class Mesa {
 		}
 		return num_cartas;
 	}
+
+	public boolean temEspacoMesa(Jogador jogador){
+		ArrayList<Seguidor> cartas_mesa = this.getCartasMesa(jogador);
+		for (Seguidor carta : cartas_mesa){
+			if (carta == null){//se houver posicao vazia
+				return true;
+			}
+		}
+		return false;
+	}
 }
 
 

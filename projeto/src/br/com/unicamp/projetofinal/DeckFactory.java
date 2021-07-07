@@ -3,6 +3,7 @@ package br.com.unicamp.projetofinal;
 import br.com.unicamp.projetofinal.Cartas.Campeoes.Garen;
 import br.com.unicamp.projetofinal.Cartas.Campeoes.Lux;
 import br.com.unicamp.projetofinal.Cartas.Feiticos.Cura;
+import br.com.unicamp.projetofinal.Cartas.Feiticos.GolpeCerteiro;
 import br.com.unicamp.projetofinal.Cartas.Seguidores.*;
 import br.com.unicamp.projetofinal.Enums.TipoDeck;
 
@@ -30,6 +31,7 @@ public class DeckFactory {
             deck.adicionarCarta(new Poro(mesa, jogador));
             deck.adicionarCarta(new PoroDefensor(mesa, jogador));
             deck.adicionarCarta(new Cura(mesa, jogador));
+            deck.adicionarCarta(new GolpeCerteiro(mesa, jogador));
         }
         return deck;
     }
