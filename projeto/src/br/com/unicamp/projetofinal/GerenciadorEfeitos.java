@@ -82,13 +82,21 @@ public class GerenciadorEfeitos {
     }
 
     public static void escolherCartaAdversariaParaDarDano(Carta carta, int dano) throws PosicaoMesaOcupadaException, ManaInsuficienteException {
-        ArrayList<Seguidor> mesa_adversario = carta.getMesa().getCartasMesaAdversario(carta.getJogador());
-        int numero_carta = PrintFactory.pedirInput("Escolha uma carta inimiga para dar 1 de dano");
-        Seguidor carta_adversario = mesa_adversario.get(numero_carta);
-        if(carta_adversario!=null) {
-            boolean morreu = carta_adversario.diminuirVida(dano);
-            if(morreu){
-                carta.verificarDepujante(carta_adversario);
+        if (carta.getMesa().temCartasMesa(carta.getAdversario())){
+            ArrayList<Seguidor> mesa_adversario = carta.getMesa().getCartasMesaAdversario(carta.getJogador());
+            int numero_carta = PrintFactory.pedirInput("Escolha uma carta inimiga para dar "+ dano +"dano");
+            try{
+                Seguidor carta_adversario = mesa_adversario.get(numero_carta);
+                boolean morreu = carta_adversario.diminuirVida(dano);
+                if(morreu) {
+                    carta.verificarDepujante(carta_adversario);
+                }
+            } catch (IndexOutOfBoundsException e){
+                System.out.println("Posicao de ataque invalida.");
+                escolherCoisaParaDarDano(carta, dano);
+            } catch (NullPointerException e){
+                System.out.println("Não há carta nessa posicao");
+                escolherCoisaParaDarDano(carta, dano);
             }
         }
     }

@@ -27,6 +27,5 @@ public class VislumbreDoAlem extends Feitico {
             System.out.println("Não há carta nessa posicao");
             realizarEfeito();
         }
-
     }
 }

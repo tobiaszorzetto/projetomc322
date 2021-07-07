@@ -182,7 +182,7 @@ public class Jogador {
 					try{
 						Carta carta = this.mao.getCarta(numero_carta - 1);
 						carta.jogarCarta();
-					} catch (IndexOutOfBoundsException e){
+					} catch (IndexOutOfBoundsException | PosicaoMesaOcupadaException e){
 						System.out.println("Nao há carta nessa posicao");
 					}
 				}
