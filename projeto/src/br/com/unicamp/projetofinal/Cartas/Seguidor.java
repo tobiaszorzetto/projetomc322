@@ -135,10 +135,6 @@ public abstract class Seguidor extends Carta {
 		}
 		this.getMesa().colocarCartaMesa(jogador, this, posicao_alocacao);
 	}
-
-	public void atacarNexus(Jogador adversario){
-		adversario.diminuirVida(ataque);
-	}
 	public void atacarNexus(Jogador adversario, int quant){
 		adversario.diminuirVida(quant);
 	}
@@ -180,7 +176,7 @@ public abstract class Seguidor extends Carta {
 		Seguidor carta_adversario = cartas_adversario.get(endereco);
 
 		if(deveAtacarNexus( carta_adversario )) {
-			this.atacarNexus(adversario);
+			this.atacarNexus(adversario, this.ataque);
 		}
 		else{//atacar a carta na posicao do adversario
 			this.realizarCombate(carta_adversario);

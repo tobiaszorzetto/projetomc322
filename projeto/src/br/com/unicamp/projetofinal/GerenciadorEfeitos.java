@@ -1,5 +1,6 @@
 package br.com.unicamp.projetofinal;
 
+import br.com.unicamp.projetofinal.Cartas.Feiticos.DisparoMistico;
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
 import br.com.unicamp.projetofinal.Cartas.Seguidores.SoldadoDeAreia;
 
@@ -69,7 +70,7 @@ public class GerenciadorEfeitos {
             while(true) {
                 Seguidor carta_sorteada = cartas_na_mesa.get(sorteio.nextInt(6));
                 if (carta_sorteada!=null && carta_sorteada != carta) {// vai dar algo errado?
-                    carta_sorteada.atacarNexus(carta.getAdversario());
+                    carta_sorteada.atacarNexus(carta.getAdversario(),carta_sorteada.getAtaque());
                     break;
                 }
             }
@@ -155,4 +156,14 @@ public class GerenciadorEfeitos {
         }
     }
 
+    public static void escolherCoisaParaDarDano(Carta carta_que_chamou, int dano) {
+        int escolha = 0;
+        while( escolha >= 1 && escolha <=2 )
+            escolha = PrintFactory.pedirInput("1.Daano em uma carta na mesa 2. Dano ao nexus inimigo");
+        if (escolha == 1){
+            GerenciadorEfeitos.escolherCartaAdversariaParaDarDano(carta_que_chamou, dano);
+        } else{
+            GerenciadorEfeitos.atacarNexus(carta_que_chamou.getAdversario(), dano);
+        }
+    }
 }
