@@ -256,11 +256,24 @@ public class GerenciadorEfeitos {
         GerenciadorEfeitos.matarTodasAsCartasJogador(carta.getAdversario());
     }
 
-    private static void matarTodasAsCartasJogador(Jogador jogador) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
+    public static void matarTodasAsCartasJogador(Jogador jogador) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         ArrayList<Seguidor> mesa_jogador = jogador.getMesa().getCartasMesa(jogador);
         for(int i = 0; i< 6; i++){
             mesa_jogador.get(i).matarSeguidor();
         }
-
     }
+
+    public static void retornarCartaMao(Jogador jogador){
+        ArrayList<Seguidor> mesa_jogador = jogador.getMesa().getCartasMesa(jogador);
+        int num_carta_escolhida = PrintFactory.pedirInput("Que carta quer retornar para " + jogador.getNome()) - 1;
+        Seguidor carta_escolhida = mesa_jogador.get(num_carta_escolhida);
+        if(carta_escolhida !=null){
+            carta_escolhida.setAtaqueOriginal();
+            carta_escolhida.setVidaOriginal();
+            GerenciadorEfeitos.colocarCartaNaMao(carta_escolhida, carta_escolhida);
+            mesa_jogador.set(num_carta_escolhida, null);
+        }
+    }
+
+
 }
