@@ -190,28 +190,34 @@ public abstract class Seguidor extends Carta {
 			this.realizarCombate(carta_adversario);
 		}
 	}
-	public void jogarCarta() throws ManaInsuficienteException{
 
+	public void jogarCarta() throws ManaInsuficienteException{
 		Jogador jogador = this.getJogador();
 		Deck mao = jogador.getMao();
 		Mesa mesa = this.getMesa();
 		int posicao_alocacao = jogador.escolherPosicao();
 		try{
-				jogador.setMana(jogador.getMana() - this.getMana());
-				this.atuarNaMesa(jogador, posicao_alocacao);
-				mao.removerCarta(this);
+			jogador.setMana(jogador.getMana() - this.getMana());
+			this.atuarNaMesa(jogador, posicao_alocacao);
+			mao.removerCarta(this);
 		}
 		catch (ManaInsuficienteException e){
 			System.out.println("Sem mana suficiente!");
+			jogarCarta();
 		}
 		catch (PosicaoMesaOcupadaException e){
 			jogador.setMana(jogador.getMana() + this.getMana());
 			System.out.println("Essa posicao ja esta ocupada pelo " + mesa.getCartasMesa(jogador).get(posicao_alocacao-1).getNome());
+			jogarCarta();
 		}
 		catch (ArrayIndexOutOfBoundsException e){
 			jogador.setMana(jogador.getMana() + this.getMana());
 			System.out.println("O mapa tem tamanho maximo de 6 cartas");
+			jogarCarta();
 		}
+	}
 
+	public void aumentarVezesAtacou(){
+		this.vezes_que_atacou++;
 	}
 }

@@ -144,10 +144,25 @@ public class GerenciadorEfeitos {
         carta_escolhida.realizarCombate(carta_adversario);
     }
 
-    public static void evocarSeguidorAtacante(Seguidor carta) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
+    /*public static void evocarSeguidorAtacante(Seguidor carta) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         carta.jogarCarta();
         carta.atacar();
-        
+    }*/
+
+    public static void evocarSeguidorAtacante(Seguidor carta) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
+        ArrayList<Seguidor> cartas_mesa = carta.getMesa().getCartasMesa(carta.getJogador());
+        boolean evocou = false;
+        int posicao_alocao = 0;
+        for (Seguidor seguidor : cartas_mesa) {
+            posicao_alocao += 1;
+            if (seguidor == null) {
+                carta.atuarNaMesa(carta.getJogador(), posicao_alocao);
+                evocou = true;
+            }
+        }
+        if (evocou){
+            carta.atacar();
+        }
     }
 
     public static void AtacarTodasAsCartas(Mesa mesa, int dano) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
