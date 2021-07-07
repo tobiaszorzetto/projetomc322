@@ -8,14 +8,19 @@ import br.com.unicamp.projetofinal.Mesa;
 
 public class Ezreal extends Campeao{
 
+    int vezes_que_upou = 0;
 
     public Ezreal( Mesa mesa, Jogador jogador) {
         super("Ezreal", 3, 3, 1, mesa, jogador);
         this.setTraco(Traco.ELUSIVO);
+
     }
 
     public void checarLevelUp(){
-
+        if(getVezesQueAtacou() - vezes_que_upou*6 >= 6){
+            vezes_que_upou++;
+            GerenciadorEfeitos.aumentarAtaqueVida(this,1,1);
+        }
     }
 
     public void verificarCondicao(){
