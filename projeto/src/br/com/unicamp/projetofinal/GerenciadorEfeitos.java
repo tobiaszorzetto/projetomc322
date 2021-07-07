@@ -91,7 +91,7 @@ public class GerenciadorEfeitos {
                 Seguidor carta_escolhida = cartas_mesa.get(numero_carta);
                 boolean morreu = carta_escolhida.diminuirVida(dano);
                 if(morreu) {
-                    carta.verificarDepujante(carta_escolhida);
+                    carta.verificarSobrepujar(carta_escolhida);
                 }
             } catch (IndexOutOfBoundsException e){
                 System.out.println("Posicao de ataque invalida.");
@@ -171,5 +171,26 @@ public class GerenciadorEfeitos {
     public static void darDanoEmAliadoParaAtacarNexus(Carta carta_que_chamou, int dano_mesa, int dano_nexus) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         GerenciadorEfeitos.escolherCartaParaDarDano(carta_que_chamou, carta_que_chamou.getJogador(), dano_mesa);
         GerenciadorEfeitos.atacarNexus(carta_que_chamou.getAdversario(), dano_nexus);
+    }
+
+    public static boolean abaterAliado(Jogador jogador_atingido) {
+        if (jogador_atingido.getMesa().temCartasMesa(jogador_atingido)){
+            ArrayList<Seguidor> cartas_mesa = jogador_atingido.getMesa().getCartasMesa(jogador_atingido);
+            int numero_carta = PrintFactory.pedirInput("Escolha uma carta para dar abater");
+            try{
+                Seguidor carta_escolhida = cartas_mesa.get(numero_carta);
+                carta_escolhida.diminuirVida(carta_escolhida.getVidaAtual());
+                return true;
+
+            } catch (IndexOutOfBoundsException e){
+                System.out.println("Posicao de ataque invalida.");
+                return false;
+            } catch (NullPointerException e){
+                System.out.println("Não há carta nessa posicao");
+                return false;
+            } catch (Exception e) {}
+
+        }
+        return false;
     }
 }
