@@ -160,12 +160,18 @@ public class Jogador {
 		this.mao.adicionarCarta(carta);
 	}
 
-	public void sortearDoDeck(){
+	public Carta sortearDoDeck(){
 		//sortear um numero do deck
 		Random sorteio = new Random();
 		int carta_sorteada = sorteio.nextInt(this.deck.getSize());
-		this.colocarCartaNaMao(this.deck.getCarta(carta_sorteada));
-		this.deck.removerCarta(this.deck.getCarta(carta_sorteada));
+		try{
+			this.colocarCartaNaMao(this.deck.getCarta(carta_sorteada));
+			this.deck.removerCarta(this.deck.getCarta(carta_sorteada));
+			return this.deck.getCarta(carta_sorteada);
+		} catch (IndexOutOfBoundsException e){ //acabaram as cartas do deck
+			System.out.println("Nao ha mais cartas para serem sorteadas");
+			return null;
+		}
 	}
 
 
