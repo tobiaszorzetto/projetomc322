@@ -159,7 +159,7 @@ public class GerenciadorEfeitos {
 
     public static void escolherCoisaParaDarDano(Carta carta_que_chamou, int dano) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         int escolha = 0;
-        while( escolha >= 1 && escolha <=2 )
+        while( escolha < 1 || escolha >2 )
             escolha = PrintFactory.pedirInput("1.Dano em uma carta na mesa 2. Dano ao nexus inimigo");
         if (escolha == 1){
             GerenciadorEfeitos.escolherCartaParaDarDano(carta_que_chamou,carta_que_chamou.getAdversario(), dano);

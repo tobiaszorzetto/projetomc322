@@ -13,4 +13,5 @@ public class MaoDaMorte extends Feitico {
         GerenciadorEfeitos.escolherCartaParaDarDano(this, this.getAdversario(), 2);
         GerenciadorEfeitos.atacarNexus(this.getAdversario(), 1);
     }
+
 }
