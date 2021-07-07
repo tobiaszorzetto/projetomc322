@@ -89,7 +89,7 @@ public abstract class Seguidor extends Carta {
 		this.matou_alguem = a;
 	}
 	
-	public abstract void verificarCondicao();
+	public abstract void verificarCondicao() throws ManaInsuficienteException;
 
 	public boolean isElusivo() {
 		return this.traco == Traco.ELUSIVO;
@@ -161,7 +161,7 @@ public abstract class Seguidor extends Carta {
 		return verificarElusivo(carta_adversario);
 	}
 
-	public void realizarCombate(Seguidor carta_adversario){
+	public void realizarCombate(Seguidor carta_adversario) throws ManaInsuficienteException {
 		this.diminuirVida(carta_adversario.getAtaque());//diminui a vida desse seguidor
 		boolean adversario_morreu = carta_adversario.diminuirVida(ataque);//diminui a vida do adversario e verifica se ele morreu
 		if (adversario_morreu){
@@ -171,7 +171,7 @@ public abstract class Seguidor extends Carta {
 	}
 
 
-	public void atacar(){
+	public void atacar() throws ManaInsuficienteException {
 		this.vezes_que_atacou++;
 		int endereco = this.getMesa().getCartasMesa(this.getJogador()).indexOf(this);
 

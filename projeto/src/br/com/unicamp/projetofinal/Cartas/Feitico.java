@@ -12,7 +12,7 @@ public abstract class Feitico extends Carta {
 
     }
 
-    public void atuarNaMesa(Jogador jogador) {
+    public void atuarNaMesa(Jogador jogador) throws ManaInsuficienteException {
         this.getJogador().addManaGastaFeitico(this.getMana());
         this.realizarEfeito();
     }
@@ -49,7 +49,7 @@ public abstract class Feitico extends Carta {
 
     }
 
-    protected abstract void realizarEfeito();
+    protected abstract void realizarEfeito() throws ManaInsuficienteException;
 
     public Traco getTraco() {
         return traco;

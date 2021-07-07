@@ -1,6 +1,7 @@
 package br.com.unicamp.projetofinal;
 
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
+import br.com.unicamp.projetofinal.Cartas.Seguidores.SoldadoDeAreia;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -117,7 +118,7 @@ public class GerenciadorEfeitos {
         }
     }
 
-    public static void escolherCartasCombate(Carta carta) {
+    public static void escolherCartasCombate(Carta carta) throws ManaInsuficienteException {
         ArrayList<Seguidor> cartas_mesa = carta.getMesa().getCartasMesa(carta.getJogador());
         ArrayList<Seguidor> cartas_adversario = carta.getMesa().getCartasMesa(carta.getAdversario());
 
@@ -127,6 +128,23 @@ public class GerenciadorEfeitos {
         Seguidor carta_escolhida = cartas_mesa.get(numero_carta);
         Seguidor carta_adversario = cartas_adversario.get(numero_adversario);
         carta_escolhida.realizarCombate(carta_adversario);
+    }
+
+    public static void evocarSeguidorAtacante(Seguidor carta) throws ManaInsuficienteException {
+        carta.jogarCarta();
+        carta.atacar();
+        
+    }
+
+    public static void evocarSeguidor(Seguidor carta) throws PosicaoMesaOcupadaException {
+        ArrayList<Seguidor> cartas_mesa = carta.getMesa().getCartasMesa(carta.getJogador());
+        int posicao_alocao = 0;
+        for (Seguidor seguidor : cartas_mesa){
+            posicao_alocao += 1;
+            if (seguidor == null){
+                carta.atuarNaMesa(carta.getJogador(), posicao_alocao);
+            }
+        }
     }
 
 }

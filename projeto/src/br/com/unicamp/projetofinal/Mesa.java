@@ -154,7 +154,7 @@ public class Mesa {
 		this.defensor = aux;
 	}
 
-	public void realizarCombates(){
+	public void realizarCombates() throws ManaInsuficienteException {
 		for (int i = 0; i < 6; i++){
 			Seguidor seguidor  = this.getCartasMesa(this.atacante).get(i);
 			if(seguidor!= null && seguidor.getVaiAtacar()){
@@ -191,7 +191,7 @@ public class Mesa {
 		this.verificarCondicoes();
 	}
 
-	public void realizarParte2(){
+	public void realizarParte2() throws ManaInsuficienteException {
 		this.parte_da_rodada = 3;
 		this.realizarCombates();
 		this.verificarCondicoes();
