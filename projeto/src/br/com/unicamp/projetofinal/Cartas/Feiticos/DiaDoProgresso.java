@@ -9,9 +9,8 @@ public class DiaDoProgresso extends Feitico {
         super("Dia do Progresso", 8, mesa, jogador);
     }
 
-
     @Override
-    protected void realizarEfeito() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
+    public void realizarEfeito() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         for (int i = 0; i < 3; i++){
             Carta sorteada = this.getJogador().sortearDoDeck();
             if (sorteada != null){
