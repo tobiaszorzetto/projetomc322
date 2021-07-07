@@ -18,9 +18,8 @@ public abstract class Feitico extends Carta {
     }
     
     public void verificarCondicao(){
-
     }
-    //kkkkkkkk vc escreveu conficao
+
     @Override
     public void jogarCarta() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         Jogador jogador = this.getJogador();

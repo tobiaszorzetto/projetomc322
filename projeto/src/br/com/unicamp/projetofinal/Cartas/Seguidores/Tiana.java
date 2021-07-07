@@ -1,8 +1,6 @@
 package br.com.unicamp.projetofinal.Cartas.Seguidores;
 
-import br.com.unicamp.projetofinal.GerenciadorEfeitos;
-import br.com.unicamp.projetofinal.Jogador;
-import br.com.unicamp.projetofinal.Mesa;
+import br.com.unicamp.projetofinal.*;
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
 
 import java.util.ArrayList;
@@ -24,7 +22,7 @@ public class Tiana extends Seguidor {
     }
 
     @Override
-    public void atuarNaMesa(Jogador jogador, int posicao_alocacao){
+    public void atuarNaMesa(Jogador jogador, int posicao_alocacao) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         this.fazerEfeito();
         this.getMesa().colocarCartaMesa(jogador, this, posicao_alocacao);
         this.getMesa().verificarCondicoes();
