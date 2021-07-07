@@ -53,6 +53,10 @@ public abstract class Carta {
 		return this.getMesa().getAdversario(this.getJogador());
 	}
 
+	public void diminuirCustoMana(){
+		this.custo_mana--;
+	}
+
 	public void verificarSobrepujar(Seguidor carta_adversario){
 		if(this.isSobrepujar()){
 			GerenciadorEfeitos.atacarNexus(carta_adversario.getJogador(), - carta_adversario.getVidaAtual());
