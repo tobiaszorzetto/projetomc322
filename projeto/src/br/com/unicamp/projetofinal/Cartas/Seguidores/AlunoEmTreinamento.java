@@ -37,6 +37,4 @@ public class AlunoEmTreinamento extends Seguidor {
         this.getMesa().colocarCartaMesa(jogador, this, posicao_alocacao);
     }
 
-
-
 }

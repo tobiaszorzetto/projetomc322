@@ -1,5 +1,6 @@
 package br.com.unicamp.projetofinal;
 
+import br.com.unicamp.projetofinal.Cartas.Feiticos.ARuina;
 import br.com.unicamp.projetofinal.Cartas.Feiticos.DisparoMistico;
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
 import br.com.unicamp.projetofinal.Cartas.Seguidores.DemolidorImperial;
@@ -248,5 +249,18 @@ public class GerenciadorEfeitos {
         } else{
             GerenciadorEfeitos.curarNexus(carta_que_chamou.getJogador(), 3);
         }
+    }
+
+    public static void matarTodasAsCartasNaMesa(Carta carta) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
+        GerenciadorEfeitos.matarTodasAsCartasJogador(carta.getJogador());
+        GerenciadorEfeitos.matarTodasAsCartasJogador(carta.getAdversario());
+    }
+
+    private static void matarTodasAsCartasJogador(Jogador jogador) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
+        ArrayList<Seguidor> mesa_jogador = jogador.getMesa().getCartasMesa(jogador);
+        for(int i = 0; i< 6; i++){
+            mesa_jogador.get(i).matarSeguidor();
+        }
+
     }
 }

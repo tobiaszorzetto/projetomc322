@@ -24,7 +24,7 @@ public class ArtificeDasAreias extends Seguidor {
         boolean adversario_morreu = carta_adversario.diminuirVida(this.getAtaque());//diminui a vida do adversario e verifica se ele morreu
         if (adversario_morreu){
             verificarFuria(); //chama-se apenas quando sabemos que matou o inimigo
-            verificarDepujante(carta_adversario);
+            verificarSobrepujar(carta_adversario);
         }
     }
 
