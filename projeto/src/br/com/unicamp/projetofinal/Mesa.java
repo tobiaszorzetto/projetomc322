@@ -224,15 +224,6 @@ public class Mesa {
 		}
 		return num_cartas;
 	}
-
-
-
-
-
-
-
-
-
 }
 
 

@@ -12,7 +12,6 @@ public class PoroDefensor extends Seguidor {
 
     @Override
     public void verificarCondicao() {
-
     }
 
     @Override

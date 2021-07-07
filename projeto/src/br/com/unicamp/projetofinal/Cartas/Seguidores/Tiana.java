@@ -23,6 +23,7 @@ public class Tiana extends Seguidor {
         GerenciadorEfeitos.cartaAleatoriaAtacarNexus(this, cartas_na_mesa);
     }
 
+    @Override
     public void atuarNaMesa(Jogador jogador, int posicao_alocacao){
         this.fazerEfeito();
         this.getMesa().colocarCartaMesa(jogador, this, posicao_alocacao);

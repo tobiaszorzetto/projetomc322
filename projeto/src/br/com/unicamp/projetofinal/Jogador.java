@@ -178,16 +178,20 @@ public class Jogador {
 				int numero_carta = escolherCartaColocar();
 				if (numero_carta == 0) {
 					running = false;
-				} else if (numero_carta <= mao.getSize()) {
-					Carta carta = this.mao.getCarta(numero_carta - 1);
-					carta.jogarCarta();
+				} else{
+					try{
+						Carta carta = this.mao.getCarta(numero_carta - 1);
+						carta.jogarCarta();
+					} catch (IndexOutOfBoundsException e){
+						System.out.println("Nao há carta nessa posicao");
+					}
 				}
 			} else {
-				System.out.println(this.nome + " voce ja n tem mais cartas disponiveis");
 				running = false;
 			}
 		}
 	}
+
 
 	public int escolherPosicao(){
 		return PrintFactory.pedirInput(this.nome + ", escolha a posicao da mesa em que quer colocar a carta");
@@ -212,10 +216,12 @@ public class Jogador {
 			} else if (numero_carta <= 6) {
 				cont++;
 				Seguidor carta = cartas_na_mesa.get(numero_carta - 1);
-				//VERIFICAR NULIDADE
-				carta.setVaiAtacar(true);
+				try{
+					carta.setVaiAtacar(true);
+				} catch(NullPointerException e) {
+					System.out.println("Nao ha carta na posicao escolhida");
+				}
 			} else {
-				System.out.println(this.nome + " voce ja n tem mais cartas disponiveis para combate");
 				break;
 			}
 		}
@@ -224,8 +230,9 @@ public class Jogador {
 
 	public void desarmarDefesa(){
 		for(Seguidor carta : this.mesa.getCartasMesa(this)){
-			if (carta!=null) carta.setVaiDefender(false);
+			if (carta != null){
+				carta.setVaiDefender(false);
+			}
 		}
 	}
-
 }
