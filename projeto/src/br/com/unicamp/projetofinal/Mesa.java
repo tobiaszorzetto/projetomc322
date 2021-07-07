@@ -55,7 +55,7 @@ public class Mesa {
 		return false;
 	}
 
-		// Getters
+	// Getters
 
 	public Jogador getAtacante(){
 		return this.atacante;

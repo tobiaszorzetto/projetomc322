@@ -26,8 +26,9 @@ public class Zed extends Campeao {
 
     @Override
     public void verificarCondicao() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
-
+        checarLevelUp();
     }
+
     @Override
     public void atacar() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         this.aumentarVezesAtacou();
