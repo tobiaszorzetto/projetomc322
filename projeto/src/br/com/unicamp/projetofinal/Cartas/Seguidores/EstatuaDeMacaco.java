@@ -1,5 +1,4 @@
 package br.com.unicamp.projetofinal.Cartas.Seguidores;
-
 import br.com.unicamp.projetofinal.*;
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
 
