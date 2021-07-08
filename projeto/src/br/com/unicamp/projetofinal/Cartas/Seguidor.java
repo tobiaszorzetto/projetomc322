@@ -153,8 +153,7 @@ public abstract class Seguidor extends Carta {
 
 	public void verificarFuria(){
 		if (this.traco == Traco.FURIA){ //se o seguidor tiver traco de furia
-			ataque += ataque;
-			vida_atual += vida_atual;
+			GerenciadorEfeitos.aumentarAtaqueVida(this,1,1);
 		}
 	}
 
