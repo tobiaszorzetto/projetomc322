@@ -19,7 +19,6 @@ public class Vanguarda extends Seguidor {
 
     @Override
     public void verificarCondicao() {
-
     }
 
     public void atuarNaMesa(Jogador jogador, int posicao_alocacao) throws ManaInsuficienteException, PosicaoMesaOcupadaException {

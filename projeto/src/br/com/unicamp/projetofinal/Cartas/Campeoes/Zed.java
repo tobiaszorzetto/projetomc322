@@ -7,6 +7,16 @@ import br.com.unicamp.projetofinal.Cartas.Seguidores.SombraViva;
 
 import java.util.ArrayList;
 
+/*
+*
+*   3|3|2
+*
+* Toda vez que ataca cria uma Sombra Viva atacante
+* Se atacar o nexus duas vezes sobe de nivel (+1 de ataque e +1 de defesa)
+*
+*
+* */
+
 public class Zed extends Campeao {
 
     private int vezesAtacouNexus = 0;

@@ -35,7 +35,6 @@ public class DeckFactory {
     }
 
     public static Deck fazerDeckPersonalizado(Deck deck, Mesa mesa, Jogador jogador){
-
         System.out.println("Escolha das seguintes no máximo 40 cartas para montar Deck: ");
         System.out.println(
                 "CAMPEOES\n" +
@@ -109,20 +108,22 @@ public class DeckFactory {
                 "60. Vislumbre do Além\n" +
                 "61. Volta Ao Lar\n");
 
-
         boolean running = true;
         while (running && deck.getSize() < 40) {
-
             int numero_carta = PrintFactory.pedirInput("Escolha uma carta");
 
             if (numero_carta == 0) {
-                running = false;
-                for(Carta carta : deck.getDeck()){
-                    System.out.println(carta.getNome());
+                if (deck.getSize() < 4){
+                    running = false;
+                    for(Carta carta : deck.getDeck()){
+                        System.out.println(carta.getNome());
+                    }
+                }
+                else{
+                    System.out.println("São necessárias ao menos 4 cartas no Deck para jogar");
                 }
             }
             else{
-
                 switch (numero_carta){
                     case 1:
                         deck.adicionarCarta(new AurelionSol(mesa, jogador));
@@ -314,7 +315,6 @@ public class DeckFactory {
                 System.out.println("Numero de cartas escolhidas: "+ deck.getSize());
             }
         }
-
         return  deck;
     }
 
