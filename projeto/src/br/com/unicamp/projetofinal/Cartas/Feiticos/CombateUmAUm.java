@@ -8,8 +8,8 @@ import br.com.unicamp.projetofinal.Mesa;
 import br.com.unicamp.projetofinal.PosicaoMesaOcupadaException;
 
 public class CombateUmAUm extends Feitico {
-    public CombateUmAUm(String nome, int custo_mana, Mesa mesa, Jogador jogador) {
-        super(nome, custo_mana, mesa, jogador);
+    public CombateUmAUm(Mesa mesa,Jogador jogador) {
+        super("Combate Um A Um", 5, mesa, jogador);
     }
 
     public void realizarEfeito() throws ManaInsuficienteException, PosicaoMesaOcupadaException {

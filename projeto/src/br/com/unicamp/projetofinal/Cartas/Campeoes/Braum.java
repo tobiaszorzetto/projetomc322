@@ -14,7 +14,7 @@ public class Braum extends Campeao{
 	int dano_tomado = 0;
 	boolean ainda_nao_tomou_dano = true;
 	
-	public Braum(String nome, int custo_mana, int ataque, int vida, Mesa mesa, Jogador jogador) {
+	public Braum(Mesa mesa, Jogador jogador) {
 		super("Braum", 4, 0, 5, mesa, jogador);
 		// TODO Auto-generated constructor stub
 	}

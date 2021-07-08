@@ -163,12 +163,13 @@ public class Jogador {
 	public Carta sortearDoDeck(){
 		//sortear um numero do deck
 		Random sorteio = new Random();
-		int carta_sorteada = sorteio.nextInt(this.deck.getSize());
+
 		try{
+			int carta_sorteada = sorteio.nextInt(this.deck.getSize());
 			this.colocarCartaNaMao(this.deck.getCarta(carta_sorteada));
 			this.deck.removerCarta(this.deck.getCarta(carta_sorteada));
 			return this.deck.getCarta(carta_sorteada);
-		} catch (IndexOutOfBoundsException e){ //acabaram as cartas do deck
+		} catch (IndexOutOfBoundsException | IllegalArgumentException e){ //acabaram as cartas do deck
 			System.out.println("Nao ha mais cartas para serem sorteadas");
 			return null;
 		}
@@ -184,7 +185,7 @@ public class Jogador {
 		boolean running = true;
 		while (running) {
 			if (this.mao.getSize() > 0) {
-				PrintFactory.printCartasNaMesa(this.mesa, this.mana);
+				PrintFactory.printCartasNaMesa(this.mesa);
 				PrintFactory.printCartasNaMao(this);
 
 				int numero_carta = escolherCartaColocar();
@@ -221,23 +222,35 @@ public class Jogador {
 		ArrayList<Seguidor> cartas_na_mesa = this.mesa.getCartasMesa(this);
 
 		while (true){
-			PrintFactory.printCartasNaMesa(this.mesa, this.mana);
+			PrintFactory.printCartasNaMesa(this.mesa);
 			int numero_carta = this.escolherCartaCombater();
 			if (numero_carta == 0) {
 				break;
 			} else if (numero_carta <= 6) {
 				cont++;
 				Seguidor carta = cartas_na_mesa.get(numero_carta - 1);
-				try{
-					carta.setVaiAtacar(true);
-				} catch(NullPointerException e) {
-					System.out.println("Nao ha carta na posicao escolhida");
-				}
+				this.prepararParaCombate(carta);
 			} else {
 				break;
 			}
 		}
 		return cont != 0;//se atacar retorna true
+	}
+
+	private void prepararParaCombate(Seguidor carta) {
+		if(marcador == Marcador.ATACANTE){
+			try{
+				carta.setVaiAtacar(true);
+			} catch(NullPointerException e) {
+				System.out.println("Nao ha carta na posicao escolhida");
+			}
+		} else{
+			try{
+				carta.setVaiDefender(true);
+			} catch(NullPointerException e) {
+				System.out.println("Nao ha carta na posicao escolhida");
+			}
+		}
 	}
 
 	public void desarmarDefesa(){

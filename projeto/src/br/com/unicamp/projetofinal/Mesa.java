@@ -114,16 +114,16 @@ public class Mesa {
 	// FUNCOES GERAIS
 
 	public void verificarCondicoes() throws ManaInsuficienteException, PosicaoMesaOcupadaException{
-		for (Seguidor carta: cartas_mesa1){
-			if (carta!= null)
-				carta.verificarCondicao();
+		for (int i = 0; i<6; i++){
+			if (cartas_mesa1.get(i)!= null)
+				cartas_mesa1.get(i).verificarCondicao();
 		}
 		for (Seguidor carta: cartas_mesa2){
 			if (carta!= null)
 				carta.verificarCondicao();
 		}
-		for (Feitico feitico: this.feiticos_ativos){
-			feitico.verificarCondicao();
+		for (int i = 0; i< feiticos_ativos.size(); i++){
+			feiticos_ativos.get(i).verificarCondicao();
 		}
 
 	}
@@ -169,9 +169,9 @@ public class Mesa {
 
 	public void colocarCartaMesa(Jogador jogador, Seguidor carta, int posicao_alocacao) throws ManaInsuficienteException, PosicaoMesaOcupadaException{
 		if (jogador.equals(jogador1)){
-			cartas_mesa1.add(posicao_alocacao-1, carta);
+			cartas_mesa1.set(posicao_alocacao-1, carta);
 		} else{
-			cartas_mesa2.add(posicao_alocacao-1,carta);
+			cartas_mesa2.set(posicao_alocacao-1,carta);
 		}
 		this.verificarCondicoes();
 	}

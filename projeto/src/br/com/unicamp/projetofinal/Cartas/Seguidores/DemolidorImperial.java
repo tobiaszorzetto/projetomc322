@@ -4,7 +4,7 @@ import br.com.unicamp.projetofinal.*;
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
 
 public class DemolidorImperial extends Seguidor {
-    public DemolidorImperial(String nome, int custo_mana, int ataque, int vida, Mesa mesa, Jogador jogador) {
+    public DemolidorImperial(Mesa mesa, Jogador jogador) {
         super("Demolidor Imperial", 2, 2, 3, mesa, jogador);
     }
 

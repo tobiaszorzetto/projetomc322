@@ -1,9 +1,7 @@
 package br.com.unicamp.projetofinal;
 
-import br.com.unicamp.projetofinal.Cartas.Campeoes.Garen;
-import br.com.unicamp.projetofinal.Cartas.Campeoes.Lux;
-import br.com.unicamp.projetofinal.Cartas.Feiticos.Cura;
-import br.com.unicamp.projetofinal.Cartas.Feiticos.GolpeCerteiro;
+import br.com.unicamp.projetofinal.Cartas.Campeoes.*;
+import br.com.unicamp.projetofinal.Cartas.Feiticos.*;
 import br.com.unicamp.projetofinal.Cartas.Seguidores.*;
 import br.com.unicamp.projetofinal.Enums.TipoDeck;
 
@@ -39,10 +37,76 @@ public class DeckFactory {
     public static Deck fazerDeckPersonalizado(Deck deck, Mesa mesa, Jogador jogador){
 
         System.out.println("Escolha das seguintes no máximo 40 cartas para montar Deck: ");
-        System.out.println(" 1: Thor               2: Gnomo           3: Curandeira           4: Garen\n" +
-                           " 5: Tiana              6: Vanguarda       7: Duelista             8: Poro\n"  +
-                           " 9: Poro Defensor      10: Cura           11: Corsaria Atiradora 12: Poro Poderoso\n" +
-                           "13: lux");
+        System.out.println(
+                "CAMPEOES\n" +
+                "1. Aurelion Sol\n" +
+                "2. Azir\n" +
+                "3. Braum\n" +
+                "4. Darius\n" +
+                "5. Gangplank\n" +
+                "6. Garen\n" +
+                "7. Lux\n" +
+                "8. Tryndamere\n" +
+                "9. Swain\n" +
+                "10. Zed\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "SEGUIDORES\n" +
+                "11. Aluno Em Treinamento   \n" +
+                "12. Aranha Doméstica   \n" +
+                "13. Artífice Das Areias\n" +
+                "14. Atirador\n" +
+                "15. Atakhan\n" +
+                "16. Açougueiro Voraz\n" +
+                "17. Balista De Ferro\n" +
+                "18. Capitão Farron\n" +
+                "19. Corsária Atiradora\n" +
+                "20. Cria Arachnida\n" +
+                "21. Curandeira\n" +
+                "22. Demolidor Imperial\n" +
+                "23. Duelista\n" +
+                "24. Estátua De Macaco\n" +
+                "25. Garreroz Alfa\n" +
+                "26. Gnomo\n" +
+                "27. Guarda Terrestre Avarosiano\n" +
+                "28. Miquinho Explosivo\n" +
+                "29. Leviatã\n" +
+                "30. Poro\n" +
+                "31. Poro Defensor\n" +
+                "32. Poro Poderoso\n" +
+                "33. Soldado De Areia\n" +
+                "34. Sombra Viva\n" +
+                "35. Taverneiro Gentil\n" +
+                "36. Thor\n" +
+                "37. Tiana\n" +
+                "38. Vanguarda\n" +
+                "39. Vigilante Das Dunas\n" +
+                "40. Dragao Furioso\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "FEITICOS\n" +
+                "41. A Ruina\n" +
+                "42. Avalanche\n" +
+                "43. Banquete Cruel\n" +
+                "44. Centelha Final\n" +
+                "45. Combate Um A Um\n" +
+                "46. Cura\n" +
+                "47. Dia do Progresso\n" +
+                "48. Disparo Místico\n" +
+                "49. Dizimar\n" +
+                "50. Golpe Certeiro\n" +
+                "51. Golpe Expurgante\n" +
+                "52. Julgamento\n" +
+                "53. Lamento Fulminante\n" +
+                "54. Lótus da morte\n" +
+                "55. Mão Da Morte\n" +
+                "56. Raio Termogênico\n" +
+                "57. Valor Redobrado\n" +
+                "58. Vingança\n" +
+                "59. Vislumbre do Além\n" +
+                "60. Volta Ao Lar\n");
 
 
         boolean running = true;

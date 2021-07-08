@@ -5,7 +5,7 @@ import br.com.unicamp.projetofinal.Cartas.Seguidor;
 
 public class AranhaDomestica extends Seguidor {
 
-    public AranhaDomestica(String nome, int custo_mana, int ataque, int vida, Mesa mesa, Jogador jogador) {
+    public AranhaDomestica(Mesa mesa, Jogador jogador) {
         super("Aranha Doméstica", 2, 2, 2, mesa, jogador);
     }
 

@@ -155,14 +155,15 @@ public class GerenciadorEfeitos {
         ArrayList<Seguidor> cartas_mesa = carta.getMesa().getCartasMesa(carta.getJogador());
         boolean evocou = false;
         int posicao_alocao = 0;
-        for (Seguidor seguidor : cartas_mesa) {
-            posicao_alocao += 1;
-            if (seguidor == null) {
-                carta.atuarNaMesa(carta.getJogador(), posicao_alocao);
+        for (int i = 0; i < 6; i ++){
+            if (cartas_mesa.get(i) == null) {
+                carta.atuarNaMesa(carta.getJogador(), i+1);
                 evocou = true;
+                break;
             }
         }
         if (evocou){
+            PrintFactory.printCartasNaMesa(carta.getMesa());
             carta.atacar();
         }
     }

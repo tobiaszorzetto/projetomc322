@@ -30,8 +30,8 @@ public class SombraViva extends Seguidor {
         if(this.getMesa().getCartasMesa(jogador).get(posicao_alocacao-1) != null){
             throw new PosicaoMesaOcupadaException();
         }
-        this.getMesa().colocarCartaMesa(jogador, this, posicao_alocacao);
         this.rodada_evocado = this.getMesa().getRodada();
+        this.getMesa().colocarCartaMesa(jogador, this, posicao_alocacao);
     }
 
     @Override

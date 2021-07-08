@@ -12,8 +12,8 @@ import br.com.unicamp.projetofinal.PosicaoMesaOcupadaException;
 public class Azir extends Campeao {
     int unidades_evocadas = 0;
 
-    public Azir(String nome, int custo_mana, int ataque, int vida, Mesa mesa, Jogador jogador) {
-        super("Azir", 3, 1, vida, mesa, jogador);
+    public Azir(Mesa mesa, Jogador jogador) {
+        super("Azir", 3, 1, 5, mesa, jogador);
     }
 
     @Override

@@ -78,13 +78,13 @@ public class PrintFactory {
         System.out.println("========================================");
     }
 
-    public static void printCartasNaMesa(Mesa mesa, int mana){
+    public static void printCartasNaMesa(Mesa mesa){
         ArrayList<Seguidor> lista = new ArrayList<Seguidor>();
         for (Seguidor carta: mesa.getCartasMesa(mesa.getAtacante())){
             if(carta !=null && carta.getVaiAtacar()) lista.add(carta);
         }
         System.out.println("========================================");
-        System.out.println("MANA: " + mana + "           MANA DE FEITICO: " + mesa.getAtacante().getManaDeFeitico());
+        System.out.println("MANA: " + mesa.getAtacante().getMana() + "           MANA DE FEITICO: " + mesa.getAtacante().getManaDeFeitico());
         PrintFactory.printCartasNaMesa(mesa, lista);
 
     }
