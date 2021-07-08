@@ -22,7 +22,7 @@ public class Tryndamere extends Campeao {
 
     }
     public void matarSeguidor() throws ManaInsuficienteException, PosicaoMesaOcupadaException{
-        if(!this.isMorreu()){
+        if(this.naoMorreu()){
             this.checarLevelUp();
         }else{
             int posicao = this.getMesa().getCartasMesa(this.getJogador()).indexOf(this);

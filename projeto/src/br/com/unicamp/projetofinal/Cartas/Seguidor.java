@@ -27,8 +27,8 @@ public abstract class Seguidor extends Carta {
 	}
 	// Getters e Setters
 
-	public boolean isMorreu() {
-		return morreu;
+	public boolean naoMorreu() {
+		return !morreu;
 	}
 
 	public void setVaiDefender(boolean vai_defender) {

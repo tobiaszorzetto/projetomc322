@@ -160,7 +160,7 @@ public class Mesa {
 			if(seguidor!= null && seguidor.getVaiAtacar()){
 				seguidor.atacar();
 				seguidor.setVaiAtacar(false);
-				if(seguidor.getTraco() == Traco.ATAQUEDUPLO && seguidor.getGetVezesQueVaiAtacar() == 2 && !seguidor.isMorreu()){
+				if(seguidor.getTraco() == Traco.ATAQUEDUPLO && seguidor.getGetVezesQueVaiAtacar() == 2 && seguidor.naoMorreu()){
 					seguidor.atacar();
 				}
 			}
