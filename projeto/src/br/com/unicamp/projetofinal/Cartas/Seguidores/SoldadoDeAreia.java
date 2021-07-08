@@ -7,7 +7,6 @@ import br.com.unicamp.projetofinal.ManaInsuficienteException;
 import br.com.unicamp.projetofinal.Mesa;
 import br.com.unicamp.projetofinal.PosicaoMesaOcupadaException;
 
-
 public class SoldadoDeAreia extends Seguidor{
 
     private int rodada_criado;

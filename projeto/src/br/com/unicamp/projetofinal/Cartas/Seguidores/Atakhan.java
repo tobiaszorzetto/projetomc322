@@ -8,6 +8,16 @@ import br.com.unicamp.projetofinal.PosicaoMesaOcupadaException;
 
 import java.util.ArrayList;
 
+/*
+*
+* 10|5|12
+*
+* Toda vez que vai atacar soma em seu ataque o ataque dos seus aliados
+*
+*
+*
+* */
+
 public class Atakhan extends Seguidor {
 
     public Atakhan(Mesa mesa, Jogador jogador){

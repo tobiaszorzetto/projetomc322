@@ -8,6 +8,16 @@ import br.com.unicamp.projetofinal.PosicaoMesaOcupadaException;
 
 import java.util.ArrayList;
 
+/*
+*
+*
+* 3|3|2
+*
+* Morre depois da rodada que foi evocada ou ao golpear
+*
+*
+* */
+
 public class SombraViva extends Seguidor {
     private int rodada_evocado;
 

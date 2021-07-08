@@ -3,6 +3,15 @@ package br.com.unicamp.projetofinal.Cartas.Seguidores;
 import br.com.unicamp.projetofinal.*;
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
 
+/*
+*
+*   1|1|2
+*
+*   Ao ser evocado, evoca um soldado de areia na mesa
+*
+*
+* */
+
 
 public class VigilanteDasDunas extends Seguidor {
 
