@@ -6,6 +6,14 @@ import br.com.unicamp.projetofinal.Cartas.Seguidor;
 
 import java.util.ArrayList;
 
+/*
+* Custo de mana: 3
+* Escolha uma carta do inimigo com 3 ou menos de ataque para matar
+*
+*
+*
+* */
+
 public class GolpeExpurgante extends Feitico {
 
     public GolpeExpurgante(Mesa mesa, Jogador jogador){
@@ -21,6 +29,8 @@ public class GolpeExpurgante extends Feitico {
                 if (cartas_mesa_adversario.get(num_carta).getAtaque() > 3){
                     System.out.println("A carta escolhida tem poder maior que 3");
                 }
+                Seguidor expurgado = cartas_mesa_adversario.get(num_carta);
+                expurgado.matarSeguidor();
             } catch(NullPointerException e){
                 System.out.println("A posicao escolhida nao possui carta");
                 realizarEfeito();

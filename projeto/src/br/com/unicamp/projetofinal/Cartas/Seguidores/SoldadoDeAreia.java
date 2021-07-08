@@ -7,6 +7,17 @@ import br.com.unicamp.projetofinal.ManaInsuficienteException;
 import br.com.unicamp.projetofinal.Mesa;
 import br.com.unicamp.projetofinal.PosicaoMesaOcupadaException;
 
+/*
+*
+* 1 | 1 | 1
+*
+*
+*
+*
+*
+*/
+
+
 public class SoldadoDeAreia extends Seguidor{
 
     private int rodada_criado;
@@ -25,7 +36,7 @@ public class SoldadoDeAreia extends Seguidor{
     public void atuarNaMesa(Jogador jogador, int posicao_alocacao) throws PosicaoMesaOcupadaException, ManaInsuficienteException {
         this.rodada_criado = this.getMesa().getRodada();
         GerenciadorEfeitos.atacarNexus(this.getAdversario(), 1);
-        if (posicao_alocacao<0){
+        if (posicao_alocacao<=0){
             throw new ArrayIndexOutOfBoundsException();
         }
         if(this.getMesa().getCartasMesa(jogador).get(posicao_alocacao-1) != null){

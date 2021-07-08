@@ -113,7 +113,7 @@ public class DeckFactory {
             int numero_carta = PrintFactory.pedirInput("Escolha uma carta");
 
             if (numero_carta == 0) {
-                if (deck.getSize() < 4){
+                if (deck.getSize() > 4){
                     running = false;
                     for(Carta carta : deck.getDeck()){
                         System.out.println(carta.getNome());
