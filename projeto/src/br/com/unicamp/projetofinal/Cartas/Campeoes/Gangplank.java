@@ -1,9 +1,18 @@
 package br.com.unicamp.projetofinal.Cartas.Campeoes;
-
 import br.com.unicamp.projetofinal.*;
+
 import br.com.unicamp.projetofinal.Cartas.Campeao;
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
 import br.com.unicamp.projetofinal.Enums.Traco;
+
+/* 5|5|5
+ * 
+ * LEVEL UP -> 12 DE DANO DADO FORA DE COMBATE
+ * 
+ * 
+ * 
+ * 
+ * */
 
 public class Gangplank extends Campeao {
 

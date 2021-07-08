@@ -3,6 +3,14 @@ package br.com.unicamp.projetofinal.Cartas.Campeoes;
 import br.com.unicamp.projetofinal.*;
 import br.com.unicamp.projetofinal.Cartas.Campeao;
 
+/* 5|3|6
+ * 
+ * LEVEL UP -> 12 DE DANO DADO FORA DE COMBATE
+ * 
+ * SE O NEXUS ALIADO EH ATACADO -> DA 3 DE DANO AO NEXUS INIMIGO 
+ * 
+ * */
+
 public class Swain extends Campeao {
     int dano_fora_de_combate = 0;
 
