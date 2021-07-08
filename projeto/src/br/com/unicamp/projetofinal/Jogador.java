@@ -132,6 +132,7 @@ public class Jogador {
 	public void escolherQuantasInciaisFicar(){
 		Random sorteio = new Random();
 		int quant =  PrintFactory.pedirInput("Quer trocar quantas");
+		if (quant == 0) return;
 		for(int i = 0; i< quant; i++){
 			int numero  = sorteio.nextInt(mao.getSize()) ;
 			this.deck.adicionarCarta(mao.getCarta(numero));
