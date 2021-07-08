@@ -7,6 +7,13 @@ import br.com.unicamp.projetofinal.ManaInsuficienteException;
 import br.com.unicamp.projetofinal.Mesa;
 import br.com.unicamp.projetofinal.PosicaoMesaOcupadaException;
 
+/*
+*  4 | 3 | 5
+*
+*  Toda vez que ataca, evoca uma carta Soldado De Areia ATACANTE
+*
+* */
+
 public class ArtificeDasAreias extends Seguidor {
     public ArtificeDasAreias(Mesa mesa, Jogador jogador) {
         super("Artifice Das Areias", 4, 3, 5, mesa, jogador);

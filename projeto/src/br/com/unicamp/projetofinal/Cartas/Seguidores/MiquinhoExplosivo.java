@@ -5,6 +5,17 @@ import br.com.unicamp.projetofinal.Cartas.Seguidor;
 
 import java.util.ArrayList;
 
+/*
+*
+* 1 | 2 | 1
+*
+* quando morre da 1 de dano ao nexus
+*
+* fugaz -> so dura 1 turno
+*
+*
+* */
+
 public class MiquinhoExplosivo extends Seguidor {
     int rodada_criado;
     public MiquinhoExplosivo(Mesa mesa, Jogador jogador) {

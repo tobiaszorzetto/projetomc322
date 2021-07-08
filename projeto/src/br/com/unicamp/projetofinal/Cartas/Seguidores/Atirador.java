@@ -7,6 +7,13 @@ import br.com.unicamp.projetofinal.ManaInsuficienteException;
 import br.com.unicamp.projetofinal.Mesa;
 import br.com.unicamp.projetofinal.PosicaoMesaOcupadaException;
 
+/*
+*  3 | 3 | 1
+*
+*  Ao ser colocado no jogo, da 1 de dano a um seguidor oponente que esta na mesa
+*
+* */
+
 public class Atirador extends Seguidor {
     public Atirador(Mesa mesa, Jogador jogador) {
         super("Atirador", 3, 3, 1, mesa, jogador);

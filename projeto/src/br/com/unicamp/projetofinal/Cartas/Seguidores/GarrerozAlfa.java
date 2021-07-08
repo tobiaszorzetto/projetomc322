@@ -7,6 +7,13 @@ import br.com.unicamp.projetofinal.PosicaoMesaOcupadaException;
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
 import br.com.unicamp.projetofinal.Enums.Traco;
 
+/*
+*  6 | 7 | 6
+*
+* Traco -> sobrepujar
+*
+* */
+
 public class GarrerozAlfa extends Seguidor{
 
 	public GarrerozAlfa(Mesa mesa, Jogador jogador) {

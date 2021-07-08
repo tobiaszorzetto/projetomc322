@@ -3,6 +3,14 @@ package br.com.unicamp.projetofinal.Cartas.Seguidores;
 import br.com.unicamp.projetofinal.*;
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
 
+/*
+*  2 | 2 | 2
+*
+*  Ao entrar no jogo evoca uma cria aracnidea
+*
+*
+* */
+
 public class AranhaDomestica extends Seguidor {
 
     public AranhaDomestica(Mesa mesa, Jogador jogador) {

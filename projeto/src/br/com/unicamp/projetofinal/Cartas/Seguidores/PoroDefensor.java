@@ -6,6 +6,13 @@ import br.com.unicamp.projetofinal.Mesa;
 import br.com.unicamp.projetofinal.PosicaoMesaOcupadaException;
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
 
+/*
+* 1 | 1 | 2
+*
+* Quando morre -> compra uma carta do deck
+*
+* */
+
 public class PoroDefensor extends Seguidor {
 
     public PoroDefensor(Mesa mesa, Jogador jogador) {
@@ -17,11 +24,9 @@ public class PoroDefensor extends Seguidor {
     }
 
     @Override
-    public void matarSeguidor() throws ManaInsuficienteException, PosicaoMesaOcupadaException{
+    public void matarSeguidor() {
         this.getMesa().getCartasMesa(this.getJogador()).remove(this);
-
         this.getJogador().sortearDoDeck();
-        //pensar num jeito aqui
-        this.getMesa().verificarCondicoes();
+
     }
 }

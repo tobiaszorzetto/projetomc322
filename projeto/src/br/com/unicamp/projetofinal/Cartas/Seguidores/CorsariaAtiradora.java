@@ -4,6 +4,13 @@ import br.com.unicamp.projetofinal.Cartas.Seguidor;
 import br.com.unicamp.projetofinal.Jogador;
 import br.com.unicamp.projetofinal.Mesa;
 
+/*
+*  1 | 1 | 2
+*
+*  para cada carta que atacou na rodada, da 1 de dano ao nexus do oponente
+*
+* */
+
 public class CorsariaAtiradora extends Seguidor {
     int dano_ao_nexus = 0;
     public CorsariaAtiradora(Mesa mesa, Jogador jogador) {

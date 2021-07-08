@@ -3,9 +3,16 @@ package br.com.unicamp.projetofinal.Cartas.Seguidores;
 import br.com.unicamp.projetofinal.*;
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
 
+/*
+*  1 | 1 | 1
+*
+* Para cada aliado evocado, ganhe 1 | 1 apenas nessa rodada
+*
+* */
+
 public class AlunoEmTreinamento extends Seguidor {
 
-    int quantos_aliados_inicio;
+    private int quantos_aliados_inicio;
 
     public AlunoEmTreinamento(Mesa mesa, Jogador jogador) {
         super("Aluno Em Treinamento", 1, 1, 1,mesa, jogador);
@@ -21,6 +28,7 @@ public class AlunoEmTreinamento extends Seguidor {
         }
         if (parte == 1 || parte == 2){
             int aumento = this.getMesa().numCartasMesa(this.getJogador()) - quantos_aliados_inicio;
+            this.quantos_aliados_inicio = this.getMesa().numCartasMesa(this.getJogador());
             GerenciadorEfeitos.aumentarAtaqueVida(this, aumento, aumento);
         }
 
@@ -33,8 +41,8 @@ public class AlunoEmTreinamento extends Seguidor {
         if(this.getMesa().getCartasMesa(jogador).get(posicao_alocacao-1) != null){
             throw new PosicaoMesaOcupadaException();
         }
-        this.quantos_aliados_inicio = this.getMesa().numCartasMesa(this.getJogador());
         this.getMesa().colocarCartaMesa(jogador, this, posicao_alocacao);
+        this.quantos_aliados_inicio = this.getMesa().numCartasMesa(this.getJogador());
     }
 
 }

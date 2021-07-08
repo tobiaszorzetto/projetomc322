@@ -2,7 +2,12 @@ package br.com.unicamp.projetofinal.Cartas.Seguidores;
 
 import br.com.unicamp.projetofinal.*;
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
-
+/*
+* 0 | 3 | 2
+*
+* Para ser colocado no jogo, deve-se abater um aliado
+*
+* */
 public class AcougueiroVoraz extends Seguidor {
     public AcougueiroVoraz(Mesa mesa, Jogador jogador) {
         super("Acougueiro Voraz", 0, 3, 2, mesa, jogador);
@@ -39,7 +44,6 @@ public class AcougueiroVoraz extends Seguidor {
                 System.out.println("O mapa tem tamanho maximo de 6 cartas");
             }
         }
-        //TODO precisa ver se da pra usar?
 
     }
 }

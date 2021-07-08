@@ -177,6 +177,7 @@ public class Mesa {
 	// PARTES
 
 	public boolean realizarParte0() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
+		this.verificarCondicoes();
 		this.parte_da_rodada = 0;
 		this.verificarCondicoes();
 		return this.atacante.atacar();
@@ -209,7 +210,9 @@ public class Mesa {
 			this.realizarParte1();
 			this.realizarParte2();
 		}
+		this.parte_da_rodada = 4;
 		return this.continuar;
+
 	}
 
 	public int numCartasMesa(Jogador jogador){

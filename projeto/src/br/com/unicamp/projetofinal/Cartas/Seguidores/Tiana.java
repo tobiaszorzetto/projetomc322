@@ -5,6 +5,13 @@ import br.com.unicamp.projetofinal.Cartas.Seguidor;
 
 import java.util.ArrayList;
 
+/*
+*  8 | 7 | 7
+*
+*  Ao ser colocada na mesa -> um seguidor aliado ateatorio que esta na mesa ataca o nexus inimigo
+*
+* */
+
 public class Tiana extends Seguidor {
 
     public Tiana (Mesa mesa, Jogador jogador) {

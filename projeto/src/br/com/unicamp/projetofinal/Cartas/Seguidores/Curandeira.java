@@ -7,6 +7,13 @@ import br.com.unicamp.projetofinal.Mesa;
 import br.com.unicamp.projetofinal.PosicaoMesaOcupadaException;
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
 
+/*
+*  4 | 2 | 4
+*
+*  ao Ser colocado -> cura um seguidor aliado totalmente
+*
+* */
+
 public class Curandeira extends Seguidor {
 	//cura aumenta a vida de uma carta aliada quando entra em jogo
 	

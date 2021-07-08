@@ -7,6 +7,13 @@ import br.com.unicamp.projetofinal.ManaInsuficienteException;
 import br.com.unicamp.projetofinal.Mesa;
 import br.com.unicamp.projetofinal.PosicaoMesaOcupadaException;
 
+/*
+*  3 | 4 | 3
+*
+* Traco -> Sobrepujar
+*
+* */
+
 public class BalistaDeFerro extends Seguidor {
     public BalistaDeFerro(Mesa mesa, Jogador jogador) {
         super("Balista De Ferro", 3, 4, 3, mesa, jogador);

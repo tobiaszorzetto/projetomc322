@@ -43,7 +43,7 @@ public class Atakhan extends Seguidor {
         ArrayList<Seguidor> cartas_mesa_aliadas = this.getMesa().getCartasMesa(this.getJogador());
         int ataque_adicional = 0;
         for (Seguidor seguidor : cartas_mesa_aliadas){
-            if (seguidor != null){
+            if (seguidor != null && seguidor != this){
                 ataque_adicional += seguidor.getAtaque();
             }
         }

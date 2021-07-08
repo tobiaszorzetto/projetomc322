@@ -7,6 +7,11 @@ import br.com.unicamp.projetofinal.PosicaoMesaOcupadaException;
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
 import br.com.unicamp.projetofinal.GerenciadorEfeitos;
 
+/*
+*  5 | 5 | 5
+*
+*  Ao ser colocado na mesa -> da 1 | 1 para todos os seguidores aliados
+* */
 
 public class GuardaTerrestreAvarosiano extends Seguidor{
 

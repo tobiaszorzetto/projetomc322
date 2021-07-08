@@ -92,7 +92,7 @@ public class GerenciadorEfeitos {
     public static void escolherCartaParaDarDano(Carta carta, Jogador jogador_atingido, int dano) throws PosicaoMesaOcupadaException, ManaInsuficienteException {
         if (jogador_atingido.getMesa().temCartasMesa(jogador_atingido)){
             ArrayList<Seguidor> cartas_mesa = jogador_atingido.getMesa().getCartasMesa(jogador_atingido);
-            int numero_carta = PrintFactory.pedirInput("Escolha uma carta para dar "+ dano +"dano");
+            int numero_carta = PrintFactory.pedirInput("Escolha uma carta para dar "+ dano +"dano") - 1;
             try{
                 Seguidor carta_escolhida = cartas_mesa.get(numero_carta);
                 boolean morreu = carta_escolhida.diminuirVida(dano);
@@ -196,6 +196,7 @@ public class GerenciadorEfeitos {
             posicao_alocao += 1;
             if (seguidor == null){
                 carta.atuarNaMesa(carta.getJogador(), posicao_alocao);
+                break;
             }
         }
     }
@@ -219,7 +220,7 @@ public class GerenciadorEfeitos {
     public static boolean abaterAliado(Jogador jogador_atingido) {
         if (jogador_atingido.getMesa().temCartasMesa(jogador_atingido)){
             ArrayList<Seguidor> cartas_mesa = jogador_atingido.getMesa().getCartasMesa(jogador_atingido);
-            int numero_carta = PrintFactory.pedirInput("Escolha uma carta para dar abater");
+            int numero_carta = PrintFactory.pedirInput("Escolha uma carta para dar abater") - 1;
             try{
                 Seguidor carta_escolhida = cartas_mesa.get(numero_carta);
                 carta_escolhida.diminuirVida(carta_escolhida.getVidaAtual());

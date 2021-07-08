@@ -9,9 +9,15 @@ import br.com.unicamp.projetofinal.Cartas.Seguidor;
 
 import java.util.ArrayList;
 
+/*
+* 4 | 3 | 3
+*
+* ao ser colocada -> da 1|1 p todos os aliados na mesa
+*
+* */
+
 public class Vanguarda extends Seguidor {
 
-    private boolean acabou_de_ser_colocada = true;
 
     public Vanguarda(Mesa mesa, Jogador jogador) {
         super("Vanguarda", 4, 3, 3, mesa, jogador);
@@ -31,6 +37,6 @@ public class Vanguarda extends Seguidor {
         }
 
         this.getMesa().colocarCartaMesa(jogador, this, posicao_alocacao);
-        this.getMesa().verificarCondicoes();
+
     }
 }
