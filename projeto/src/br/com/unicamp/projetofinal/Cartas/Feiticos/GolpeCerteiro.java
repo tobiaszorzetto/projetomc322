@@ -6,6 +6,16 @@ import br.com.unicamp.projetofinal.Jogador;
 import br.com.unicamp.projetofinal.Mesa;
 import br.com.unicamp.projetofinal.PrintFactory;
 
+/*
+*
+* Custo de mana: 1
+* Concede 1|1 para um jogador nessa rodada
+*
+*
+*
+* */
+
+
 public class GolpeCerteiro extends Feitico {
     private Seguidor alvo;
     private int rodada_criado;

@@ -4,7 +4,8 @@ import br.com.unicamp.projetofinal.*;
 import br.com.unicamp.projetofinal.Cartas.Feitico;
 
 /*
-*
+*Custo de mana: 8
+* Sorteia 3 cartas do deck (se houverem) e diminui seu custo de mana em 1
 *
 *
 * */

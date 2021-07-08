@@ -92,7 +92,7 @@ public class GerenciadorEfeitos {
     public static void escolherCartaParaDarDano(Carta carta, Jogador jogador_atingido, int dano) throws PosicaoMesaOcupadaException, ManaInsuficienteException {
         if (jogador_atingido.getMesa().temCartasMesa(jogador_atingido)){
             ArrayList<Seguidor> cartas_mesa = jogador_atingido.getMesa().getCartasMesa(jogador_atingido);
-            int numero_carta = PrintFactory.pedirInput("Escolha uma carta para dar "+ dano +"dano") - 1;
+            int numero_carta = PrintFactory.pedirInput("Escolha uma carta para dar "+ dano +" dano") - 1;
             try{
                 Seguidor carta_escolhida = cartas_mesa.get(numero_carta);
                 boolean morreu = carta_escolhida.diminuirVida(dano);
@@ -179,12 +179,12 @@ public class GerenciadorEfeitos {
         }
     }
 
-    public static void AtacarTodasAsCartasInimigo(Carta carta) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
+    public static void AtacarTodasAsCartasInimigo(Carta carta, int dano) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         ArrayList<Seguidor> cartas_mesa_inimigo = carta.getMesa().getCartasMesaAdversario(carta.getJogador());
 
         for (Seguidor seguidor : cartas_mesa_inimigo){
             if (seguidor != null){
-                seguidor.diminuirVida(1);
+                seguidor.diminuirVida(dano);
             }
         }
     }
@@ -257,7 +257,9 @@ public class GerenciadorEfeitos {
     public static void matarTodasAsCartasJogador(Jogador jogador) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         ArrayList<Seguidor> mesa_jogador = jogador.getMesa().getCartasMesa(jogador);
         for(int i = 0; i< 6; i++){
-            mesa_jogador.get(i).matarSeguidor();
+            if (mesa_jogador.get(i) != null){
+                mesa_jogador.get(i).matarSeguidor();
+            }
         }
     }
 
