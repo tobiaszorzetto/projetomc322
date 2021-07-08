@@ -76,6 +76,10 @@ public abstract class Seguidor extends Carta {
 	}
 
 		//Setter
+
+	public void setAtaque(int valor){
+		this.ataque = valor;
+	}
 	
 	public void setAtaqueOriginal(){
 		this.ataque = this.ataque_original;
