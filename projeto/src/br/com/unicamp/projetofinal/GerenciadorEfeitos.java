@@ -158,8 +158,8 @@ public class GerenciadorEfeitos {
             }
         }
         if (evocou){
+            carta.setVaiAtacar(true);
             PrintFactory.printCartasNaMesa(carta.getMesa());
-            carta.atacar();
         }
     }
 

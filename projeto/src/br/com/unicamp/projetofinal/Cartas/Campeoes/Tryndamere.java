@@ -3,6 +3,13 @@ package br.com.unicamp.projetofinal.Cartas.Campeoes;
 import br.com.unicamp.projetofinal.*;
 import br.com.unicamp.projetofinal.Cartas.Campeao;
 import br.com.unicamp.projetofinal.Enums.Traco;
+/*
+*  8|8|6
+*
+* de primeira nao morre, evolui.
+*
+* Traco: Sobrepujar
+* */
 
 public class Tryndamere extends Campeao {
 

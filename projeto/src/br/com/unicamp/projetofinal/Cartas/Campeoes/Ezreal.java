@@ -6,6 +6,17 @@ import br.com.unicamp.projetofinal.GerenciadorEfeitos;
 import br.com.unicamp.projetofinal.Jogador;
 import br.com.unicamp.projetofinal.Mesa;
 
+/*
+*   3 | 3 | 1
+*
+*  Para upar: atacou 6+ vezes \\ pode upar infinitas vezes
+*
+*  Golpe Ao Nexus Ativo: coloca carta disparo mistico na mao do jogador
+*
+*  Traco: elusivo
+*
+* */
+
 public class Ezreal extends Campeao{
 
     int vezes_que_upou = 0;
@@ -24,12 +35,14 @@ public class Ezreal extends Campeao{
     }
 
     public void verificarCondicao(){
+
+        if (this.getJogador().golpeAoNexusAtivo()){
+            GerenciadorEfeitos.colocarCartaNaMao(this, new DisparoMistico(this.getMesa(),this.getJogador()));
+            this.getJogador().setGolpeAoNexus(false);
+        }
+
         this.checarLevelUp();
     }
 
-    @Override
-    public void atacarNexus(Jogador adversario, int quant){
-        adversario.diminuirVida(quant);
-        GerenciadorEfeitos.colocarCartaNaMao(this, new DisparoMistico(this.getMesa(),this.getJogador()));
-    }
+
 }

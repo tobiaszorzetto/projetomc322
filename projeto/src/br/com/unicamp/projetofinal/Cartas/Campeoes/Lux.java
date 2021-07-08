@@ -6,6 +6,17 @@ import br.com.unicamp.projetofinal.GerenciadorEfeitos;
 import br.com.unicamp.projetofinal.Jogador;
 import br.com.unicamp.projetofinal.Mesa;
 
+/*
+*   6|4|5
+*
+*  Para upar: viu o jogador gastar 6+ de mana em feitico
+*
+*  Level up -> coloca uma carta centelha final na mao do jogador
+*
+*
+* */
+
+
 public class Lux extends Campeao {
     private boolean ja_upou = false;
     private final int mana_inicial;

@@ -8,6 +8,13 @@ import br.com.unicamp.projetofinal.ManaInsuficienteException;
 import br.com.unicamp.projetofinal.Mesa;
 import br.com.unicamp.projetofinal.PosicaoMesaOcupadaException;
 
+/*
+*  0
+*
+*  Causa 4 de mana a uma carta adversaria da sua escolha
+*
+* */
+
 public class CentellhaFinal extends Feitico {
 
     public CentellhaFinal(Mesa mesa, Jogador jogador) {

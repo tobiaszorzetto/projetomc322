@@ -3,6 +3,12 @@ package br.com.unicamp.projetofinal.Cartas.Feiticos;
 import br.com.unicamp.projetofinal.*;
 import br.com.unicamp.projetofinal.Cartas.Feitico;
 
+/*
+*
+*
+*
+* */
+
 public class DiaDoProgresso extends Feitico {
 
     public DiaDoProgresso(Mesa mesa, Jogador jogador){
@@ -14,7 +20,7 @@ public class DiaDoProgresso extends Feitico {
         for (int i = 0; i < 3; i++){
             Carta sorteada = this.getJogador().sortearDoDeck();
             if (sorteada != null){
-                sorteada.diminuirCustoMana();
+                sorteada.diminuirCustoMana(1);
             }
         }
     }

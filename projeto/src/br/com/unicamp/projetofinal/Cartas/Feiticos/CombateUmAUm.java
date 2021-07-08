@@ -7,6 +7,13 @@ import br.com.unicamp.projetofinal.ManaInsuficienteException;
 import br.com.unicamp.projetofinal.Mesa;
 import br.com.unicamp.projetofinal.PosicaoMesaOcupadaException;
 
+/*
+*  5
+*
+*  Ao usar escolhe um aliado e um inimigo para combaterem diretamente
+*
+* */
+
 public class CombateUmAUm extends Feitico {
     public CombateUmAUm(Mesa mesa,Jogador jogador) {
         super("Combate Um A Um", 5, mesa, jogador);

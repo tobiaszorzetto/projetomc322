@@ -8,7 +8,7 @@ import br.com.unicamp.projetofinal.Cartas.Campeao;
  * LEVEL UP -> 12 DE DANO DADO FORA DE COMBATE
  * 
  * SE O NEXUS ALIADO EH ATACADO -> DA 3 DE DANO AO NEXUS INIMIGO 
- * 
+ * funcionando
  * */
 
 public class Swain extends Campeao {

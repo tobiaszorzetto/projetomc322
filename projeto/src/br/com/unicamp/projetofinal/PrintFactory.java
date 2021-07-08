@@ -39,6 +39,8 @@ public class PrintFactory {
 
         System.out.print(branco);
         System.out.println("========================================");
+        System.out.println("ATACANTE: " + mesa.getAtacante().getNome());
+        System.out.println("========================================");
 
         System.out.println(jogador1.getNome() + " ("+ jogador1.getVida()+ ") "+ "............."
                             + " ("+ jogador2.getVida()+ ") "+ jogador2.getNome());

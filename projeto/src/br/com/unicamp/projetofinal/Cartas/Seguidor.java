@@ -15,7 +15,6 @@ public abstract class Seguidor extends Carta {
 	private boolean vai_atacar = false;
 	private boolean vai_defender = false;
 	private boolean matou_alguem = false;
-	private Traco traco = Traco.NENHUM;
 	private boolean morreu = false;
 	
 	public Seguidor (String nome, int custo_mana, int ataque, int vida, Mesa mesa, Jogador jogador) {
@@ -41,7 +40,7 @@ public abstract class Seguidor extends Carta {
 
 	public void setVaiAtacar(boolean variavel){
 		this.vai_atacar = variavel;
-		if (variavel && this.traco == Traco.ATAQUEDUPLO)
+		if (variavel && this.getTraco() == Traco.ATAQUEDUPLO)
 			this.getVezes_que_vai_atacar = PrintFactory.pedirInput("vai atacar 1 ou duas vezes?");
 	}
 
@@ -71,10 +70,6 @@ public abstract class Seguidor extends Carta {
 		return matou_alguem;
 	}
 
-	public Traco getTraco(){
-		return this.traco;
-	}
-
 		//Setter
 
 	public void setAtaque(int valor){
@@ -89,10 +84,6 @@ public abstract class Seguidor extends Carta {
 		this.vida_atual = this.vida_original;
 	}
 
-	public void setTraco(Traco traco){
-		this.traco = traco;
-	}
-
 	public void setMatouAlguem(boolean a){
 		this.matou_alguem = a;
 	}
@@ -100,7 +91,7 @@ public abstract class Seguidor extends Carta {
 	public abstract void verificarCondicao() throws ManaInsuficienteException, PosicaoMesaOcupadaException;
 
 	public boolean isElusivo() {
-		return this.traco == Traco.ELUSIVO;
+		return this.getTraco() == Traco.ELUSIVO;
 	}
 
 	// VIDA
@@ -109,8 +100,8 @@ public abstract class Seguidor extends Carta {
 	}
 
 	public boolean diminuirVida(int quantidade) throws PosicaoMesaOcupadaException, ManaInsuficienteException{
-		if(this.traco == Traco.BARREIRA){
-			this.traco = Traco.NENHUM;
+		if(this.getTraco()== Traco.BARREIRA){
+			this.setTraco(Traco.BARREIRA);
 			return false;
 		}
 		vida_atual -= quantidade;
@@ -153,7 +144,7 @@ public abstract class Seguidor extends Carta {
 	}
 
 	public void verificarFuria(){
-		if (this.traco == Traco.FURIA){ //se o seguidor tiver traco de furia
+		if (this.getTraco() == Traco.FURIA){ //se o seguidor tiver traco de furia
 			GerenciadorEfeitos.aumentarAtaqueVida(this,1,1);
 		}
 	}

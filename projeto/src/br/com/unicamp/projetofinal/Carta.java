@@ -53,8 +53,9 @@ public abstract class Carta {
 		return this.getMesa().getAdversario(this.getJogador());
 	}
 
-	public void diminuirCustoMana(){
-		this.custo_mana--;
+	public void diminuirCustoMana(int quant){
+		for(int i = 0; i< quant; i++)
+			this.custo_mana--;
 	}
 
 	public void verificarSobrepujar(Seguidor carta_adversario){

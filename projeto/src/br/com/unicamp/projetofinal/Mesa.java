@@ -173,7 +173,6 @@ public class Mesa {
 		} else{
 			cartas_mesa2.set(posicao_alocacao-1,carta);
 		}
-		this.verificarCondicoes();
 	}
 	// PARTES
 

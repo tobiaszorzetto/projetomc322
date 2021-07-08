@@ -9,8 +9,20 @@ import br.com.unicamp.projetofinal.ManaInsuficienteException;
 import br.com.unicamp.projetofinal.Mesa;
 import br.com.unicamp.projetofinal.PosicaoMesaOcupadaException;
 
+/*
+*   3 | 1 | 5
+*
+*   Para upar: invocou 13+ cartas
+*
+*
+*   Para cada aliado que atacar invoque uma carta soldado de areia
+*
+*
+* */
+
 public class Azir extends Campeao {
     int unidades_evocadas = 0;
+    int quant = 0;
 
     public Azir(Mesa mesa, Jogador jogador) {
         super("Azir", 3, 1, 5, mesa, jogador);
@@ -29,11 +41,14 @@ public class Azir extends Campeao {
         this.checarLevelUp();
         if (this.getMesa().getParteDaRodada() == 1){
             for(Seguidor carta: this.getMesa().getCartasMesa(this.getJogador())){
-                if (carta.getVaiAtacar()){
+                if (carta!= null && carta.getVaiAtacar() && carta != this){
+                    this.quant++;
                     this.unidades_evocadas++;
-                    GerenciadorEfeitos.evocarSeguidorAtacante(new SoldadoDeAreia(this.getMesa(),this.getJogador()));
                 }
             }
+            for( int i= 0; i<quant;i++)  GerenciadorEfeitos.evocarSeguidorAtacante(new SoldadoDeAreia(this.getMesa(),this.getJogador()));
+            this.quant = 0;
         }
+
     }
 }

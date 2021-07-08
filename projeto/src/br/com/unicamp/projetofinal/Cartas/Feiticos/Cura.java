@@ -5,6 +5,13 @@ import br.com.unicamp.projetofinal.GerenciadorEfeitos;
 import br.com.unicamp.projetofinal.Jogador;
 import br.com.unicamp.projetofinal.Mesa;
 
+/*
+*  3
+*
+*  Cura inteiramente uma carta aliada de sua escolha
+*
+* */
+
 public class Cura extends Feitico {
 
 
