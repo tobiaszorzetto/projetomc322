@@ -115,8 +115,7 @@ public abstract class Seguidor extends Carta {
 	public void matarSeguidor() throws ManaInsuficienteException, PosicaoMesaOcupadaException{
 		this.setMorreu();
 		int posicao = this.getMesa().getCartasMesa(this.getJogador()).indexOf(this);
-		this.getMesa().getCartasMesa(this.getJogador()).remove(this);//remove da lista
-		this.getMesa().getCartasMesa(this.getJogador()).add(posicao, null);//adiciona null no lugar
+		this.getMesa().getCartasMesa(this.getJogador()).set(posicao, null);//remove da lista e coloca null no lugar
 	}
 
 	protected void setMorreu(){
