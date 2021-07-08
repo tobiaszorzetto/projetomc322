@@ -38,6 +38,8 @@ public class Zed extends Campeao {
         ArrayList<Seguidor> cartas_adversario = this.getMesa().getCartasMesa(adversario);
         Seguidor carta_adversario = cartas_adversario.get(endereco);
 
+        GerenciadorEfeitos.evocarSeguidorAtacante(new SombraViva(this.getMesa(), this.getJogador()));
+
         if(deveAtacarNexus( carta_adversario )) {
             this.atacarNexus(adversario, this.getAtaque());
             vezesAtacouNexus++;
@@ -45,7 +47,6 @@ public class Zed extends Campeao {
         else{//atacar a carta na posicao do adversario
             this.realizarCombate(carta_adversario);
         }
-        GerenciadorEfeitos.evocarSeguidorAtacante(new SombraViva(this.getMesa(), this.getJogador()));
     }
 
 }

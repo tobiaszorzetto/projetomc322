@@ -147,6 +147,7 @@ public abstract class Seguidor extends Carta {
 		}
 		this.getMesa().colocarCartaMesa(jogador, this, posicao_alocacao);
 	}
+
 	public void atacarNexus(Jogador adversario, int quant){
 		adversario.diminuirVida(quant);
 	}

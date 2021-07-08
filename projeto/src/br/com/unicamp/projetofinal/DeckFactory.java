@@ -124,43 +124,183 @@ public class DeckFactory {
 
                 switch (numero_carta){
                     case 1:
-                        deck.adicionarCarta(new Thor(mesa, jogador));
+                        deck.adicionarCarta(new AurelionSol(mesa, jogador));
                         break;
                     case 2:
-                        deck.adicionarCarta(new Gnomo(mesa, jogador));
+                        deck.adicionarCarta(new Azir(mesa, jogador));
                         break;
                     case 3:
-                        deck.adicionarCarta(new Curandeira(mesa, jogador));
+                        deck.adicionarCarta(new Braum(mesa, jogador));
                         break;
                     case 4:
-                        deck.adicionarCarta(new Garen(mesa, jogador));
+                        deck.adicionarCarta(new Darius(mesa, jogador));
                         break;
                     case 5:
-                        deck.adicionarCarta(new Tiana(mesa, jogador));
+                        deck.adicionarCarta(new Gangplank(mesa, jogador));
                         break;
                     case 6:
-                        deck.adicionarCarta(new Vanguarda(mesa, jogador));
+                        deck.adicionarCarta(new Garen(mesa, jogador));
                         break;
                     case 7:
-                        deck.adicionarCarta(new Duelista(mesa, jogador));
+                        deck.adicionarCarta(new Lux(mesa, jogador));
                         break;
                     case 8:
-                        deck.adicionarCarta(new Poro(mesa, jogador));
+                        deck.adicionarCarta(new Tryndamere(mesa, jogador));
                         break;
                     case 9:
-                        deck.adicionarCarta(new PoroDefensor(mesa, jogador));
+                        deck.adicionarCarta(new Swain(mesa, jogador));
                         break;
                     case 10:
-                        deck.adicionarCarta(new Cura(mesa, jogador));
+                        deck.adicionarCarta(new Zed(mesa, jogador));
                         break;
                     case 11:
-                        deck.adicionarCarta(new CorsariaAtiradora(mesa, jogador));
+                        deck.adicionarCarta(new AlunoEmTreinamento(mesa, jogador));
                         break;
                     case 12:
-                        deck.adicionarCarta(new PoroPoderoso(mesa, jogador));
+                        deck.adicionarCarta(new AranhaDomestica(mesa, jogador));
                         break;
                     case 13:
-                        deck.adicionarCarta(new Lux(mesa, jogador));
+                        deck.adicionarCarta(new ArtificeDasAreias(mesa, jogador));
+                        break;
+                    case 14:
+                        deck.adicionarCarta(new Atirador(mesa, jogador));
+                        break;
+                    case 15:
+                        deck.adicionarCarta(new Atakhan(mesa, jogador));
+                        break;
+                    case 16:
+                        deck.adicionarCarta(new AcougueiroVoraz(mesa, jogador));
+                        break;
+                    case 17:
+                        deck.adicionarCarta(new BalistaDeFerro(mesa,jogador));
+                        break;
+                    case 18:
+                        deck.adicionarCarta(new CapitaoFarron(mesa,jogador));
+                        break;
+                    case 19:
+                        deck.adicionarCarta(new CorsariaAtiradora(mesa, jogador));
+                        break;
+                    case 20:
+                        deck.adicionarCarta(new CriaAracnidea(mesa, jogador));
+                        break;
+                    case 21:
+                        deck.adicionarCarta(new Curandeira(mesa, jogador));
+                        break;
+                    case 22:
+                        deck.adicionarCarta(new DemolidorImperial(mesa, jogador));
+                        break;
+                    case 23:
+                        deck.adicionarCarta(new Duelista(mesa, jogador));
+                        break;
+                    case 24:
+                        deck.adicionarCarta(new EstatuaDeMacaco(mesa, jogador));
+                        break;
+                    case 25:
+                        deck.adicionarCarta(new GarrerozAlfa(mesa, jogador));
+                        break;
+                    case 26:
+                        deck.adicionarCarta(new Gnomo(mesa, jogador));
+                        break;
+                    case 27:
+                        deck.adicionarCarta(new GuardaTerrestreAvarosiano(mesa, jogador));
+                        break;
+                    case 28:
+                        deck.adicionarCarta(new MiquinhoExplosivo(mesa, jogador));
+                        break;
+                    case 29:
+                        deck.adicionarCarta(new OLeviata(mesa, jogador));
+                        break;
+                    case 30:
+                        deck.adicionarCarta(new Poro(mesa, jogador));
+                        break;
+                    case 31:
+                        deck.adicionarCarta(new PoroDefensor(mesa, jogador));
+                        break;
+                    case 32:
+                        deck.adicionarCarta(new PoroPoderoso(mesa, jogador));
+                        break;
+                    case 33:
+                        deck.adicionarCarta(new SoldadoDeAreia(mesa, jogador));
+                        break;
+                    case 34:
+                        deck.adicionarCarta(new SombraViva(mesa, jogador));
+                        break;
+                    case 35:
+                        deck.adicionarCarta(new TaverneiroGentil(mesa, jogador));
+                        break;
+                    case 36:
+                        deck.adicionarCarta(new Thor(mesa, jogador));
+                    case 37:
+                        deck.adicionarCarta(new Tiana(mesa,jogador));
+                        break;
+                    case 38:
+                        deck.adicionarCarta(new Vanguarda(mesa,jogador));
+                        break;
+                    case 39:
+                        deck.adicionarCarta(new VigilanteDasDunas(mesa,jogador));
+                        break;
+                    case 40:
+                        deck.adicionarCarta(new DragaoFurioso(mesa,jogador));
+                        break;
+                    case 41:
+                        deck.adicionarCarta(new ARuina(mesa,jogador));
+                        break;
+                    case 42:
+                        deck.adicionarCarta(new Avalanche(mesa,jogador));
+                        break;
+                    case 43:
+                        deck.adicionarCarta(new BanqueteCruel(mesa,jogador));
+                        break;
+                    case 44:
+                        deck.adicionarCarta(new CentellhaFinal(mesa,jogador));
+                        break;
+                    case 45:
+                        deck.adicionarCarta(new CombateUmAUm(mesa,jogador));
+                        break;
+                    case 46:
+                        deck.adicionarCarta(new Cura(mesa,jogador));
+                        break;
+                    case 47:
+                        deck.adicionarCarta(new DiaDoProgresso(mesa,jogador));
+                        break;
+                    case 48:
+                        deck.adicionarCarta(new DisparoMistico(mesa,jogador));
+                        break;
+                    case 49:
+                        deck.adicionarCarta(new Dizimar(mesa,jogador));
+                        break;
+                    case 50:
+                        deck.adicionarCarta(new GolpeCerteiro(mesa,jogador));
+                        break;
+                    case 51:
+                        deck.adicionarCarta(new GolpeExpurgante(mesa,jogador));
+                        break;
+                    case 52:
+                        deck.adicionarCarta(new Julgamento(mesa,jogador));
+                        break;
+                    case 53:
+                        deck.adicionarCarta(new LamentoFulminante(mesa,jogador));
+                        break;
+                    case 54:
+                        deck.adicionarCarta(new LotusDaMorte(mesa,jogador));
+                        break;
+                        case 55:
+                        deck.adicionarCarta(new MaoDaMorte(mesa,jogador));
+                        break;
+                    case 56:
+                        deck.adicionarCarta(new RaioTermogenico(mesa,jogador));
+                        break;
+                    case 57:
+                        deck.adicionarCarta(new ValorRedobrado(mesa,jogador));
+                        break;
+                    case 58:
+                        deck.adicionarCarta(new Vinganca(mesa,jogador));
+                        break;
+                    case 59:
+                        deck.adicionarCarta(new VislumbreDoAlem(mesa,jogador));
+                        break;
+                    case 60:
+                        deck.adicionarCarta(new VoltaAoLar(mesa,jogador));
                         break;
                     default:
                         System.out.println("Não existe carta com esse numero");

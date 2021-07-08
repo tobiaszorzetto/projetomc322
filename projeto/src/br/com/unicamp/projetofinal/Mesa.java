@@ -118,9 +118,9 @@ public class Mesa {
 			if (cartas_mesa1.get(i)!= null)
 				cartas_mesa1.get(i).verificarCondicao();
 		}
-		for (Seguidor carta: cartas_mesa2){
-			if (carta!= null)
-				carta.verificarCondicao();
+		for (int i = 0; i < 6; i++){
+			if (cartas_mesa2.get(i) != null)
+				cartas_mesa2.get(i).verificarCondicao();
 		}
 		for (int i = 0; i< feiticos_ativos.size(); i++){
 			feiticos_ativos.get(i).verificarCondicao();
