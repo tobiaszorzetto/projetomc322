@@ -2,6 +2,7 @@ package br.com.unicamp.projetofinal;
 
 import br.com.unicamp.projetofinal.Cartas.Feiticos.ARuina;
 import br.com.unicamp.projetofinal.Cartas.Feiticos.DisparoMistico;
+import br.com.unicamp.projetofinal.Cartas.Feiticos.Vinganca;
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
 import br.com.unicamp.projetofinal.Cartas.Seguidores.DemolidorImperial;
 import br.com.unicamp.projetofinal.Cartas.Seguidores.SoldadoDeAreia;
@@ -276,4 +277,12 @@ public class GerenciadorEfeitos {
     }
 
 
+    public static void matarCartaInimiga(Carta carta_que_chamou) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
+        ArrayList<Seguidor> mesa_jogador = carta_que_chamou.getMesa().getCartasMesa(carta_que_chamou.getAdversario());
+        int num_carta_escolhida = PrintFactory.pedirInput("Que carta quer abater ") - 1;
+        Seguidor carta_escolhida = mesa_jogador.get(num_carta_escolhida);
+        if(carta_escolhida !=null){
+            carta_escolhida.matarSeguidor();
+        }
+    }
 }
