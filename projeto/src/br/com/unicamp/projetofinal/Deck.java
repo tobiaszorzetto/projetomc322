@@ -14,7 +14,8 @@ public class Deck {
 	//getters e setters
 	
 	public void adicionarCarta(Carta carta) {
-		this.deck.add(carta);
+		if(this.deck.size()<quant_max)
+			this.deck.add(carta);
 	}
 	
 	public void removerCarta(Carta carta) {

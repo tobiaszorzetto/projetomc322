@@ -26,6 +26,8 @@ public class Game {
             roda = mesa.passarRodada();
         }
 
+        PrintFactory.printarFinal(mesa);
+
     }
 
 }

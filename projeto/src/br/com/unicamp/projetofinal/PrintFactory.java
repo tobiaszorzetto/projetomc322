@@ -111,4 +111,19 @@ public class PrintFactory {
         System.out.println(linha);
     }
 
+    public static void printarFinal(Mesa mesa) {
+        Jogador ganhador;
+
+        if(mesa.getJogador(1).getVida()>mesa.getJogador(2).getVida()){
+            ganhador = mesa.getJogador(1);
+        } else{
+            ganhador = mesa.getJogador(2);
+        }
+
+        PrintFactory.printLinha("##################################################################");
+        PrintFactory.printLinha("##################################################################");
+        PrintFactory.printLinha("===============" + ganhador + " GANHOU!!! ===============");
+        PrintFactory.printLinha("##################################################################");
+        PrintFactory.printLinha("##################################################################");
+    }
 }
