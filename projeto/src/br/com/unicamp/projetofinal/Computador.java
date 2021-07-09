@@ -19,7 +19,7 @@ public class Computador extends Jogador {
             for (int i = 0; i < 6; i++) {
                 Seguidor carta = carta_mesa.get(i);
                 if (carta != null && !carta.getVaiAtacar()) {
-                    return i + 1;
+                    return i;
                 }
             }
         }
@@ -28,7 +28,7 @@ public class Computador extends Jogador {
             for (int i = 0; i < 6; i++) {
                 Seguidor carta = carta_mesa.get(i);
                 if (carta != null && carta.naoVaiDefender()) {
-                    return i + 1;
+                    return i;
                 }
             }
         }
@@ -75,7 +75,7 @@ public class Computador extends Jogador {
 
         int num = verSeTemCarta(conjunto, cartas, num_cartas_quer_colocar, mana, max);
         if (num == -1 && conjunto.size() == 0) return 0;
-        else if (num == -1) return cartas.getDeck().indexOf(conjunto.getLast()) + 1;
+        else if (num == -1) return cartas.getDeck().indexOf(conjunto.getLast());
         else return num;
     }
 
@@ -130,12 +130,12 @@ public class Computador extends Jogador {
 
         for(int i = 0; i<6; i++){
             if (mesa_adversario.get(i)!= null && mesa_aliada.get(i) == null){
-                return i+1;
+                return i;
             }
         }
         for(int i = 0; i<6; i++){
             if (mesa_aliada == null){
-                return i+1;
+                return i;
             }
         }
         return 0;

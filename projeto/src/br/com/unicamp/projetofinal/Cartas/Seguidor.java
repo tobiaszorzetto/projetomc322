@@ -129,13 +129,18 @@ public abstract class Seguidor extends Carta {
 	}
 
 	public void atuarNaMesa(Jogador jogador, int posicao_alocacao) throws PosicaoMesaOcupadaException, ManaInsuficienteException {
-		if (posicao_alocacao<=0){
+		if (posicao_alocacao<0){
 			throw new ArrayIndexOutOfBoundsException();
 		}
-		if(this.getMesa().getCartasMesa(jogador).get(posicao_alocacao-1) != null){
+		if(this.getMesa().getCartasMesa(jogador).get(posicao_alocacao) != null){
 			throw new PosicaoMesaOcupadaException();
 		}
+		this.realizarEfeitoAntesDeColocado();
 		this.getMesa().colocarCartaMesa(jogador, this, posicao_alocacao);
+	}
+
+	protected void realizarEfeitoAntesDeColocado() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
+
 	}
 
 	public void atacarNexus(Jogador adversario, int quant){
@@ -195,14 +200,9 @@ public abstract class Seguidor extends Carta {
 			this.atuarNaMesa(jogador, posicao_alocacao);
 			mao.removerCarta(this);
 		}
-		catch (PosicaoMesaOcupadaException e){
+		catch (PosicaoMesaOcupadaException | ArrayIndexOutOfBoundsException e){
 			jogador.setMana(jogador.getMana() + this.getMana());
-			System.out.println("Essa posicao ja esta ocupada pelo " + mesa.getCartasMesa(jogador).get(posicao_alocacao-1).getNome());
-			jogarCarta();
-		}
-		catch (ArrayIndexOutOfBoundsException e){
-			jogador.setMana(jogador.getMana() + this.getMana());
-			System.out.println("O mapa tem tamanho maximo de 6 cartas");
+			System.out.println("Posicao invalida");
 			jogarCarta();
 		}
 	}

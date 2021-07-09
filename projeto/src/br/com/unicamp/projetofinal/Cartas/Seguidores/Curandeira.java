@@ -29,15 +29,9 @@ public class Curandeira extends Seguidor {
 	}
 
 	@Override
-	public void atuarNaMesa(Jogador jogador, int posicao_alocacao) throws PosicaoMesaOcupadaException, ManaInsuficienteException {
-		if (posicao_alocacao<=0){
-			throw new ArrayIndexOutOfBoundsException();
-		}
-		if(this.getMesa().getCartasMesa(jogador).get(posicao_alocacao-1) != null){
-			throw new PosicaoMesaOcupadaException();
-		}
+	public void realizarEfeitoAntesDeColocado(){
 		GerenciadorEfeitos.escolherCartaCurar(this);
-		this.getMesa().colocarCartaMesa(jogador, this, posicao_alocacao);
 	}
+
 }
 

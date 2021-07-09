@@ -192,7 +192,7 @@ public class Jogador {
 
 
 	public int escolherCartaColocar(){
-		return PrintFactory.pedirInput(this.nome + ", escolha que carta quer colocar no jogo");
+		return PrintFactory.pedirInput(this.nome + ", escolha que carta quer colocar no jogo") - 1;
 	}
 
 	public void evocarCartas() throws ManaInsuficienteException {
@@ -204,11 +204,11 @@ public class Jogador {
 				PrintFactory.printCartasNaMao(this);
 
 				int numero_carta = escolherCartaColocar();
-				if (numero_carta == 0) {
+				if (numero_carta == -1) {
 					running = false;
 				} else{
 					try{
-						Carta carta = this.mao.getCarta(numero_carta - 1);
+						Carta carta = this.mao.getCarta(numero_carta);
 						carta.jogarCarta();
 					} catch (IndexOutOfBoundsException | PosicaoMesaOcupadaException e){
 						System.out.println("Nao há carta nessa posicao");
@@ -225,14 +225,14 @@ public class Jogador {
 
 
 	public int escolherPosicao(){
-		return PrintFactory.pedirInput(this.nome + ", escolha a posicao da mesa em que quer colocar a carta");
+		return PrintFactory.pedirInput(this.nome + ", escolha a posicao da mesa em que quer colocar a carta") - 1;
 	}
 
 	public int escolherCartaCombater(){
 		if (this.marcador == Marcador.ATACANTE) {
-			return PrintFactory.pedirInput(this.nome + ", escolha que cartas quer usar para atacar");
+			return PrintFactory.pedirInput(this.nome + ", escolha que cartas quer usar para atacar") - 1;
 		}
-		return PrintFactory.pedirInput(this.nome + ", escolha que cartas quer usar para defender");
+		return PrintFactory.pedirInput(this.nome + ", escolha que cartas quer usar para defender") - 1;
 	}
 
 	public boolean decidirQueCartasCombater(){
@@ -242,11 +242,11 @@ public class Jogador {
 		while (true){
 			PrintFactory.printCartasNaMesa(this.mesa);
 			int numero_carta = this.escolherCartaCombater();
-			if (numero_carta == 0) {
+			if (numero_carta == -1) {
 				break;
 			} else if (numero_carta <= 6) {
 				cont++;
-				Seguidor carta = cartas_na_mesa.get(numero_carta - 1);
+				Seguidor carta = cartas_na_mesa.get(numero_carta);
 				this.prepararParaCombate(carta);
 			} else {
 				break;

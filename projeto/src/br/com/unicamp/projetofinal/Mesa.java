@@ -13,7 +13,7 @@ public class Mesa {
 	private int rodada = 0;
 	private Jogador atacante;
 	private Jogador defensor;
-	private int manaJogo =0;
+	private int manaJogo =100;
 	private int parte_da_rodada;
 	private boolean continuar = true;
 
@@ -169,9 +169,9 @@ public class Mesa {
 
 	public void colocarCartaMesa(Jogador jogador, Seguidor carta, int posicao_alocacao) throws ManaInsuficienteException, PosicaoMesaOcupadaException{
 		if (jogador.equals(jogador1)){
-			cartas_mesa1.set(posicao_alocacao-1, carta);
+			cartas_mesa1.set(posicao_alocacao, carta);
 		} else{
-			cartas_mesa2.set(posicao_alocacao-1,carta);
+			cartas_mesa2.set(posicao_alocacao,carta);
 		}
 	}
 	// PARTES
