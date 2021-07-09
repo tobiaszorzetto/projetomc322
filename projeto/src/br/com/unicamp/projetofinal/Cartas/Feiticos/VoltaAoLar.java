@@ -16,7 +16,8 @@ public class VoltaAoLar extends Feitico {
 
     @Override
     protected void realizarEfeito() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
-        GerenciadorEfeitos.retornarCartaMao(this.getJogador());
-        GerenciadorEfeitos.retornarCartaMao(this.getAdversario());
+
+        if(GerenciadorEfeitos.retornarCartaMao(this.getJogador()))
+            GerenciadorEfeitos.retornarCartaMao(this.getAdversario());
     }
 }

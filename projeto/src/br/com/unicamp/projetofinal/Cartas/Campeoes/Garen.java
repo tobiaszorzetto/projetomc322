@@ -25,8 +25,6 @@ public class Garen extends Campeao {
         if(getVezesQueAtacou() == 2){
             GerenciadorEfeitos.aumentarAtaqueVida(this, 1, 1);
             this.setTraco(Traco.ELUSIVO);
-            
-
         }
     }
 

@@ -232,7 +232,7 @@ public class GerenciadorEfeitos {
             } catch (NullPointerException e){
                 System.out.println("Não há carta nessa posicao");
                 return false;
-            } catch (Exception e) {}
+            } catch (Exception ignored) {}
 
         }
         return false;
@@ -263,16 +263,20 @@ public class GerenciadorEfeitos {
         }
     }
 
-    public static void retornarCartaMao(Jogador jogador){
+    public static boolean retornarCartaMao(Jogador jogador){
         ArrayList<Seguidor> mesa_jogador = jogador.getMesa().getCartasMesa(jogador);
         int num_carta_escolhida = PrintFactory.pedirInput("Que carta quer retornar para " + jogador.getNome()) - 1;
         Seguidor carta_escolhida = mesa_jogador.get(num_carta_escolhida);
         if(carta_escolhida !=null){
             carta_escolhida.setAtaqueOriginal();
             carta_escolhida.setVidaOriginal();
+            carta_escolhida.setVaiAtacar(false);
+            carta_escolhida.setVaiDefender(false);
             GerenciadorEfeitos.colocarCartaNaMao(carta_escolhida, carta_escolhida);
             mesa_jogador.set(num_carta_escolhida, null);
+            return true;
         }
+        return false;
     }
 
 

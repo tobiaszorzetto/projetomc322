@@ -32,7 +32,7 @@ public class Computador extends Jogador {
                 }
             }
         }
-        return 0;
+        return -1;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class Computador extends Jogador {
         for(int i = 0; i<mao.getSize(); i++){
             if(mao.getDeck().get(i).getMana() > max && mao.getDeck().get(i).getMana()<=mana){
                 max = mao.getDeck().get(i).getMana();
-                pos = i+1;
+                pos = i;
             }
         }
         return pos;
@@ -74,7 +74,7 @@ public class Computador extends Jogador {
         LinkedList<Seguidor> conjunto = new LinkedList<Seguidor>();
 
         int num = verSeTemCarta(conjunto, cartas, num_cartas_quer_colocar, mana, max);
-        if (num == -1 && conjunto.size() == 0) return 0;
+        if (num == -1 && conjunto.size() == 0) return -1;
         else if (num == -1) return cartas.getDeck().indexOf(conjunto.getLast());
         else return num;
     }
@@ -82,7 +82,7 @@ public class Computador extends Jogador {
     private int verSeTemCarta(LinkedList<Seguidor> conjunto, Deck cartas, int num, int mana, LinkedList<Seguidor> max) throws IllegalArgumentException {
     if (num == 0) {
         try{
-            return cartas.getDeck().indexOf(conjunto.getLast()) + 1;
+            return cartas.getDeck().indexOf(conjunto.getLast()) ;
         } catch (NoSuchElementException e){
             return -1;
         }
@@ -104,7 +104,6 @@ public class Computador extends Jogador {
                         conjunto.removeLast();
                     }
                 } catch (IllegalArgumentException e) {
-                    continue;
                 }
             }
         }

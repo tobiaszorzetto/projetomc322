@@ -13,7 +13,7 @@ public class Mesa {
 	private int rodada = 0;
 	private Jogador atacante;
 	private Jogador defensor;
-	private int manaJogo =100;
+	private int manaJogo =0;
 	private int parte_da_rodada;
 	private boolean continuar = true;
 
