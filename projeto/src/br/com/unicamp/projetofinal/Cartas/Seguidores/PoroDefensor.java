@@ -24,9 +24,10 @@ public class PoroDefensor extends Seguidor {
     }
 
     @Override
-    public void matarSeguidor() {
-        this.getMesa().getCartasMesa(this.getJogador()).remove(this);
+    public void matarSeguidor() throws ManaInsuficienteException, PosicaoMesaOcupadaException{
+        this.setMorreu();
+        int posicao = this.getMesa().getCartasMesa(this.getJogador()).indexOf(this);
+        this.getMesa().getCartasMesa(this.getJogador()).set(posicao, null);//remove da lista e coloca null no lugar
         this.getJogador().sortearDoDeck();
-
     }
 }
