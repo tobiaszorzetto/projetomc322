@@ -8,9 +8,6 @@ public class Game {
 
         Mesa mesa = new Mesa();
 
-        Janela janela = new Janela("Legends Of Runetera", mesa);
-        janela.setVisible(true);
-
         int escolha = PrintFactory.pedirInput("1.1x1 | 2.1xPC");
 
         System.out.println(ConsoleColors.BLUE + "Digite o Nome do Jogador 1");
