@@ -1,10 +1,15 @@
 package br.com.unicamp.projetofinal;
 
+import javax.swing.*;
+
 public class Game {
 
     public void start() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
 
         Mesa mesa = new Mesa();
+
+        Janela janela = new Janela("Legends Of Runetera", mesa);
+        janela.setVisible(true);
 
         int escolha = PrintFactory.pedirInput("1.1x1 | 2.1xPC");
 
