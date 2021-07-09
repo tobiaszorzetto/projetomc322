@@ -18,7 +18,7 @@ public class DeckFactory {
     }
 
     public static Deck fazerDeckPadrao(Deck deck, Mesa mesa, Jogador jogador){
-        for(int i = 0; i< 4; i++){
+        for(int i = 0; i < 4; i++){
             deck.adicionarCarta(new Thor(mesa, jogador));
             deck.adicionarCarta(new Gnomo(mesa, jogador));
             deck.adicionarCarta(new Curandeira(mesa, jogador));
@@ -31,6 +31,15 @@ public class DeckFactory {
             deck.adicionarCarta(new Cura(mesa, jogador));
             deck.adicionarCarta(new GolpeCerteiro(mesa, jogador));
         }
+        return deck;
+    }
+
+    public static Deck fazerDeckEvocador(Deck deck, Mesa mesa, Jogador jogador){
+        deck.adicionarCarta(new Azir(mesa, jogador));
+        deck.adicionarCarta(new Zed(mesa, jogador));
+        deck.adicionarCarta(new SombraViva(mesa, jogador));
+        deck.adicionarCarta(new VigilanteDasDunas(mesa, jogador));
+        deck.adicionarCarta(new SoldadoDeAreia(mesa, jogador));
         return deck;
     }
 

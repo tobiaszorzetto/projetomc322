@@ -12,7 +12,6 @@ public class Computador extends Jogador {
         super(mesa, "PC");
     }
 
-
     @Override
     public int escolherCartaCombater() {
         ArrayList<Seguidor> carta_mesa = this.getMesa().getCartasMesa(this);
