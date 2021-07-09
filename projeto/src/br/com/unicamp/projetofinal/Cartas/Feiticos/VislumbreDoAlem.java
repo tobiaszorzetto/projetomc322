@@ -12,6 +12,16 @@ import br.com.unicamp.projetofinal.Cartas.Seguidor;
 
 import java.util.ArrayList;
 
+/*
+*
+* Custo de mana: 2
+* Da um de dano a TODOS os inimigos na mesa
+*
+*
+*
+* */
+
+
 public class VislumbreDoAlem extends Feitico {
 
     public VislumbreDoAlem(Mesa mesa, Jogador jogador){

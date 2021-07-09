@@ -127,9 +127,13 @@ public class Jogador {
 
 	public Deck escolherDeck(Mesa mesa, Jogador jogador) {
 		TipoDeck tipo;
-		int num = PrintFactory.pedirInput("Digite 1 para deck padrao ou 2 para personalizado");
+		int num = PrintFactory.pedirInput("Digite: 1 para deck Padrao || 2 para deck Evocador || 3 para deck Bravura || 4 para personalizar");
 		if (num == 1){
 			tipo = TipoDeck.PADRAO;
+		} else if(num == 2){
+			tipo = TipoDeck.EVOCADOR;
+		} else if (num == 3){
+			tipo = TipoDeck.BRAVURA;
 		}
 		else{
 			tipo = TipoDeck.PERSONALIZADO;

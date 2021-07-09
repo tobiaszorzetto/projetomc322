@@ -12,6 +12,10 @@ public class DeckFactory {
         switch (tipo){
             case PADRAO:
                 return fazerDeckPadrao(deck, mesa, jogador);
+            case EVOCADOR:
+                return fazerDeckEvocador(deck, mesa, jogador);
+            case BRAVURA:
+                return fazerDeckBravura(deck, mesa, jogador);
             default:
                 return fazerDeckPersonalizado(deck, mesa, jogador);
         }
@@ -35,11 +39,35 @@ public class DeckFactory {
     }
 
     public static Deck fazerDeckEvocador(Deck deck, Mesa mesa, Jogador jogador){
-        deck.adicionarCarta(new Azir(mesa, jogador));
-        deck.adicionarCarta(new Zed(mesa, jogador));
+        for (int i = 0; i < 3; i ++){
+            deck.adicionarCarta(new Azir(mesa, jogador));
+            deck.adicionarCarta(new Zed(mesa, jogador));
+            deck.adicionarCarta(new VigilanteDasDunas(mesa, jogador));
+            deck.adicionarCarta(new EstatuaDeMacaco(mesa, jogador));
+            deck.adicionarCarta(new AranhaDomestica(mesa, jogador));
+            deck.adicionarCarta(new VislumbreDoAlem(mesa, jogador));
+            deck.adicionarCarta(new RaioTermogenico(mesa, jogador));
+        }
         deck.adicionarCarta(new SombraViva(mesa, jogador));
-        deck.adicionarCarta(new VigilanteDasDunas(mesa, jogador));
         deck.adicionarCarta(new SoldadoDeAreia(mesa, jogador));
+        deck.adicionarCarta(new RaioTermogenico(mesa, jogador));
+        deck.adicionarCarta(new Atakhan(mesa, jogador));
+        deck.adicionarCarta(new MiquinhoExplosivo(mesa, jogador));
+        deck.adicionarCarta(new OLeviata(mesa, jogador));
+        deck.adicionarCarta(new PoroDefensor(mesa, jogador));
+        deck.adicionarCarta(new AlunoEmTreinamento(mesa, jogador));
+        deck.adicionarCarta(new LamentoFulminante(mesa, jogador));
+        deck.adicionarCarta(new Curandeira(mesa, jogador));
+        deck.adicionarCarta(new Vinganca(mesa, jogador));
+        deck.adicionarCarta(new CapitaoFarron(mesa, jogador));
+        deck.adicionarCarta(new CombateUmAUm(mesa, jogador));
+        deck.adicionarCarta(new Avalanche(mesa, jogador));
+        deck.adicionarCarta(new VoltaAoLar(mesa, jogador));
+        deck.adicionarCarta(new GolpeExpurgante(mesa, jogador));
+        deck.adicionarCarta(new GarrerozAlfa(mesa, jogador));
+        deck.adicionarCarta(new Gnomo(mesa, jogador));
+        deck.adicionarCarta(new PoroPoderoso(mesa, jogador));
+
         return deck;
     }
 

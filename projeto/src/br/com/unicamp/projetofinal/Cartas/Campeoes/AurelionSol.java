@@ -15,8 +15,8 @@ public class AurelionSol extends Campeao {
     @Override
     public void checarLevelUp() {
         if (this.getMesa().getParteDaRodada() == 3 && calcularPoderAliados() >= 25){
-            this.aumentarAtaque(1);
-            this.aumentarVida(1);
+            this.aumentarAtaque(3);
+            this.aumentarVida(3);
         }
     }
 
