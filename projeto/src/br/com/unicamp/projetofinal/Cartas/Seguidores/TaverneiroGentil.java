@@ -15,10 +15,6 @@ public class TaverneiroGentil extends Seguidor {
         super("Taverneiro Gentil", 3, 3, 3, mesa, jogador);
     }
 
-    @Override
-    public void verificarCondicao() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
-
-    }
 
     @Override
     public void realizarEfeitoAntesDeColocado(){

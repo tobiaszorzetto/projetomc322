@@ -19,11 +19,6 @@ public class Tiana extends Seguidor {
     }
 
     @Override
-    public void verificarCondicao() {
-
-    }
-
-    @Override
     public void realizarEfeitoAntesDeColocado(){
         ArrayList<Seguidor> cartas_na_mesa = this.getMesa().getCartasMesa(this.getJogador());
         GerenciadorEfeitos.cartaAleatoriaAtacarNexus(this, cartas_na_mesa);

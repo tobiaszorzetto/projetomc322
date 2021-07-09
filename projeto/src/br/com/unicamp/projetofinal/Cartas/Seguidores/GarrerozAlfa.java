@@ -22,9 +22,5 @@ public class GarrerozAlfa extends Seguidor{
 		
 	}
 
-	@Override
-	public void verificarCondicao() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
-	
-	}
 	
 }

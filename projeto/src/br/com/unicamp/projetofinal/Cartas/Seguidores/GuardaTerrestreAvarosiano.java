@@ -21,11 +21,6 @@ public class GuardaTerrestreAvarosiano extends Seguidor{
 	}
 
 	@Override
-	public void verificarCondicao() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
-		
-	}
-
-	@Override
 	protected void realizarEfeitoAntesDeColocado() {
 		for(Seguidor carta: this.getMesa().getCartasMesa(this.getJogador())) {
 			if(carta!=null) {

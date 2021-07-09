@@ -24,11 +24,6 @@ public class Curandeira extends Seguidor {
 	}
 
 	@Override
-	public void verificarCondicao() {
-
-	}
-
-	@Override
 	public void realizarEfeitoAntesDeColocado(){
 		GerenciadorEfeitos.escolherCartaCurar(this);
 	}

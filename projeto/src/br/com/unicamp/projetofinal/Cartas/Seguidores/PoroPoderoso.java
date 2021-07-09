@@ -17,8 +17,4 @@ public class PoroPoderoso extends Seguidor {
         this.setTraco(Traco.SOBREPUJAR);
     }
 
-    @Override
-    public void verificarCondicao() {
-
-    }
 }

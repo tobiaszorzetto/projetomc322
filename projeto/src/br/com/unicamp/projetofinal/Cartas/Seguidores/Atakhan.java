@@ -24,9 +24,6 @@ public class Atakhan extends Seguidor {
         super("Atakhan", 10, 5, 12, mesa, jogador);
     }
 
-    @Override
-    public void verificarCondicao() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
-    }
 
     public void atacar() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         this.aumentarVezesAtacou();

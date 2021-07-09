@@ -24,10 +24,6 @@ public class Vanguarda extends Seguidor {
     }
 
     @Override
-    public void verificarCondicao() {
-    }
-
-    @Override
     protected void realizarEfeitoAntesDeColocado() {
         ArrayList<Seguidor> cartas_na_mesa = this.getMesa().getCartasMesa(this.getJogador());
         for (Seguidor carta: cartas_na_mesa){

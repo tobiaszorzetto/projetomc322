@@ -16,8 +16,4 @@ public class CriaAracnidea extends Seguidor {
         super("Cria Aracnidea", 1, 1, 1, mesa, jogador);
     }
 
-    @Override
-    public void verificarCondicao() throws ManaInsuficienteException {
-
-    }
 }

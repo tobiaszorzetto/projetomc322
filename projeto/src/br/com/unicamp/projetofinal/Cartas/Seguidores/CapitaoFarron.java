@@ -22,10 +22,6 @@ public class CapitaoFarron extends Seguidor {
     }
 
     @Override
-    public void verificarCondicao() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
-
-    }
-    @Override
     public void realizarEfeitoAntesDeColocado(){
         GerenciadorEfeitos.colocarCartaNaMao(this, new Dizimar(this.getMesa(),this.getJogador()));
         GerenciadorEfeitos.colocarCartaNaMao(this, new Dizimar(this.getMesa(),this.getJogador()));

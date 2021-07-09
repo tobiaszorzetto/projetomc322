@@ -17,10 +17,6 @@ public class AranhaDomestica extends Seguidor {
         super("Aranha Doméstica", 2, 2, 2, mesa, jogador);
     }
 
-    @Override
-    public void verificarCondicao() throws ManaInsuficienteException {
-
-    }
 
     @Override
     public void atuarNaMesa(Jogador jogador, int posicao_alocacao) throws PosicaoMesaOcupadaException, ManaInsuficienteException {

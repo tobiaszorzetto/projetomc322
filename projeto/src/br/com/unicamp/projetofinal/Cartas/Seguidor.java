@@ -8,7 +8,7 @@ import java.util.*;
 public abstract class Seguidor extends Carta {
 	private final int ataque_original;
 	private int vezes_que_atacou = 0;
-	private int getVezes_que_vai_atacar;
+	private int get_vezes_que_vai_atacar;
 	private int ataque;
 	protected int vida_atual;
 	private final int vida_original;
@@ -41,7 +41,7 @@ public abstract class Seguidor extends Carta {
 	public void setVaiAtacar(boolean variavel){
 		this.vai_atacar = variavel;
 		if (variavel && this.getTraco() == Traco.ATAQUEDUPLO)
-			this.getVezes_que_vai_atacar = PrintFactory.pedirInput("vai atacar 1 ou duas vezes?");
+			this.get_vezes_que_vai_atacar = PrintFactory.pedirInput("vai atacar 1 ou duas vezes?");
 	}
 
 	// GETTERS SETTERS E BOOLS
@@ -59,7 +59,7 @@ public abstract class Seguidor extends Carta {
 	}
 
 	public int getGetVezesQueVaiAtacar() {
-		return getVezes_que_vai_atacar;
+		return get_vezes_que_vai_atacar;
 	}
 
 	public int getVidaOriginal() { return this.vida_original; }
@@ -88,10 +88,14 @@ public abstract class Seguidor extends Carta {
 		this.matou_alguem = a;
 	}
 	
-	public abstract void verificarCondicao() throws ManaInsuficienteException, PosicaoMesaOcupadaException;
+	public void verificarCondicao() throws ManaInsuficienteException, PosicaoMesaOcupadaException{};
 
 	public boolean isElusivo() {
 		return this.getTraco() == Traco.ELUSIVO;
+	}
+
+	public void aumentarVezesAtacou(){
+		this.vezes_que_atacou++;
 	}
 
 	// VIDA
@@ -122,6 +126,19 @@ public abstract class Seguidor extends Carta {
 		this.morreu = true;
 	};
 
+	// Verificacao de Tracos
+
+	public void verificarFuria(){
+		if (this.getTraco() == Traco.FURIA){ //se o seguidor tiver traco de furia
+			GerenciadorEfeitos.aumentarAtaqueVida(this,1,1);
+		}
+	}
+
+	public boolean verificarElusivo( Seguidor carta_adversario) {
+		return this.isElusivo() && !carta_adversario.isElusivo();
+	}
+
+
 	// FUNCOES GERAIS
 
 	public void aumentarAtaque(int quantidade){
@@ -147,15 +164,6 @@ public abstract class Seguidor extends Carta {
 		adversario.diminuirVida(quant);
 	}
 
-	public void verificarFuria(){
-		if (this.getTraco() == Traco.FURIA){ //se o seguidor tiver traco de furia
-			GerenciadorEfeitos.aumentarAtaqueVida(this,1,1);
-		}
-	}
-
-	public boolean verificarElusivo( Seguidor carta_adversario) {
-		return this.isElusivo() && !carta_adversario.isElusivo();
-	}
 
 	public boolean deveAtacarNexus(Seguidor carta_adversario) {
 		if (carta_adversario == null || carta_adversario.naoVaiDefender()) {
@@ -207,7 +215,4 @@ public abstract class Seguidor extends Carta {
 		}
 	}
 
-	public void aumentarVezesAtacou(){
-		this.vezes_que_atacou++;
-	}
 }

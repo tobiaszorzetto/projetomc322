@@ -11,14 +11,7 @@ public class Thor extends Campeao {
 	}
 
 	@Override
-	public void verificarCondicao() {
-		//nao sei oq fazer
-	}
-
-	@Override
 	public void checarLevelUp() {
-		
+
 	}
-	
-	
 }

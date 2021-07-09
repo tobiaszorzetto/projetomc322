@@ -16,10 +16,6 @@ public class DemolidorImperial extends Seguidor {
     }
 
     @Override
-    public void verificarCondicao() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
-
-    }
-    @Override
     public void realizarEfeitoAntesDeColocado() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         GerenciadorEfeitos.darDanoEmAliadoParaAtacarNexus(this, 1, 2);
     }

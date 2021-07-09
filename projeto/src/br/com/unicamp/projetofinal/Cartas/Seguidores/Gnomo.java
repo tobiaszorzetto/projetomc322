@@ -16,9 +16,4 @@ public class Gnomo extends Seguidor {
 		super("gnomo", 4, 2, 4, mesa, jogador);
 	}
 
-	@Override
-	public void verificarCondicao() {
-		
-	}                                                                  
-
 }

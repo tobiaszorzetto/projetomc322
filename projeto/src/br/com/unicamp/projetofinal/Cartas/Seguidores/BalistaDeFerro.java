@@ -20,8 +20,4 @@ public class BalistaDeFerro extends Seguidor {
         this.setTraco(Traco.SOBREPUJAR);
     }
 
-    @Override
-    public void verificarCondicao() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
-
-    }
 }

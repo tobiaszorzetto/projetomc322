@@ -20,10 +20,6 @@ public class PoroDefensor extends Seguidor {
     }
 
     @Override
-    public void verificarCondicao() {
-    }
-
-    @Override
     public void matarSeguidor() throws ManaInsuficienteException, PosicaoMesaOcupadaException{
         this.setMorreu();
         int posicao = this.getMesa().getCartasMesa(this.getJogador()).indexOf(this);

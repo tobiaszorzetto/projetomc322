@@ -15,8 +15,4 @@ public class Poro extends Seguidor {
         super("Poro", 1, 2, 1, mesa, jogador);
     }
 
-    @Override
-    public void verificarCondicao() {
-
-    }
 }

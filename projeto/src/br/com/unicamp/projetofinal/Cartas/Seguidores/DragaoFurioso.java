@@ -20,8 +20,4 @@ public class DragaoFurioso extends Seguidor {
         this.setTraco(Traco.FURIA);
     }
 
-    @Override
-    public void verificarCondicao() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
-
-    }
 }

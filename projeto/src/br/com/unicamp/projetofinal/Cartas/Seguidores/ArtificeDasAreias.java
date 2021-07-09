@@ -19,10 +19,6 @@ public class ArtificeDasAreias extends Seguidor {
         super("Artifice Das Areias", 4, 3, 5, mesa, jogador);
     }
 
-    @Override
-    public void verificarCondicao() {
-
-    }
 
     @Override
     public void realizarCombate(Seguidor carta_adversario) throws ManaInsuficienteException, PosicaoMesaOcupadaException {

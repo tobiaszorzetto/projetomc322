@@ -13,10 +13,6 @@ public class AcougueiroVoraz extends Seguidor {
         super("Acougueiro Voraz", 0, 3, 2, mesa, jogador);
     }
 
-    @Override
-    public void verificarCondicao() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
-
-    }
 
     @Override
     public void jogarCarta() throws ManaInsuficienteException{

@@ -20,11 +20,6 @@ public class Atirador extends Seguidor {
     }
 
     @Override
-    public void verificarCondicao() {
-
-    }
-
-    @Override
     public void realizarEfeitoAntesDeColocado() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         GerenciadorEfeitos.escolherCartaParaDarDano(this,this.getAdversario(), 1);
     }
