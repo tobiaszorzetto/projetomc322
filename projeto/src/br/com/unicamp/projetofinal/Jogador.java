@@ -9,7 +9,7 @@ import java.util.*;
 
 public class Jogador {
 	private final Mesa mesa;
-	protected String nome;
+	private String nome;
 	private int vida;
 	private Marcador marcador;
 	private int mana;
@@ -21,6 +21,16 @@ public class Jogador {
 	
 	public Jogador(Mesa mesa) {
 		this.setNome();
+		this.mesa = mesa;
+		mesa.setJogador(this);
+		this.vida = 30;
+		this.mana = 0;
+		this.deck = escolherDeck(mesa, this);
+		this.mao = new Deck();
+	}
+
+	public Jogador(Mesa mesa, String nome) {
+		this.setNome(nome);
 		this.mesa = mesa;
 		mesa.setJogador(this);
 		this.vida = 30;

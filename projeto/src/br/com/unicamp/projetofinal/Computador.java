@@ -9,12 +9,9 @@ import java.util.*;
 public class Computador extends Jogador {
 
     public Computador(Mesa mesa) {
-        super(mesa);
+        super(mesa, "PC");
     }
 
-    public void setNome(){
-        this.setNome("PC");
-    }
 
     @Override
     public int escolherCartaCombater() {
