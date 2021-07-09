@@ -195,10 +195,6 @@ public abstract class Seguidor extends Carta {
 			this.atuarNaMesa(jogador, posicao_alocacao);
 			mao.removerCarta(this);
 		}
-		catch (ManaInsuficienteException e){
-			System.out.println("Sem mana suficiente!");
-			jogarCarta();
-		}
 		catch (PosicaoMesaOcupadaException e){
 			jogador.setMana(jogador.getMana() + this.getMana());
 			System.out.println("Essa posicao ja esta ocupada pelo " + mesa.getCartasMesa(jogador).get(posicao_alocacao-1).getNome());

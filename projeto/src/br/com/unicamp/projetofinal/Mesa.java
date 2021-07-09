@@ -13,7 +13,7 @@ public class Mesa {
 	private int rodada = 0;
 	private Jogador atacante;
 	private Jogador defensor;
-	private int manaJogo =100;
+	private int manaJogo =0;
 	private int parte_da_rodada;
 	private boolean continuar = true;
 
@@ -243,7 +243,10 @@ public class Mesa {
 	public ArrayList<Seguidor> getCartas_mesa2(){
 		return this.cartas_mesa2;
 	}
-	
+
+	public Jogador getDefensor() {
+		return this.defensor;
+	}
 }
 
 

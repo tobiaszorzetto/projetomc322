@@ -209,6 +209,9 @@ public class Jogador {
 					} catch (IndexOutOfBoundsException | PosicaoMesaOcupadaException e){
 						System.out.println("Nao há carta nessa posicao");
 					}
+					catch (ManaInsuficienteException e){
+						System.out.println("Sem mana suficiente!");
+					}
 				}
 			} else {
 				running = false;

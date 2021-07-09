@@ -43,6 +43,51 @@ public class DeckFactory {
         return deck;
     }
 
+    public static Deck fazerDeckBravura(Deck deck, Mesa mesa, Jogador jogador){
+
+        deck.adicionarCarta(new Tiana(mesa, jogador));
+        deck.adicionarCarta(new Tiana(mesa, jogador));
+        deck.adicionarCarta(new AlunoEmTreinamento(mesa, jogador));
+        deck.adicionarCarta(new AlunoEmTreinamento(mesa, jogador));
+        deck.adicionarCarta(new Swain(mesa, jogador));
+        deck.adicionarCarta(new Lux(mesa, jogador));
+        deck.adicionarCarta(new Lux(mesa, jogador));
+        deck.adicionarCarta(new Zed(mesa, jogador));
+        deck.adicionarCarta(new Cura(mesa, jogador));
+        deck.adicionarCarta(new Cura(mesa, jogador));
+        deck.adicionarCarta(new Curandeira(mesa, jogador));
+        deck.adicionarCarta(new MaoDaMorte(mesa, jogador));
+        deck.adicionarCarta(new LamentoFulminante(mesa, jogador));
+        deck.adicionarCarta(new LamentoFulminante(mesa, jogador));
+        deck.adicionarCarta(new RaioTermogenico(mesa, jogador));
+        deck.adicionarCarta(new RaioTermogenico(mesa, jogador));
+        deck.adicionarCarta(new Atirador(mesa, jogador));
+        deck.adicionarCarta(new CorsariaAtiradora(mesa, jogador));
+        deck.adicionarCarta(new CorsariaAtiradora(mesa, jogador));
+        deck.adicionarCarta(new MiquinhoExplosivo(mesa, jogador));
+        deck.adicionarCarta(new EstatuaDeMacaco(mesa, jogador));
+        deck.adicionarCarta(new EstatuaDeMacaco(mesa, jogador));
+        deck.adicionarCarta(new OLeviata(mesa, jogador));
+        deck.adicionarCarta(new OLeviata(mesa, jogador));
+        deck.adicionarCarta(new TaverneiroGentil(mesa, jogador));
+        deck.adicionarCarta(new DragaoFurioso(mesa, jogador));
+        deck.adicionarCarta(new BalistaDeFerro(mesa, jogador));
+        deck.adicionarCarta(new BalistaDeFerro(mesa, jogador));
+        deck.adicionarCarta(new CapitaoFarron(mesa, jogador));
+        deck.adicionarCarta(new GuardaTerrestreAvarosiano(mesa, jogador));
+        deck.adicionarCarta(new PoroDefensor(mesa, jogador));
+        deck.adicionarCarta(new PoroPoderoso(mesa, jogador));
+        deck.adicionarCarta(new PoroPoderoso(mesa, jogador));
+        deck.adicionarCarta(new Garen(mesa, jogador));
+        deck.adicionarCarta(new Tryndamere(mesa, jogador));
+        deck.adicionarCarta(new Tryndamere(mesa, jogador));
+        deck.adicionarCarta(new Vinganca(mesa, jogador));
+        deck.adicionarCarta(new DemolidorImperial(mesa, jogador));
+        deck.adicionarCarta(new DemolidorImperial(mesa, jogador));
+        deck.adicionarCarta(new DemolidorImperial(mesa, jogador));
+        return deck;
+    }
+
     public static Deck fazerDeckPersonalizado(Deck deck, Mesa mesa, Jogador jogador){
         System.out.println("Escolha das seguintes no máximo 40 cartas para montar Deck: ");
         System.out.println(
