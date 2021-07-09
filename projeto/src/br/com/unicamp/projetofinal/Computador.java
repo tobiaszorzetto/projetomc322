@@ -17,7 +17,6 @@ public class Computador extends Jogador {
     public int escolherCartaCombater() {
         ArrayList<Seguidor> carta_mesa = this.getMesa().getCartasMesa(this);
         if (this.getMarcador() == Marcador.ATACANTE) {
-            ArrayList<Seguidor> cartas_mesa = this.getMesa().getCartasMesa(this);
             for (int i = 0; i < 6; i++) {
                 Seguidor carta = carta_mesa.get(i);
                 if (carta != null && !carta.getVaiAtacar()) {
@@ -27,7 +26,6 @@ public class Computador extends Jogador {
         }
 
         if (this.getMarcador() == Marcador.DEFENSOR) {
-            ArrayList<Seguidor> cartas_mesa = this.getMesa().getCartasMesa(this);
             for (int i = 0; i < 6; i++) {
                 Seguidor carta = carta_mesa.get(i);
                 if (carta != null && carta.naoVaiDefender()) {
@@ -45,6 +43,29 @@ public class Computador extends Jogador {
 
     @Override
     public int escolherCartaColocar() {
+        if(this.getMarcador() == Marcador.DEFENSOR){
+            return this.escolherCartaColocarDefensor();
+        } else{
+            return this.escolherCartaColocarAtacante();
+        }
+
+    }
+
+    private int escolherCartaColocarAtacante() {
+        Deck mao = this.getMao();
+        int mana = this.getMana();
+        int max = 0;
+        int pos = 0;
+        for(int i = 0; i<mao.getSize(); i++){
+            if(mao.getDeck().get(i).getMana() > max && mao.getDeck().get(i).getMana()<=mana){
+                max = mao.getDeck().get(i).getMana();
+                pos = i+1;
+            }
+        }
+        return pos;
+    }
+
+    private int escolherCartaColocarDefensor() {
         int num_cartas_quer_colocar = this.calcularNumCartasColocar();
         Deck cartas = this.getDeck();
 
