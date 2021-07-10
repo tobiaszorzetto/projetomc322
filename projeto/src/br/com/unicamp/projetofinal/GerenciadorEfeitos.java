@@ -49,12 +49,12 @@ public class GerenciadorEfeitos {
             }
         }
         if (setar_alguem){
-            numero_carta = PrintFactory.pedirInput(carta.getJogador().getNome() + ", quais dessas cartas deseja curar?") - 1;
+            numero_carta = carta.getJogador().getJanela().pedirInput(carta.getJogador().getNome() + ", quais dessas cartas deseja curar?") - 1;
             try{
                 GerenciadorEfeitos.curar(cartas_na_mesa.get(numero_carta));
             }
             catch (IndexOutOfBoundsException e){
-                System.out.println("Escolha um indice valido!");
+                carta.getJogador().getJanela().pedirInput("Escolha um indice valido!");
                 GerenciadorEfeitos.escolherCartaCurar(carta);
             }
         }
@@ -92,7 +92,7 @@ public class GerenciadorEfeitos {
     public static void escolherCartaParaDarDano(Carta carta, Jogador jogador_atingido, int dano) throws PosicaoMesaOcupadaException, ManaInsuficienteException {
         if (jogador_atingido.getMesa().temCartasMesa(jogador_atingido)){
             ArrayList<Seguidor> cartas_mesa = jogador_atingido.getMesa().getCartasMesa(jogador_atingido);
-            int numero_carta = PrintFactory.pedirInput("Escolha uma carta para dar "+ dano +" dano") - 1;
+            int numero_carta = jogador_atingido.getJanela().pedirInput("Escolha uma carta para dar "+ dano +" dano") - 1;
             try{
                 Seguidor carta_escolhida = cartas_mesa.get(numero_carta);
                 boolean morreu = carta_escolhida.diminuirVida(dano);
@@ -100,17 +100,17 @@ public class GerenciadorEfeitos {
                     carta.verificarSobrepujar(carta_escolhida);
                 }
             } catch (IndexOutOfBoundsException e){
-                System.out.println("Posicao de ataque invalida.");
+                jogador_atingido.getJanela().trocarAviso("Posicao de ataque invalida.");
                 escolherCoisaParaDarDano(carta, dano);
             } catch (NullPointerException e){
-                System.out.println("Não há carta nessa posicao");
+                jogador_atingido.getJanela().trocarAviso("Não há carta nessa posicao");
                 escolherCoisaParaDarDano(carta, dano);
             }
         }
     }
 
     public static void escolherCartaBaterEmTodos(Carta carta) throws PosicaoMesaOcupadaException, ManaInsuficienteException {
-        int numero_carta = PrintFactory.pedirInput("Escolha uma carta para golpear os inimigos") - 1;
+        int numero_carta = carta.getJogador().getJanela().pedirInput("Escolha uma carta para golpear os inimigos") - 1;
 
         Seguidor carta_escolhida = carta.getMesa().getCartasMesa(carta.getJogador()).get(numero_carta);
 
@@ -125,7 +125,7 @@ public class GerenciadorEfeitos {
     public static void escolherCartaDobrarValores(Carta carta) {
         ArrayList<Seguidor> cartas_mesa = carta.getMesa().getCartasMesa(carta.getJogador());
 
-        int numero_carta = PrintFactory.pedirInput("Escolha uma carta para golpear os inimigos") - 1;
+        int numero_carta = carta.getJogador().getJanela().pedirInput("Escolha uma carta para golpear os inimigos") - 1;
 
         Seguidor carta_escolhida = cartas_mesa.get(numero_carta);
 
@@ -138,8 +138,8 @@ public class GerenciadorEfeitos {
         ArrayList<Seguidor> cartas_mesa = carta.getMesa().getCartasMesa(carta.getJogador());
         ArrayList<Seguidor> cartas_adversario = carta.getMesa().getCartasMesa(carta.getAdversario());
 
-        int numero_carta = PrintFactory.pedirInput("Escolha uma carta sua para combater") - 1;
-        int numero_adversario = PrintFactory.pedirInput("Escolha uma carta adversaria para combater") - 1;
+        int numero_carta = carta.getJogador().getJanela().pedirInput("Escolha uma carta sua para combater") - 1;
+        int numero_adversario = carta.getJogador().getJanela().pedirInput("Escolha uma carta adversaria para combater") - 1;
 
         Seguidor carta_escolhida = cartas_mesa.get(numero_carta);
         Seguidor carta_adversario = cartas_adversario.get(numero_adversario);
@@ -159,7 +159,7 @@ public class GerenciadorEfeitos {
         }
         if (evocou){
             carta.setVaiAtacar(true);
-            PrintFactory.printCartasNaMesa(carta.getMesa());
+            carta.getJogador().getJanela().atualizarTela();
         }
     }
 
@@ -204,7 +204,7 @@ public class GerenciadorEfeitos {
     public static void escolherCoisaParaDarDano(Carta carta_que_chamou, int dano) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         int escolha = 0;
         while( escolha < 1 || escolha >2 )
-            escolha = PrintFactory.pedirInput("1:Dano em uma carta na mesa || 2:Dano ao nexus inimigo");
+            escolha = carta_que_chamou.getJogador().getJanela().pedirInput("1:Dano em uma carta na mesa || 2:Dano ao nexus inimigo");
         if (escolha == 1){
             GerenciadorEfeitos.escolherCartaParaDarDano(carta_que_chamou,carta_que_chamou.getAdversario(), dano);
         } else{
@@ -220,17 +220,17 @@ public class GerenciadorEfeitos {
     public static boolean abaterAliado(Jogador jogador_atingido) {
         if (jogador_atingido.getMesa().temCartasMesa(jogador_atingido)){
             ArrayList<Seguidor> cartas_mesa = jogador_atingido.getMesa().getCartasMesa(jogador_atingido);
-            int numero_carta = PrintFactory.pedirInput("Escolha uma carta para dar abater") - 1;
+            int numero_carta = jogador_atingido.getJanela().pedirInput("Escolha uma carta para dar abater") - 1;
             try{
                 Seguidor carta_escolhida = cartas_mesa.get(numero_carta);
                 carta_escolhida.diminuirVida(carta_escolhida.getVidaAtual());
                 return true;
 
             } catch (IndexOutOfBoundsException e){
-                System.out.println("Posicao de ataque invalida.");
+                jogador_atingido.getJanela().trocarAviso("Posicao de ataque invalida.");
                 return false;
             } catch (NullPointerException e){
-                System.out.println("Não há carta nessa posicao");
+                jogador_atingido.getJanela().trocarAviso("Não há carta nessa posicao");
                 return false;
             } catch (Exception ignored) {}
 
@@ -241,7 +241,7 @@ public class GerenciadorEfeitos {
     public static void curarAliadoOuNexus(Carta carta_que_chamou, int quant){
         int escolha = 0;
         while( escolha < 1 || escolha >2 )
-            escolha = PrintFactory.pedirInput("1: Curar aliado || 2: Curar nexus em " + quant);
+            escolha = carta_que_chamou.getJogador().getJanela().pedirInput("1: Curar aliado || 2: Curar nexus em " + quant);
         if (escolha == 1){
             GerenciadorEfeitos.escolherCartaCurar(carta_que_chamou);
         } else{
@@ -265,7 +265,7 @@ public class GerenciadorEfeitos {
 
     public static boolean retornarCartaMao(Jogador jogador){
         ArrayList<Seguidor> mesa_jogador = jogador.getMesa().getCartasMesa(jogador);
-        int num_carta_escolhida = PrintFactory.pedirInput("Que carta quer retornar para " + jogador.getNome()) - 1;
+        int num_carta_escolhida = jogador.getJanela().pedirInput("Que carta quer retornar para " + jogador.getNome()) - 1;
         Seguidor carta_escolhida = mesa_jogador.get(num_carta_escolhida);
         if(carta_escolhida !=null){
             carta_escolhida.setAtaqueOriginal();
@@ -282,7 +282,7 @@ public class GerenciadorEfeitos {
 
     public static void matarCartaInimiga(Carta carta_que_chamou) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         ArrayList<Seguidor> mesa_jogador = carta_que_chamou.getMesa().getCartasMesa(carta_que_chamou.getAdversario());
-        int num_carta_escolhida = PrintFactory.pedirInput("Que carta quer abater ") - 1;
+        int num_carta_escolhida = carta_que_chamou.getJogador().getJanela().pedirInput("Que carta quer abater ") - 1;
         Seguidor carta_escolhida = mesa_jogador.get(num_carta_escolhida);
         if(carta_escolhida !=null){
             carta_escolhida.matarSeguidor();

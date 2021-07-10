@@ -29,15 +29,15 @@ public class AcougueiroVoraz extends Seguidor {
                 mao.removerCarta(this);
             }
             catch (ManaInsuficienteException e){
-                System.out.println("Sem mana suficiente!");
+                this.getMesa().getJanela().trocarAviso("Sem mana suficiente!");
             }
             catch (PosicaoMesaOcupadaException e){
                 jogador.setMana(jogador.getMana() + this.getMana());
-                System.out.println("Essa posicao ja esta ocupada pelo " + mesa.getCartasMesa(jogador).get(posicao_alocacao-1).getNome());
+                this.getMesa().getJanela().trocarAviso("Essa posicao ja esta ocupada pelo " + mesa.getCartasMesa(jogador).get(posicao_alocacao-1).getNome());
             }
             catch (ArrayIndexOutOfBoundsException e){
                 jogador.setMana(jogador.getMana() + this.getMana());
-                System.out.println("O mapa tem tamanho maximo de 6 cartas");
+                this.getMesa().getJanela().trocarAviso("O mapa tem tamanho maximo de 6 cartas");
             }
         }
 

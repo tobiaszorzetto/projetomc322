@@ -16,7 +16,7 @@ public class Mesa {
 	private int manaJogo =0;
 	private int parte_da_rodada;
 	private boolean continuar = true;
-
+	private Janela janela;
 
 	private ArrayList<Feitico> feiticos_ativos = new ArrayList<Feitico>();
 	private ArrayList<Seguidor> cartas_mesa1 = new ArrayList<Seguidor>(); //cartas do jogador 1 jogadas na mesa
@@ -56,6 +56,10 @@ public class Mesa {
 	}
 
 	// Getters
+
+	public Janela getJanela(){
+		return this.janela;
+	}
 
 	public Jogador getAtacante(){
 		return this.atacante;
@@ -97,6 +101,9 @@ public class Mesa {
 	}
 
 		//Setters
+		public void setJanela(Janela janela) {
+		this.janela = janela;
+		}
 
 	public void setJogador(Jogador jogador){
 		if(this.jogador1 == null){
@@ -132,7 +139,7 @@ public class Mesa {
 		for(int i = 0; i<4; i++){
 			jogador.sortearDoDeck();
 		}
-		PrintFactory.printLinha(jogador.getNome() + " | Cartas iniciais:");
+		this.janela.trocarAviso(jogador.getNome() + " | Cartas iniciais:");
 		PrintFactory.printCartasNaMao(jogador);
 		jogador.escolherQuantasInciaisFicar();
 	}
@@ -247,6 +254,8 @@ public class Mesa {
 	public Jogador getDefensor() {
 		return this.defensor;
 	}
+
+
 }
 
 

@@ -8,8 +8,8 @@ import java.util.*;
 
 public class Computador extends Jogador {
 
-    public Computador(Mesa mesa) {
-        super(mesa, "PC");
+    public Computador(Mesa mesa, Janela janela) {
+        super(mesa, "PC", janela);
     }
 
     @Override

@@ -30,20 +30,20 @@ public class VislumbreDoAlem extends Feitico {
 
     @Override
     protected void realizarEfeito(){
-        int posicao_sacrificio = PrintFactory.pedirInput("Escolha a carta que deseja sacrificar");
+        int posicao_sacrificio = this.getMesa().getJanela().pedirInput("Escolha a carta que deseja sacrificar") - 1;
         ArrayList<Seguidor> cartas_mesa = this.getMesa().getCartasMesa(this.getJogador());
         if (cartas_mesa.get(posicao_sacrificio -1) == null){//se nao tiver carta na posicao, nao acontece o sacrificio
-            System.out.println("Nao ha carta na posicao escolhida para sacrificio");
+            this.getMesa().getJanela().trocarAviso("Nao ha carta na posicao escolhida para sacrificio");
         } else{//se houver carta na posicao, occore o sacrificio
             try{
-                Seguidor sacrificio = cartas_mesa.get(posicao_sacrificio - 1);
+                Seguidor sacrificio = cartas_mesa.get(posicao_sacrificio);
                 sacrificio.matarSeguidor();
                 Carta conseguiu_sortear = this.getJogador().sortearDoDeck();
                 if (conseguiu_sortear != null){//se conseguiu sortear na primeira, tenta a segunda
                     this.getJogador().sortearDoDeck();
                 }
             } catch (IndexOutOfBoundsException e){
-                System.out.println("Posicao digitada eh invalida");
+                this.getMesa().getJanela().trocarAviso("Posicao digitada eh invalida");
                 realizarEfeito();
             } catch (ManaInsuficienteException | PosicaoMesaOcupadaException e) {
                 e.printStackTrace();

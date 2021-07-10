@@ -192,8 +192,8 @@ public class DeckFactory {
 
         boolean running = true;
         while (running && deck.getSize() < 40) {
-            int numero_carta = PrintFactory.pedirInput("Escolha uma carta");
-
+            int numero_carta = mesa.getJanela().pedirInput("Escolha uma carta");
+            mesa.getJanela().trocarAviso(deck.getSize() + " cartas no deck");
             if (numero_carta == 0) {
                 if (deck.getSize() > 4){
                     running = false;

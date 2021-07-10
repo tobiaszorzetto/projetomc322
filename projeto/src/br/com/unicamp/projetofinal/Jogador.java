@@ -9,6 +9,7 @@ import java.util.*;
 
 public class Jogador {
 	private final Mesa mesa;
+	private Janela janela;
 	private String nome;
 	private int vida;
 	private Marcador marcador;
@@ -19,7 +20,8 @@ public class Jogador {
 	private int mana_gasta_feitico;
 	private boolean golpe_ao_nexus;
 	
-	public Jogador(Mesa mesa) {
+	public Jogador(Mesa mesa, Janela janela) {
+		this.janela = janela;
 		this.setNome();
 		this.mesa = mesa;
 		mesa.setJogador(this);
@@ -27,9 +29,11 @@ public class Jogador {
 		this.mana = 0;
 		this.deck = escolherDeck(mesa, this);
 		this.mao = new Deck();
+
 	}
 
-	public Jogador(Mesa mesa, String nome) {
+	public Jogador(Mesa mesa, String nome, Janela janela) {
+		this.janela = janela;
 		this.setNome(nome);
 		this.mesa = mesa;
 		mesa.setJogador(this);
@@ -37,6 +41,7 @@ public class Jogador {
 		this.mana = 0;
 		this.deck = escolherDeck(mesa, this);
 		this.mao = new Deck();
+
 	}
 
 	//GETTERS E SETTERS ------------------------------------------------------------------------------------------------
@@ -74,6 +79,10 @@ public class Jogador {
 
 	public Marcador getMarcador(){ return this.marcador;}
 
+	public Janela getJanela(){
+		return this.janela;
+	}
+
 		//Setters ......................................................................................................
 
 	public void setManaDeFeitico(int quant){
@@ -96,8 +105,8 @@ public class Jogador {
 	}
 
 	private void setNome() {
-		Scanner scan = new Scanner(System.in);
-		this.nome = scan.nextLine();
+		if(this.janela!= null)
+			this.nome = this.janela.pedirInputString("Digite o Nome do Jogador");
 	}
 
 	protected void setNome(String nome){
@@ -127,7 +136,7 @@ public class Jogador {
 
 	public Deck escolherDeck(Mesa mesa, Jogador jogador) {
 		TipoDeck tipo;
-		int num = PrintFactory.pedirInput("Digite: 1 para deck Padrao || 2 para deck Evocador || 3 para deck Bravura || 4 para personalizar");
+		int num = this.janela.pedirInput("Digite: 1 para deck Padrao || 2 para deck Evocador || 3 para deck Bravura || 4 para personalizar");
 		if (num == 1){
 			tipo = TipoDeck.PADRAO;
 		} else if(num == 2){
@@ -143,7 +152,7 @@ public class Jogador {
 
 	public void escolherQuantasInciaisFicar(){
 		Random sorteio = new Random();
-		int quant =  PrintFactory.pedirInput("Quer trocar quantas");
+		int quant =  this.janela.pedirInput("Quer trocar quantas");
 		if (quant == 0) return;
 		for(int i = 0; i< quant; i++){
 			int numero  = sorteio.nextInt(mao.getSize()) ;
@@ -164,7 +173,7 @@ public class Jogador {
 			this.deck.removerCarta(this.deck.getCarta(carta_sorteada));
 			return this.deck.getCarta(carta_sorteada);
 		} catch (IndexOutOfBoundsException | IllegalArgumentException e){ //acabaram as cartas do deck
-			System.out.println("Nao ha mais cartas para serem sorteadas");
+			this.janela.trocarAviso("Nao ha mais cartas para serem sorteadas");
 			return null;
 		}
 	}
@@ -193,12 +202,12 @@ public class Jogador {
 	}
 
 	public int escolherCartaColocar(){
-		return PrintFactory.pedirInput(this.nome + ", escolha que carta quer colocar no jogo") - 1;
+		return this.janela.pedirInput(this.nome + ", escolha que carta quer colocar no jogo") - 1;
 	}
 
 	public void evocarCartas() throws ManaInsuficienteException {
 		if (this.mao.getSize() > 0) {
-			PrintFactory.printCartasNaMesa(this.mesa);
+			this.janela.atualizarTela();
 			PrintFactory.printCartasNaMao(this);
 
 			int numero_carta = escolherCartaColocar();
@@ -209,33 +218,33 @@ public class Jogador {
 					Carta carta = this.mao.getCarta(numero_carta);
 					carta.jogarCarta();
 				} catch (IndexOutOfBoundsException | PosicaoMesaOcupadaException e){
-					System.out.println("Nao há carta nessa posicao");
+					this.janela.trocarAviso("Nao há carta nessa posicao");
 				}
 				catch (ManaInsuficienteException e){
-					System.out.println("Sem mana suficiente!");
+					this.janela.trocarAviso("Sem mana suficiente!");
 				}
 				finally {
 					this.evocarCartas();
 				}
 			}
 		}
-		PrintFactory.printLinha("Sua mao esta vazia");
+		this.janela.trocarAviso("Sua mao esta vazia");
 	}
 
 	public int escolherPosicao(){
-		return PrintFactory.pedirInput(this.nome + ", escolha a posicao da mesa em que quer colocar a carta") - 1;
+		return this.janela.pedirInput(this.nome + ", escolha a posicao da mesa em que quer colocar a carta") - 1;
 	}
 
 	public int escolherCartaCombater(){
 		if (this.marcador == Marcador.ATACANTE) {
-			return PrintFactory.pedirInput(this.nome + ", escolha que cartas quer usar para atacar") - 1;
+			return this.janela.pedirInput(this.nome + ", escolha que cartas quer usar para atacar") - 1;
 		}
-		return PrintFactory.pedirInput(this.nome + ", escolha que cartas quer usar para defender") - 1;
+		return this.janela.pedirInput(this.nome + ", escolha que cartas quer usar para defender") - 1;
 	}
 
 	public boolean decidirQueCartasCombater(int cont){
 		ArrayList<Seguidor> cartas_na_mesa = this.mesa.getCartasMesa(this);
-		PrintFactory.printCartasNaMesa(this.mesa);
+		this.janela.atualizarTela();
 		int numero_carta = this.escolherCartaCombater();
 
 		if (numero_carta == -1) {
@@ -254,13 +263,13 @@ public class Jogador {
 			try{
 				carta.setVaiAtacar(true);
 			} catch(NullPointerException e) {
-				System.out.println("Nao ha carta na posicao escolhida");
+				this.janela.trocarAviso("Nao ha carta na posicao escolhida");
 			}
 		} else{
 			try{
 				carta.setVaiDefender(true);
 			} catch(NullPointerException e) {
-				System.out.println("Nao ha carta na posicao escolhida");
+				this.janela.trocarAviso("Nao ha carta na posicao escolhida");
 			}
 		}
 	}

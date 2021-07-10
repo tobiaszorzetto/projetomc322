@@ -24,18 +24,18 @@ public class GolpeExpurgante extends Feitico {
     public void realizarEfeito() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
         ArrayList<Seguidor> cartas_mesa_adversario = this.getMesa().getCartasMesaAdversario(this.getJogador());
         if (temCartaCom3OuMenosDePoder()){
-            int num_carta = PrintFactory.pedirInput("Escolha a carta com 3 ou menos de poder que deseja expurgar") - 1;
+            int num_carta = this.getMesa().getJanela().pedirInput("Escolha a carta com 3 ou menos de poder que deseja expurgar") - 1;
             try{
                 if (cartas_mesa_adversario.get(num_carta).getAtaque() > 3){
-                    System.out.println("A carta escolhida tem poder maior que 3");
+                    this.getMesa().getJanela().trocarAviso("A carta escolhida tem poder maior que 3");
                 }
                 Seguidor expurgado = cartas_mesa_adversario.get(num_carta);
                 expurgado.matarSeguidor();
             } catch(NullPointerException e){
-                System.out.println("A posicao escolhida nao possui carta");
+                this.getMesa().getJanela().trocarAviso("A posicao escolhida nao possui carta");
                 realizarEfeito();
             } catch(IndexOutOfBoundsException e){
-                System.out.println("Posicao digitada para expurgar invalida");
+                this.getMesa().getJanela().trocarAviso("Posicao digitada para expurgar invalida");
                 realizarEfeito();
             }
         }

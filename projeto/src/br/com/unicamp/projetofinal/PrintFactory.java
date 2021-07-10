@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PrintFactory {
-
+/*
     public static int pedirInput(String mensagem){
         Scanner scan = new Scanner(System.in);
         System.out.println(mensagem);
@@ -97,16 +97,18 @@ public class PrintFactory {
         System.out.println("MANA DE FEITICO: " + mesa.getJogador(1).getManaDeFeitico()+ " .................. MANA DE FEITICO: " + mesa.getJogador(2).getManaDeFeitico());
         PrintFactory.printCartasNaMesa(mesa, lista);
     }
+    */
 
-    public static void printCartasNaMao(Jogador jogador){
+    public static void printCartasNaMao(Jogador jogador) {
         int i = 0;
-        for (Carta carta : jogador.getMao().getDeck()){
+        for (Carta carta : jogador.getMao().getDeck()) {
             i++;
             System.out.printf("| %d - %s (%d) |", i, carta.getNome(), carta.getMana());
         }
         System.out.println();
     }
-
+}
+/*
     public static void printLinha(String linha){
         System.out.println(linha);
     }
@@ -127,3 +129,4 @@ public class PrintFactory {
         PrintFactory.printLinha("##################################################################");
     }
 }
+*/

@@ -1,10 +1,7 @@
 package br.com.unicamp.projetofinal.Cartas.Feiticos;
+import br.com.unicamp.projetofinal.*;
 import br.com.unicamp.projetofinal.Cartas.Feitico;
 import br.com.unicamp.projetofinal.Cartas.Seguidor;
-import br.com.unicamp.projetofinal.GerenciadorEfeitos;
-import br.com.unicamp.projetofinal.Jogador;
-import br.com.unicamp.projetofinal.Mesa;
-import br.com.unicamp.projetofinal.PrintFactory;
 
 /*
 *
@@ -35,7 +32,7 @@ public class GolpeCerteiro extends Feitico {
     @Override
     protected void realizarEfeito() {
         this.rodada_criado = this.getMesa().getRodada();
-        int num_mesa = PrintFactory.pedirInput("Que carta quer dar 1/1 nessa rodada?") - 1;
+        int num_mesa = this.getMesa().getJanela().pedirInput("Que carta quer dar 1/1 nessa rodada?") - 1;
         if (this.getMesa().getCartasMesa(this.getJogador()).get(num_mesa) != null){
             this.alvo = this.getMesa().getCartasMesa(this.getJogador()).get(num_mesa);
             GerenciadorEfeitos.aumentarAtaqueVida(this.alvo, 1, 1);
