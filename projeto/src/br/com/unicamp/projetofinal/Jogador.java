@@ -127,7 +127,7 @@ public class Jogador {
 
 	public Deck escolherDeck(Mesa mesa, Jogador jogador) {
 		TipoDeck tipo;
-		int num = PrintFactory.pedirInput("Digite: 1 para deck Padrao || 2 para deck Evocador || 3 para deck Bravura || 4 para personalizar");
+		int num = PrintFactory.pedirInputInt("Digite: 1 para deck Padrao || 2 para deck Evocador || 3 para deck Bravura || 4 para personalizar");
 		if (num == 1){
 			tipo = TipoDeck.PADRAO;
 		} else if(num == 2){
@@ -143,7 +143,7 @@ public class Jogador {
 
 	public void escolherQuantasInciaisFicar(){
 		Random sorteio = new Random();
-		int quant =  PrintFactory.pedirInput("Quer trocar quantas");
+		int quant =  PrintFactory.pedirInputInt("Quer trocar quantas");
 		if (quant == 0) return;
 		for(int i = 0; i< quant; i++){
 			int numero  = sorteio.nextInt(mao.getSize()) ;
@@ -193,7 +193,7 @@ public class Jogador {
 	}
 
 	public int escolherCartaColocar(){
-		return PrintFactory.pedirInput(this.nome + ", escolha que carta quer colocar no jogo") - 1;
+		return PrintFactory.pedirInputInt(this.nome + ", escolha que carta quer colocar no jogo") - 1;
 	}
 
 	public void evocarCartas() throws ManaInsuficienteException {
@@ -223,14 +223,14 @@ public class Jogador {
 	}
 
 	public int escolherPosicao(){
-		return PrintFactory.pedirInput(this.nome + ", escolha a posicao da mesa em que quer colocar a carta") - 1;
+		return PrintFactory.pedirInputInt(this.nome + ", escolha a posicao da mesa em que quer colocar a carta") - 1;
 	}
 
 	public int escolherCartaCombater(){
 		if (this.marcador == Marcador.ATACANTE) {
-			return PrintFactory.pedirInput(this.nome + ", escolha que cartas quer usar para atacar") - 1;
+			return PrintFactory.pedirInputInt(this.nome + ", escolha que cartas quer usar para atacar") - 1;
 		}
-		return PrintFactory.pedirInput(this.nome + ", escolha que cartas quer usar para defender") - 1;
+		return PrintFactory.pedirInputInt(this.nome + ", escolha que cartas quer usar para defender") - 1;
 	}
 
 	public boolean decidirQueCartasCombater(int cont){

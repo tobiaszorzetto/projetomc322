@@ -35,7 +35,7 @@ public class GolpeCerteiro extends Feitico {
     @Override
     protected void realizarEfeito() {
         this.rodada_criado = this.getMesa().getRodada();
-        int num_mesa = PrintFactory.pedirInput("Que carta quer dar 1/1 nessa rodada?") - 1;
+        int num_mesa = PrintFactory.pedirInputInt("Que carta quer dar 1/1 nessa rodada?") - 1;
         if (this.getMesa().getCartasMesa(this.getJogador()).get(num_mesa) != null){
             this.alvo = this.getMesa().getCartasMesa(this.getJogador()).get(num_mesa);
             GerenciadorEfeitos.aumentarAtaqueVida(this.alvo, 1, 1);

@@ -4,14 +4,21 @@ import br.com.unicamp.projetofinal.Cartas.Seguidor;
 import br.com.unicamp.projetofinal.Enums.Marcador;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PrintFactory {
 
-    public static int pedirInput(String mensagem){
+    public static int pedirInputInt(String mensagem){
         Scanner scan = new Scanner(System.in);
         System.out.println(mensagem);
-        return scan.nextInt();
+        try{
+            return scan.nextInt();
+        }
+        catch (IllegalArgumentException | InputMismatchException e){
+            printLinha("Entrada invalida. Tente novamente.");
+            return pedirInputInt(mensagem);
+        }
     }
 
     public static void printLinhaCartaEsquerda(Seguidor carta1, String cor, String branco, int i){

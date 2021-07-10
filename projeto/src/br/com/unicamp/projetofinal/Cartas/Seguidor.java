@@ -87,7 +87,7 @@ public abstract class Seguidor extends Carta {
 	public void setVaiAtacar(boolean variavel){
 		this.vai_atacar = variavel;
 		if (variavel && this.getTraco() == Traco.ATAQUEDUPLO)
-			this.get_vezes_que_vai_atacar = PrintFactory.pedirInput("vai atacar 1 ou duas vezes?");
+			this.get_vezes_que_vai_atacar = PrintFactory.pedirInputInt("vai atacar 1 ou duas vezes?");
 	}
 
 	public boolean isElusivo() {
@@ -199,7 +199,7 @@ public abstract class Seguidor extends Carta {
 		}
 	}
 
-	public void jogarCarta() throws ManaInsuficienteException{
+	public void jogarCarta() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
 		Jogador jogador = this.getJogador();
 		Deck mao = jogador.getMao();
 		Mesa mesa = this.getMesa();
@@ -216,4 +216,10 @@ public abstract class Seguidor extends Carta {
 		}
 	}
 
+    public void resetar(){
+		this.setAtaqueOriginal();
+		this.setVidaOriginal();
+		this.setVaiAtacar(false);
+		this.setVaiDefender(false);
+	}
 }

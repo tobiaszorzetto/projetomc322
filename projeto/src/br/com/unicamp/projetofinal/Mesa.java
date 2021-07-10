@@ -33,7 +33,7 @@ public class Mesa {
 		this.continuar = false;
 	}
 
-	// GETTERS E SETTERS
+	// GETTERS E SETTERS -----------------------------------------------------------------------------------------------
 
 	public void addFeiticoAtivo(Feitico feitico){
 		this.feiticos_ativos.add(feitico);
@@ -55,7 +55,7 @@ public class Mesa {
 		return false;
 	}
 
-	// Getters
+	// Getters .........................................................................................................
 
 	public Jogador getAtacante(){
 		return this.atacante;
@@ -96,7 +96,7 @@ public class Mesa {
 		}
 	}
 
-		//Setters
+		//Setters ......................................................................................................
 
 	public void setJogador(Jogador jogador){
 		if(this.jogador1 == null){
@@ -111,7 +111,7 @@ public class Mesa {
 		}
 	}
 
-	// FUNCOES GERAIS
+	// FUNCOES GERAIS --------------------------------------------------------------------------------------------------
 
 	public void verificarCondicoes() throws ManaInsuficienteException, PosicaoMesaOcupadaException{
 		for (int i = 0; i<6; i++){
@@ -174,7 +174,7 @@ public class Mesa {
 			cartas_mesa2.set(posicao_alocacao,carta);
 		}
 	}
-	// PARTES
+	// PARTES ----------------------------------------------------------------------------------------------------------
 
 	public boolean realizarParte0() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
 		this.verificarCondicoes();
@@ -198,7 +198,7 @@ public class Mesa {
 		this.defensor.desarmarDefesa();
 	}
 
-	// PRINCIPAL
+	// PRINCIPAL -------------------------------------------------------------------------------------------------------
 
 	public boolean passarRodada() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
 		this.rodada++;

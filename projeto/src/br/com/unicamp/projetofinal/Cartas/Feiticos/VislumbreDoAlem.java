@@ -30,7 +30,7 @@ public class VislumbreDoAlem extends Feitico {
 
     @Override
     protected void realizarEfeito(){
-        int posicao_sacrificio = PrintFactory.pedirInput("Escolha a carta que deseja sacrificar");
+        int posicao_sacrificio = PrintFactory.pedirInputInt("Escolha a carta que deseja sacrificar");
         ArrayList<Seguidor> cartas_mesa = this.getMesa().getCartasMesa(this.getJogador());
         if (cartas_mesa.get(posicao_sacrificio -1) == null){//se nao tiver carta na posicao, nao acontece o sacrificio
             System.out.println("Nao ha carta na posicao escolhida para sacrificio");

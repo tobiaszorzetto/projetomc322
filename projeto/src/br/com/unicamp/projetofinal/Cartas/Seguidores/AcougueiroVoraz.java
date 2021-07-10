@@ -15,7 +15,7 @@ public class AcougueiroVoraz extends Seguidor {
 
 
     @Override
-    public void jogarCarta() throws ManaInsuficienteException{
+    public void jogarCarta() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
 
         boolean abateu = GerenciadorEfeitos.abaterAliado(this.getJogador());
         if(abateu){
