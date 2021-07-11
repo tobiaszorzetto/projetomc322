@@ -29,10 +29,6 @@ public class GerenciadorEfeitos {
         carta.setVidaOriginal();
     }
 
-    public static void curar(Seguidor carta, int quant){
-        GerenciadorEfeitos.aumentarVida(carta, quant);
-    }
-
     public static void escolherCartaCurar(Carta carta){
         int numero_carta;
         ArrayList<Seguidor> cartas_na_mesa = carta.getMesa().getCartasMesa(carta.getJogador());
