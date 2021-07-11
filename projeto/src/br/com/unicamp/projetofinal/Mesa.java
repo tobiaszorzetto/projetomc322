@@ -49,6 +49,7 @@ public class Mesa {
 
 
 	public boolean temCartasMesa(Jogador jogador){
+		//funcao auxiliar para verificar se ha cartas jogadas na mesa
 		for(Seguidor carta: getCartasMesa(jogador)){
 			if(carta!=null) return true;
 		}
@@ -62,6 +63,7 @@ public class Mesa {
 	}
 
 	public Jogador getJogador(int i){
+		//devolver o jogador escolhido
 		if (i==1){
 			return jogador1;
 		}
@@ -69,6 +71,7 @@ public class Mesa {
 	}
 
 	public ArrayList<Seguidor> getCartasMesaAdversario(Jogador jogador){
+		//funcao para retornar as cartas na mesa do oponente do jogador passado
 		if (jogador.equals(jogador2)){
 			return cartas_mesa1;
 		} else{
@@ -77,21 +80,24 @@ public class Mesa {
 	}
 
 	public Jogador getAdversario(Jogador aliado){
-		if (aliado.equals(jogador1)){
-			return jogador2;
+		//funcao para retornar o adversario
+		if (aliado.equals(jogador1)){//se o jogador passado for 1
+			return jogador2;//devolve o jogador 2
 		} else{
-			return jogador1;
+			return jogador1;//caso contrario devolve o 1
 		}
 	}
 
 	public int getParteDaRodada(){
+		//devolve a parte da rodada em que o jogo se encontra
 		return parte_da_rodada;
 	}
 
 	public  ArrayList<Seguidor> getCartasMesa(Jogador jogador){
+		//devolve as cartas na mesa do jogador recebido
 		if (jogador.equals(jogador1)){
 			return cartas_mesa1;
-		} else{
+		} else{ // se for o jogador 2
 			return cartas_mesa2;
 		}
 	}
@@ -99,6 +105,7 @@ public class Mesa {
 		//Setters ......................................................................................................
 
 	public void setJogador(Jogador jogador){
+		//define os atributos iniciais relacionados aos jogadores
 		if(this.jogador1 == null){
 			this.jogador1 = jogador;
 			this.defensor = jogador;
@@ -114,21 +121,26 @@ public class Mesa {
 	// FUNCOES GERAIS --------------------------------------------------------------------------------------------------
 
 	public void verificarCondicoes() throws ManaInsuficienteException, PosicaoMesaOcupadaException{
+		//verifica as condicoes das cartas na mesa
 		for (int i = 0; i<6; i++){
+			//passa pelas cartas na mesa e verifica sua condicao
 			if (cartas_mesa1.get(i)!= null)
 				cartas_mesa1.get(i).verificarCondicao();
 		}
 		for (int i = 0; i < 6; i++){
+			//passa pelas cartas na mesa do outro jogador e verifica sua condicao
 			if (cartas_mesa2.get(i) != null)
 				cartas_mesa2.get(i).verificarCondicao();
 		}
 		for (int i = 0; i< feiticos_ativos.size(); i++){
+			//passa pelos feiticos ativos e verifica a condicao deles
 			feiticos_ativos.get(i).verificarCondicao();
 		}
 
 	}
 
 	public void destribuirCartasIniciais(Jogador jogador){
+		//funcao para distribuir as cartas inciais dos jogadores
 		for(int i = 0; i<4; i++){
 			jogador.sortearDoDeck();
 		}
@@ -138,15 +150,16 @@ public class Mesa {
 	}
 
 	public void aumentarMana() throws ManaInsuficienteException {
-		if(this.manaJogo < 10){
+		//aumenta a mana de acordo com a rodada do jogo
+		if(this.manaJogo < 10){//mana vai apenas ate 10
 			this.manaJogo++;
-
 		}
 		jogador1.setMana(manaJogo);
 		jogador2.setMana(manaJogo);
 	}
 
 	public void trocarMarcacoes(){
+		//funcao para inverter o atacante e o defensor na mudanca de rodada
 		this.atacante.setMarcador(Marcador.DEFENSOR);
 		this.defensor.setMarcador(Marcador.ATACANTE);
 		Jogador aux = this.atacante;
@@ -155,19 +168,21 @@ public class Mesa {
 	}
 
 	public void realizarCombates() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
+		//funcao para realizar combate entre as cartas na mesa definidas pelos jogadores
 		for (int i = 0; i < 6; i++){
 			Seguidor seguidor  = this.getCartasMesa(this.atacante).get(i);
-			if(seguidor!= null && seguidor.getVaiAtacar()){
-				seguidor.atacar();
-				seguidor.setVaiAtacar(false);
+			if(seguidor!= null && seguidor.getVaiAtacar()){//se houver seguidor e ele for atacar
+				seguidor.atacar();//ataca
+				seguidor.setVaiAtacar(false);// ja atacou
 				if(seguidor.getTraco() == Traco.ATAQUEDUPLO && seguidor.getGetVezesQueVaiAtacar() == 2 && seguidor.naoMorreu()){
-					seguidor.atacar();
+					seguidor.atacar(); //verifica o Traco de ataque duplo (atacar duas vezes)
 				}
 			}
 		}
 	}
 
 	public void colocarCartaMesa(Jogador jogador, Seguidor carta, int posicao_alocacao) throws ManaInsuficienteException, PosicaoMesaOcupadaException{
+		//coloca na mesa do jogador recebido a carta recebida na posicao recebida
 		if (jogador.equals(jogador1)){
 			cartas_mesa1.set(posicao_alocacao, carta);
 		} else{
@@ -177,26 +192,28 @@ public class Mesa {
 	// PARTES ----------------------------------------------------------------------------------------------------------
 
 	public boolean realizarParte0() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
-		this.verificarCondicoes();
+
 		this.parte_da_rodada = 0;
 		this.verificarCondicoes();
-		return this.atacante.atacar();
+		return this.atacante.atacar();//faz o jogador decidir acoes de ataque
 	}
 
 	public void realizarParte1() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
 		this.parte_da_rodada = 1;
 		this.verificarCondicoes();
-		defensor.defender();
-		this.parte_da_rodada = 2;
+		defensor.defender();//faz o jogador decidir acoes de defesa
+
+		this.parte_da_rodada = 2; // essa parte serve so como transicao
 		this.verificarCondicoes();
 
 	}
 
-	public void realizarParte2() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
+	public void realizarParte3() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
+		//
 		this.parte_da_rodada = 3;
-		this.realizarCombates();
+		this.realizarCombates();//realiza os combates
 		this.verificarCondicoes();
-		this.defensor.desarmarDefesa();
+		this.defensor.desarmarDefesa();//tira da defesa as cartas que tinham sido colocadas na defesa (para a proxima rodada)
 	}
 
 	// PRINCIPAL -------------------------------------------------------------------------------------------------------
@@ -207,11 +224,11 @@ public class Mesa {
 		this.verificarCondicoes();
 
 		this.rodada++;
-		this.aumentarMana();
-		this.trocarMarcacoes();
+		this.aumentarMana();//aumenta a mana de acordo com as restricoes
+		this.trocarMarcacoes();//inverte as funcoes dos jogadores
 
 		boolean atacou = this.realizarParte0();
-		if (atacou){
+		if (atacou){ //so realiza se o jogador decidiu atacar na parte 0
 			this.realizarParte1();
 			this.realizarParte3();
 		}
@@ -221,6 +238,7 @@ public class Mesa {
 	}
 
 	public int numCartasMesa(Jogador jogador){
+		//devolve o numero de cartas na mesa do jogador recebido
 		ArrayList<Seguidor> cartas_mesa = this.getCartasMesa(jogador);
 		int num_cartas = 0;
 		for (Seguidor carta : cartas_mesa) {

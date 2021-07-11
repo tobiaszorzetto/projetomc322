@@ -195,14 +195,14 @@ public class DeckFactory {
             int numero_carta = PrintFactory.pedirInputInt("Escolha uma carta");
 
             if (numero_carta == 0) {
-                if (deck.getSize() > 4){
+                if (deck.getSize() >= 8){
                     running = false;
                     for(Carta carta : deck.getDeck()){
                         System.out.println(carta.getNome());
                     }
                 }
                 else{
-                    System.out.println("São necessárias ao menos 4 cartas no Deck para jogar");
+                    System.out.println("São necessárias ao menos 8 cartas no Deck para jogar");
                 }
             }
             else{

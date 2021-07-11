@@ -115,21 +115,24 @@ public abstract class Seguidor extends Carta {
 
 	public boolean diminuirVida(int quantidade) throws PosicaoMesaOcupadaException, ManaInsuficienteException{
 		if(this.getTraco()== Traco.BARREIRA){
-			this.setTraco(Traco.BARREIRA);
-			return false;
+			//se tiver traco de barreira nao diminui vida
+			this.setTraco(Traco.NENHUM);//perde o traco de barreira
+			return false;//retorna que nao morreu ja direto
 		}
 		vida_atual -= quantidade;
+
 		if (vida_atual <= 0){
 			matarSeguidor();
-			return true;
+			return true;//retorna que morreu
 		}
-		return false;
+
+		return false;//retorna que nao morreu
 	}
 
 	public void matarSeguidor() throws ManaInsuficienteException, PosicaoMesaOcupadaException{
-		this.setMorreu();
+		this.setMorreu();//coloca o seguidor como morto
 		int posicao = this.getMesa().getCartasMesa(this.getJogador()).indexOf(this);
-		this.getMesa().getCartasMesa(this.getJogador()).set(posicao, null);//remove da lista e coloca null no lugar
+		this.getMesa().getCartasMesa(this.getJogador()).set(posicao, null);//troca ele por null na mesa
 	}
 
 	protected void setMorreu(){
@@ -139,7 +142,7 @@ public abstract class Seguidor extends Carta {
 	// Verificacao de Tracos -------------------------------------------------------------------------------------------
 
 	public void verificarFuria(){
-		if (this.getTraco() == Traco.FURIA){ //se o seguidor tiver traco de furia
+		if (this.getTraco() == Traco.FURIA){
 			GerenciadorEfeitos.aumentarAtaqueVida(this,1,1);
 		}
 	}
@@ -158,7 +161,7 @@ public abstract class Seguidor extends Carta {
 		ArrayList<Seguidor> cartas_adversario = this.getMesa().getCartasMesa(adversario);
 		Seguidor carta_adversario = cartas_adversario.get(endereco); // eh carta que esta na frente desse seguidor (pode ser nenhuma)
 
-		if(deveAtacarNexus( carta_adversario )) {
+		if(deveAtacarNexus( carta_adversario )) {//se deve atacar o nexus
 			this.atacarNexus(adversario, this.ataque);
 		}
 		else{ // se tem condicoes de combate
@@ -176,26 +179,28 @@ public abstract class Seguidor extends Carta {
 
 	public boolean deveAtacarNexus(Seguidor carta_adversario) {
 		if (carta_adversario == null || carta_adversario.naoVaiDefender()) {
-			return true;
+			return true;// se nao tiver carta bloquando na frente retorna que deve atacar o nexus
 		}
-		return verificarElusivo(carta_adversario);
+		return verificarElusivo(carta_adversario); // se tem carta bloqueando, so retorna true se essa carta for elusiva e a outra n for
 	}
 
 	// AO SER COLOCADO NA MESA -----------------------------------------------------------------------------------------
 
 	public void atuarNaMesa(Jogador jogador, int posicao_alocacao) throws PosicaoMesaOcupadaException, ManaInsuficienteException {
-		if (posicao_alocacao<0){
+		//define o que vai acontecer com o seguidor quando colocado na mesa
+		if (posicao_alocacao<0){//verifica a posicao de alocacao recebida
 			throw new ArrayIndexOutOfBoundsException();
 		}
-		if(this.getMesa().getCartasMesa(jogador).get(posicao_alocacao) != null){
+		if(this.getMesa().getCartasMesa(jogador).get(posicao_alocacao) != null){//verifica se ja tem carta na posicao recebida
 			throw new PosicaoMesaOcupadaException();
 		}
 		this.realizarEfeitoAntesDeColocado();
+		//com todas as restricoes verificadas, coloca a carta na mesa
 		this.getMesa().colocarCartaMesa(jogador, this, posicao_alocacao);
 	}
 
 	protected void realizarEfeitoAntesDeColocado() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
-
+		//implementada nos seguidores que necessitarem
 	}
 
 	// GERAIS ----------------------------------------------------------------------------------------------------------
@@ -205,29 +210,34 @@ public abstract class Seguidor extends Carta {
 		this.diminuirVida(carta_adversario.getAtaque());
 		boolean adversario_morreu = carta_adversario.diminuirVida(ataque);//verifica se ele morreu
 		if (adversario_morreu){
-			verificarFuria(); //chama-se apenas quando sabemos que matou o inimigo
+			verificarFuria();
 			verificarSobrepujar(carta_adversario);
 		}
 	}
 
 	public void jogarCarta() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
-		Jogador jogador = this.getJogador();
-		Deck mao = jogador.getMao();
-		Mesa mesa = this.getMesa();
-		int posicao_alocacao = jogador.escolherPosicao();
-		try{
-			jogador.setMana(jogador.getMana() - this.getMana());
-			this.atuarNaMesa(jogador, posicao_alocacao);
-			mao.removerCarta(this);
+		if (this.getMesa().temEspacoMesa(this.getJogador())){// so acontece se tem espaco
+			Jogador jogador = this.getJogador();
+			Deck mao = jogador.getMao();
+			int posicao_alocacao = jogador.escolherPosicao();
+			try{
+				jogador.setMana(jogador.getMana() - this.getMana());//diminui a mana do jogador de acordo com o custo da carta
+				this.atuarNaMesa(jogador, posicao_alocacao);
+				mao.removerCarta(this);
+			}
+			catch (PosicaoMesaOcupadaException | ArrayIndexOutOfBoundsException e){//caso posicao invalida
+				jogador.setMana(jogador.getMana() + this.getMana());//retorna a mana ao jogador
+				System.out.println("Posicao invalida");
+				jogarCarta();
+			}
+		} else{
+			System.out.println("Não há espaco na mesa para a carta ser jogada");
 		}
-		catch (PosicaoMesaOcupadaException | ArrayIndexOutOfBoundsException e){
-			jogador.setMana(jogador.getMana() + this.getMana());
-			System.out.println("Posicao invalida");
-			jogarCarta();
-		}
+
 	}
 
     public void resetar(){
+		//volta tudo do seguidor para o original
 		this.setAtaqueOriginal();
 		this.setVidaOriginal();
 		this.setVaiAtacar(false);

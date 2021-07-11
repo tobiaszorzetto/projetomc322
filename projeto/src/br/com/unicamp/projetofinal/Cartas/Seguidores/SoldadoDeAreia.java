@@ -11,9 +11,8 @@ import br.com.unicamp.projetofinal.PosicaoMesaOcupadaException;
 *
 * 1 | 1 | 1
 *
-*
-*
-*
+* Quando colocado, ataca o nexus adversario
+* Condicao: quando passar da rodada em que foi criado, morre
 *
 */
 

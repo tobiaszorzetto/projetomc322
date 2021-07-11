@@ -9,7 +9,7 @@ import br.com.unicamp.projetofinal.Cartas.Seguidor;
 *
 *  Ao ser colocado na mesa coloca uma carta Swain na mao do jogador
 *
-*  Todo inicio de rodada, da 3 de dano ao nexus adversario
+*  No inicio de rodada, da 3 de dano ao nexus adversario
 * */
 
 public class OLeviata extends Seguidor {

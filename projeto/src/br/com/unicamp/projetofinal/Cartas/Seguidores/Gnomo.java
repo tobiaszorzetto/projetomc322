@@ -7,7 +7,6 @@ import br.com.unicamp.projetofinal.Cartas.Seguidor;
 /*
 *  4 | 2 |4
 *
-* melhor carta do jogo!
 * */
 
 public class Gnomo extends Seguidor {

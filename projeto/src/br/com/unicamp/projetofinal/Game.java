@@ -19,7 +19,6 @@ public class Game {
         }
 
         PrintFactory.printarFinal(mesa);
-
     }
 
     public Jogador escolherContraQuem(Mesa mesa){
