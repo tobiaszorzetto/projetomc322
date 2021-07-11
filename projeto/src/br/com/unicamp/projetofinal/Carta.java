@@ -62,7 +62,7 @@ public abstract class Carta {
 		if(this.isSobrepujar()){
 			GerenciadorEfeitos.atacarNexus(carta_adversario.getJogador(), - carta_adversario.getVidaAtual());
 		}
-	};
+	}
 
 	public abstract void jogarCarta() throws ManaInsuficienteException, PosicaoMesaOcupadaException;
 

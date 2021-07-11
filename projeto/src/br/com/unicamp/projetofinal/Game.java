@@ -21,7 +21,7 @@ public class Game {
         PrintFactory.printarFinal(mesa);
     }
 
-    public Jogador escolherContraQuem(Mesa mesa){
+    private Jogador escolherContraQuem(Mesa mesa){
         int escolha = PrintFactory.pedirInputInt("1.1x1 | 2.1xPC");
         if (escolha == 1){
             System.out.println("Digite o Nome do Jogador 2");
