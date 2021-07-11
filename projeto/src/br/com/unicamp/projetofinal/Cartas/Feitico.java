@@ -22,21 +22,23 @@ public abstract class Feitico extends Carta {
 
     @Override
     public void jogarCarta() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
+        // A compra do feitico funciona de jeito diferente de de uma unidade
+
         Jogador jogador = this.getJogador();
         Deck mao = jogador.getMao();
         Mesa mesa = this.getMesa();
         int mana_de_feitico = jogador.getManaDeFeitico();
         int mana = jogador.getMana();
 
-        if(mana_de_feitico>=this.getMana()){
+        if(mana_de_feitico>=this.getMana()){ //primeiro tenta pegar tudo da mana de feitico
             this.atuarNaMesa(jogador);
             mao.removerCarta(this);
             jogador.setManaDeFeitico(mana_de_feitico - this.getMana());
         }
-        else if (mana + mana_de_feitico >=this.getMana()){
+        else if (mana + mana_de_feitico >=this.getMana()){ // tenta pegar da soma da mana de feitico com a mana comum
             try{
                 jogador.setMana(mana + mana_de_feitico - this.getMana());
-                jogador.setManaDeFeitico(0);
+                jogador.setManaDeFeitico(0); // toda vez prefere a mana que esta reservada na mana de feitico, por isso consome tudo
                 this.atuarNaMesa(jogador);
                 mao.removerCarta(this);
             }

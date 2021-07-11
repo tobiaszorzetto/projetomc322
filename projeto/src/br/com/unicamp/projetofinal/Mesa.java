@@ -150,7 +150,7 @@ public class Mesa {
 		this.atacante.setMarcador(Marcador.DEFENSOR);
 		this.defensor.setMarcador(Marcador.ATACANTE);
 		Jogador aux = this.atacante;
-		this.atacante = this.defensor;//o atacante eh agora quem antes estava defendendo
+		this.atacante = this.defensor;
 		this.defensor = aux;
 	}
 
@@ -189,6 +189,7 @@ public class Mesa {
 		defensor.defender();
 		this.parte_da_rodada = 2;
 		this.verificarCondicoes();
+
 	}
 
 	public void realizarParte2() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
@@ -201,6 +202,10 @@ public class Mesa {
 	// PRINCIPAL -------------------------------------------------------------------------------------------------------
 
 	public boolean passarRodada() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
+		// funcao que realiza o desenvolvimento das rodadas!
+
+		this.verificarCondicoes();
+
 		this.rodada++;
 		this.aumentarMana();
 		this.trocarMarcacoes();
@@ -208,9 +213,9 @@ public class Mesa {
 		boolean atacou = this.realizarParte0();
 		if (atacou){
 			this.realizarParte1();
-			this.realizarParte2();
+			this.realizarParte3();
 		}
-		this.parte_da_rodada = 4;
+		this.parte_da_rodada = 4; // apesar de ser a ultima, representa a transicao para o inicio da proxima rodada
 		return this.continuar;
 
 	}
@@ -229,7 +234,7 @@ public class Mesa {
 	public boolean temEspacoMesa(Jogador jogador){
 		ArrayList<Seguidor> cartas_mesa = this.getCartasMesa(jogador);
 		for (Seguidor carta : cartas_mesa){
-			if (carta == null){//se houver posicao vazia
+			if (carta == null){//se houver posicao vazia eh pq tem espaco
 				return true;
 			}
 		}

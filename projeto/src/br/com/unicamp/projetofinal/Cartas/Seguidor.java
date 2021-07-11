@@ -5,6 +5,16 @@ import br.com.unicamp.projetofinal.Enums.Traco;
 
 import java.util.*;
 
+/*
+*  custo de mana | ataque | vida
+*
+*  Pode ter efeitos
+*
+*  Pode ter tracos
+*
+*  Cada classe que extende seguidor tem suas proprias caracteristicas
+* */
+
 public abstract class Seguidor extends Carta {
 	private final int ataque_original;
 	private int vezes_que_atacou = 0;
@@ -142,16 +152,16 @@ public abstract class Seguidor extends Carta {
 
 	public void atacar() throws ManaInsuficienteException, PosicaoMesaOcupadaException {
 		this.vezes_que_atacou++;
-		int endereco = this.getMesa().getCartasMesa(this.getJogador()).indexOf(this);
 
+		int endereco = this.getMesa().getCartasMesa(this.getJogador()).indexOf(this);
 		Jogador adversario = this.getAdversario();
 		ArrayList<Seguidor> cartas_adversario = this.getMesa().getCartasMesa(adversario);
-		Seguidor carta_adversario = cartas_adversario.get(endereco);
+		Seguidor carta_adversario = cartas_adversario.get(endereco); // eh carta que esta na frente desse seguidor (pode ser nenhuma)
 
 		if(deveAtacarNexus( carta_adversario )) {
 			this.atacarNexus(adversario, this.ataque);
 		}
-		else{//atacar a carta na posicao do adversario
+		else{ // se tem condicoes de combate
 			this.realizarCombate(carta_adversario);
 		}
 	}
@@ -191,8 +201,9 @@ public abstract class Seguidor extends Carta {
 	// GERAIS ----------------------------------------------------------------------------------------------------------
 
 	public void realizarCombate(Seguidor carta_adversario) throws ManaInsuficienteException, PosicaoMesaOcupadaException {
-		this.diminuirVida(carta_adversario.getAtaque());//diminui a vida desse seguidor
-		boolean adversario_morreu = carta_adversario.diminuirVida(ataque);//diminui a vida do adversario e verifica se ele morreu
+		// essa carta e a adversaria diminuem vida
+		this.diminuirVida(carta_adversario.getAtaque());
+		boolean adversario_morreu = carta_adversario.diminuirVida(ataque);//verifica se ele morreu
 		if (adversario_morreu){
 			verificarFuria(); //chama-se apenas quando sabemos que matou o inimigo
 			verificarSobrepujar(carta_adversario);

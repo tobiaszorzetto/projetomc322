@@ -14,6 +14,7 @@ public class Computador extends Jogador {
 
     @Override
     public int escolherCartaCombater() {
+        // seta todas as cartas para participar do combate, seja defesa ou ataque em cada caso
         ArrayList<Seguidor> carta_mesa = this.getMesa().getCartasMesa(this);
         if (this.getMarcador() == Marcador.ATACANTE) {
             for (int i = 0; i < 6; i++) {
@@ -51,6 +52,7 @@ public class Computador extends Jogador {
     }
 
     private int escolherCartaColocarAtacante() {
+        // retorna a posicao na mao da carta mais cara possivel de colocar
         Deck mao = this.getMao();
         int mana = this.getMana();
         int max = 0;
@@ -73,9 +75,10 @@ public class Computador extends Jogador {
         LinkedList<Seguidor> max = new LinkedList<Seguidor>();
         LinkedList<Seguidor> conjunto = new LinkedList<Seguidor>();
 
-        int num = verSeTemCarta(conjunto, cartas, num_cartas_quer_colocar, mana, max);
-        if (num == -1 && conjunto.size() == 0) return -1;
-        else if (num == -1) return cartas.getDeck().indexOf(conjunto.getLast());
+        // tenta todas as combinacoes ate achar uma que tenha o numero de cartas esperado
+        int num = verSeTemCarta(conjunto, cartas, num_cartas_quer_colocar, mana, max); // se retorna -1 nao existe essa combinacao
+        if (num == -1 && conjunto.size() == 0) return -1; // nao existe mais possibilidade ou acabaram as cartas
+        else if (num == -1) return cartas.getDeck().indexOf(conjunto.getLast()); //nao existe combinacao entao retorna o ultimo da melhor combinacao possivel que achou
         else return num;
     }
 
@@ -84,11 +87,11 @@ public class Computador extends Jogador {
         try{
             return cartas.getDeck().indexOf(conjunto.getLast()) ;
         } catch (NoSuchElementException e){
-            return -1;
+            return -1; // retorna -1 se acabaram as cartas
         }
 
         } else if (mana <= 0) {
-            return -1;
+            return -1; // retorna -1 se acabou a mana do pc
         } else {
         for (Carta carta : cartas.getDeck()) {
             if (carta.getMana() <= mana) {
@@ -99,19 +102,20 @@ public class Computador extends Jogador {
                         if (conjunto.size() > max.size()) {
                             max = conjunto;
                         }
-                        return carta_a_voltar;
+                        return carta_a_voltar; // se retornar -1 vai tentar a proxima combinacao
                     } else {
                         conjunto.removeLast();
                     }
-                } catch (IllegalArgumentException e) {
+                } catch (IllegalArgumentException ignored) {
                 }
             }
         }
-        return -1;
+        return -1; //retorna -1 se n tem mais cartas com a quant de mana
         }
     }
 
     public int calcularNumCartasColocar(){
+        // ve quantas cartas do adversario vao atacar
         ArrayList<Seguidor> mesa_adversario = this.getMesa().getCartasMesaAdversario(this);
         ArrayList<Seguidor> mesa_aliada = this.getMesa().getCartasMesa(this);
         int contador = 0;
@@ -124,6 +128,7 @@ public class Computador extends Jogador {
     }
 
     public int escolherPosicao(){
+        // retorna a primeira posicao vazia em que no outro lado existe uma unidade que vai atacar
         ArrayList<Seguidor> mesa_adversario = this.getMesa().getCartasMesaAdversario(this);
         ArrayList<Seguidor> mesa_aliada = this.getMesa().getCartasMesa(this);
 

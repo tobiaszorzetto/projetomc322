@@ -145,7 +145,7 @@ public class Jogador {
 		Random sorteio = new Random();
 		int quant =  PrintFactory.pedirInputInt("Quer trocar quantas");
 		if (quant == 0) return;
-		for(int i = 0; i< quant; i++){
+		for(int i = 0; i< quant; i++){ //sorteia quant cartas na mao e retorna elas ao deck
 			int numero  = sorteio.nextInt(mao.getSize()) ;
 			this.deck.adicionarCarta(mao.getCarta(numero));
 			this.mao.removerCarta(mao.getCarta(numero));
@@ -203,7 +203,7 @@ public class Jogador {
 
 			int numero_carta = escolherCartaColocar();
 			if (numero_carta == -1) {
-				return;
+				return; // o jogador na quer mais evocar nenhuma
 			} else{
 				try{
 					Carta carta = this.mao.getCarta(numero_carta);
@@ -233,7 +233,7 @@ public class Jogador {
 		return PrintFactory.pedirInputInt(this.nome + ", escolha que cartas quer usar para defender") - 1;
 	}
 
-	public boolean decidirQueCartasCombater(int cont){
+	public boolean decidirQueCartasCombater(int cont){ // cont marca as cartas ja escolhidas p atacar
 		ArrayList<Seguidor> cartas_na_mesa = this.mesa.getCartasMesa(this);
 		PrintFactory.printCartasNaMesa(this.mesa);
 		int numero_carta = this.escolherCartaCombater();
@@ -243,7 +243,7 @@ public class Jogador {
 		} else if (numero_carta < 6) {
 			Seguidor carta = cartas_na_mesa.get(numero_carta);
 			this.prepararParaCombate(carta);
-			return this.decidirQueCartasCombater(cont+ 1);
+			return this.decidirQueCartasCombater(cont+ 1); // continua, incrementanddo cont
 		} else {
 			return cont != 0;//se atacar retorna true
 		}

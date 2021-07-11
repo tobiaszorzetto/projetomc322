@@ -9,6 +9,16 @@ import br.com.unicamp.projetofinal.Cartas.Campeao;
 import br.com.unicamp.projetofinal.Cartas.Seguidores.PoroDefensor;
 import br.com.unicamp.projetofinal.Enums.Traco;
 
+/*
+*  4 / 0 / 5
+*
+*  A primeira vez que diminui vida -> evoca um poro
+*
+*  Todo inicio de rodada -> regenera a vida para a original
+*
+*  Traco -> Barreira
+* */
+
 public class Braum extends Campeao{
 	
 	int dano_tomado = 0;
@@ -31,7 +41,7 @@ public class Braum extends Campeao{
 	@Override
 	public void verificarCondicao() throws ManaInsuficienteException {
 		
-		if(this.getMesa().getParteDaRodada() == 3){
+		if(this.getMesa().getParteDaRodada() == 4){
 	           this.setVidaOriginal();
 	       }
 	    this.checarLevelUp();
